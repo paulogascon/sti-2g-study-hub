@@ -18,4 +18,10 @@ Desktop.ini
 android/.gradle/
 android/build/
 android/app/build/
+android/build_work/
+android/*.apk
+android/app/src/main/assets/docs/
+*.keystore
+*.idsig
 *.py
+

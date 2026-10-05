@@ -324,12 +324,52 @@ const App = {
     `;
   },
 
+  openDownloadModal() {
+    const modal = document.getElementById('downloadModal');
+    if (modal) {
+      modal.classList.add('open');
+      this.switchDownloadTab('android');
+    }
+  },
+
+  closeDownloadModal() {
+    const modal = document.getElementById('downloadModal');
+    if (modal) {
+      modal.classList.remove('open');
+    }
+  },
+
+  switchDownloadTab(tab) {
+    const androidTab = document.getElementById('tabDownloadAndroid');
+    const iosTab = document.getElementById('tabDownloadIos');
+    const pwaTab = document.getElementById('tabDownloadPwa');
+
+    const btnAndroid = document.getElementById('btnTabAndroid');
+    const btnIos = document.getElementById('btnTabIos');
+    const btnPwa = document.getElementById('btnTabPwa');
+
+    if (androidTab) androidTab.style.display = tab === 'android' ? 'block' : 'none';
+    if (iosTab) iosTab.style.display = tab === 'ios' ? 'block' : 'none';
+    if (pwaTab) pwaTab.style.display = tab === 'pwa' ? 'block' : 'none';
+
+    if (btnAndroid) btnAndroid.classList.toggle('active', tab === 'android');
+    if (btnIos) btnIos.classList.toggle('active', tab === 'ios');
+    if (btnPwa) btnPwa.classList.toggle('active', tab === 'pwa');
+  },
+
   initModals() {
     // Handouts modal close
     const handoutsModal = document.getElementById('handoutsModal');
     const closeHandoutsBtn = document.getElementById('closeHandoutsModalBtn');
     if (closeHandoutsBtn && handoutsModal) {
       closeHandoutsBtn.addEventListener('click', () => handoutsModal.classList.remove('open'));
+    }
+
+    // App Download modal close
+    const downloadModal = document.getElementById('downloadModal');
+    const closeDownloadBtn = document.getElementById('closeDownloadModalBtn');
+    if (closeDownloadBtn && downloadModal) {
+      closeDownloadBtn.addEventListener('click', () => downloadModal.classList.remove('open'));
     }
 
     // Add Sched Modal

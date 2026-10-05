@@ -49,6 +49,10 @@
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
           <span>Deadlines & Tasks</span>
         </a>
+        <a href="#download" class="nav-link" onclick="App.openDownloadModal(); return false;" style="color: #34d399;">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Get Mobile App (.apk)</span>
+        </a>
       </nav>
 
       <div class="sidebar-footer">
@@ -80,6 +84,7 @@
           </div>
         </div>
         <div class="header-actions">
+          <button id="openDownloadModalHeaderBtn" class="btn-notif" onclick="App.openDownloadModal()" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; font-weight: 700; cursor: pointer;">📱 Download App (.apk)</button>
           <span id="networkStatusPill" class="network-pill online">🟢 Online</span>
           <button id="enableNotifBtn" class="btn-notif">🔔 Enable Alerts</button>
           <button id="testAlertBtn" class="btn-notif" title="Preview Alert Warning">🔊 Test Chime</button>
@@ -100,6 +105,32 @@
           <div class="section-header">
             <h2>Welcome to Your Study Hub, JP! 👋</h2>
             <p>1st Semester, SY 2026–2027 &bull; STI West Negros University (Section BSIT 2G)</p>
+          </div>
+
+          <!-- Mobile App Download & Install Hero Card -->
+          <div class="app-download-hero-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(2, 132, 199, 0.2)); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: var(--radius-xl); padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 1.25rem;">
+              <div style="width: 54px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, #0284c7, #10b981); display: flex; align-items: center; justify-content: center; font-size: 1.85rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);">
+                📱
+              </div>
+              <div>
+                <div style="display:flex; align-items:center; gap: 8px; margin-bottom: 4px;">
+                  <span class="period-badge midterm" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">OFFICIAL v1.0.0 RELEASE</span>
+                  <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 600;">ANDROID &bull; IOS &bull; OFFLINE</span>
+                </div>
+                <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-main);">Install STI 2G Study Hub on Your Phone</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Offline class timetable, class chimes, midterm study guides & practice exam flashcards.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <a href="https://github.com/paulogascon/sti-2g-study-hub/releases/download/v1.0.0/STI_2G_Study_Hub.apk" download="STI_2G_Study_Hub.apk" class="btn-primary" style="background: #10b981; border-color: #059669; font-weight: 700; text-decoration: none; padding: 0.65rem 1.25rem; display: inline-flex; align-items: center; gap: 6px;">
+                <span>📥 Download Android APK</span>
+                <span style="font-size: 0.75rem; opacity: 0.85;">(7.4 MB)</span>
+              </a>
+              <button class="btn-secondary" onclick="App.openDownloadModal()" style="font-weight: 600; padding: 0.65rem 1rem; cursor: pointer;">
+                📲 Install Guide (iOS / Android)
+              </button>
+            </div>
           </div>
 
           <div class="dashboard-grid">
@@ -413,6 +444,150 @@
       </div>
     </div>
   </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: APP DOWNLOAD & INSTALLATION GUIDE -->
+  <!-- ========================================== -->
+  <div id="downloadModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap: 8px;">
+          <span style="font-size: 1.5rem;">📱</span>
+          <h3 style="margin: 0;">Get STI 2G Study Hub App</h3>
+        </div>
+        <button id="closeDownloadModalBtn" class="modal-close-btn" onclick="App.closeDownloadModal()">&times;</button>
+      </div>
+
+      <!-- Segmented Platform Tabs -->
+      <div class="download-tab-group">
+        <button id="btnTabAndroid" class="download-tab-btn active" onclick="App.switchDownloadTab('android')">
+          🤖 Android APK
+        </button>
+        <button id="btnTabIos" class="download-tab-btn" onclick="App.switchDownloadTab('ios')">
+          🍎 iPhone / iOS
+        </button>
+        <button id="btnTabPwa" class="download-tab-btn" onclick="App.switchDownloadTab('pwa')">
+          🌐 Chrome Web App
+        </button>
+      </div>
+
+      <!-- TAB 1: ANDROID APK DIRECT DOWNLOAD -->
+      <div id="tabDownloadAndroid">
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(2, 132, 199, 0.15)); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem; text-align: center;">
+          <h4 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.35rem;">Official Standalone Android APK</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Direct file download straight into your Google Chrome Downloads folder.</p>
+          <div style="display:flex; justify-content:center; gap:0.5rem; flex-wrap:wrap;">
+            <a href="https://github.com/paulogascon/sti-2g-study-hub/releases/download/v1.0.0/STI_2G_Study_Hub.apk" download="STI_2G_Study_Hub.apk" class="btn-primary" style="background:#10b981; border-color:#059669; font-size: 0.95rem; font-weight:700; padding:0.75rem 1.5rem; text-decoration:none;">
+              📥 Download APK (7.4 MB)
+            </a>
+            <a href="docs/STI_2G_Study_Hub.apk" download="STI_2G_Study_Hub.apk" class="btn-secondary" style="font-size: 0.85rem; padding:0.75rem 1rem; text-decoration:none;">
+              Direct Mirror Link
+            </a>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.5rem;">Version 1.0.0 &bull; 100% Virus-Free &bull; Signed STI 2G Build</div>
+        </div>
+
+        <h5 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 0.75rem;">How to Install on Android:</h5>
+        
+        <div class="install-step-card">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">
+            <h5>Download the APK file</h5>
+            <p>Tap <strong>"Download APK"</strong> above. Chrome will download <code>STI_2G_Study_Hub.apk</code> directly into your phone's <em>Downloads</em> folder.</p>
+          </div>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">
+            <h5>Open the file</h5>
+            <p>Pull down your notification bar and tap the completed download, or open your phone's <strong>Files &rarr; Downloads</strong> app.</p>
+          </div>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">
+            <h5>Tap Install</h5>
+            <p>Tap <code>STI_2G_Study_Hub.apk</code> and choose <strong>Install</strong>. If your phone asks permission to install apps from Chrome, tap <em>Settings</em> and turn on <em>"Allow from this source"</em>.</p>
+          </div>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">4</div>
+          <div class="install-step-text">
+            <h5>Enjoy 100% Offline Reviewers!</h5>
+            <p>Open the app from your home screen. All 8 subjects, class schedules, and midterm handouts are bundled inside and work with zero Wi-Fi or cellular data!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: IPHONE / IOS SAFARI GUIDE -->
+      <div id="tabDownloadIos" style="display:none;">
+        <div style="background: rgba(2, 132, 199, 0.1); border: 1px solid rgba(2, 132, 199, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem;">
+          <h4 style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 0.25rem;">🍎 Apple iOS (iPhone & iPad) Setup</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Apple devices don't use APK files. Instead, you can add STI 2G Study Hub directly to your home screen using Safari for a full-screen app experience!</p>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">
+            <h5>Open this site in Safari</h5>
+            <p>Make sure you are browsing in <strong>Safari</strong> (not inside Messenger or Instagram in-app browser).</p>
+          </div>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">
+            <h5>Tap the Share Button</h5>
+            <p>Tap the <strong>Share</strong> icon at the bottom of the Safari screen (the square with an arrow pointing up 📤).</p>
+          </div>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">
+            <h5>Select "Add to Home Screen"</h5>
+            <p>Scroll down the menu and tap <strong>"Add to Home Screen"</strong> (with the ➕ icon).</p>
+          </div>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">4</div>
+          <div class="install-step-text">
+            <h5>Tap "Add" in top-right</h5>
+            <p>The STI 2G Study Hub app icon is now on your home screen! Tap it anytime to open full-screen like a regular App Store app.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: CHROME WEB APP / PWA NOTE -->
+      <div id="tabDownloadPwa" style="display:none;">
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem;">
+          <h4 style="font-size: 1.05rem; color: #fbbf24; margin-bottom: 0.25rem;">💡 Where did my browser install go?</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">If you clicked <strong>"Install app"</strong> in Google Chrome, it does <em>NOT</em> download a file into Chrome Downloads! Instead, Chrome creates an app shortcut directly on your <strong>Home Screen</strong> or <strong>App Drawer</strong>.</p>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">
+            <h5>Check Your Home Screen</h5>
+            <p>Swipe to your phone's home screen or swipe up into your App Drawer. Look for the <strong>STI 2G Hub</strong> icon with the 🎓 graduation cap.</p>
+          </div>
+        </div>
+
+        <div class="install-step-card">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">
+            <h5>Want the actual .apk file instead?</h5>
+            <p>If you prefer an actual installation file in your Downloads folder to share with classmates via Bluetooth or ShareIt, switch to the <strong>"Android APK"</strong> tab and tap Download APK!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Scripts -->
   <script src="js/data/seeds.js"></script>
