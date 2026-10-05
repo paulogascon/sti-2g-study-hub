@@ -17,6 +17,12 @@
       "Stacks (LIFO) & Queues (FIFO)",
       "Trees & Binary Search Trees (BST)",
       "Sorting & Searching Algorithms"
+    ],
+    "prelimTopics": [
+      "Intro to Algorithms & Abstract Data Types",
+      "Array Implementations & Linear Data Structures",
+      "Algorithm Analysis & Big-O Notation",
+      "Searching Algorithms (Linear vs Binary Search)"
     ]
   },
   {
@@ -37,6 +43,12 @@
       "Hierarchical Task Analysis (HTA)",
       "Prototyping & Wireframing",
       "Usability Testing & Metrics"
+    ],
+    "prelimTopics": [
+      "Foundations of Human-Computer Interaction",
+      "Human Sensory Memory, Vision & Ergonomics",
+      "Computer Input/Output Hardware Devices",
+      "Interaction Styles & Direct Manipulation"
     ]
   },
   {
@@ -57,6 +69,12 @@
       "CPU Scheduling Algorithms (FCFS, SJF, RR)",
       "Process Synchronization & Deadlocks",
       "Memory Management & Paging"
+    ],
+    "prelimTopics": [
+      "Computer System Architecture & Kernel Models",
+      "Operating System Services & User Interfaces",
+      "System Calls & Dual-Mode (Kernel/User) Operation",
+      "Process State Transitions & Process Control Block (PCB)"
     ]
   },
   {
@@ -76,6 +94,12 @@
       "Component Architecture & State Management",
       "API Integrations & Data Flow",
       "Testing & Deployment Best Practices"
+    ],
+    "prelimTopics": [
+      "Introduction to Modern Web Architecture",
+      "Client-Server Paradigms & HTTP/HTTPS Protocols",
+      "Frontend & Backend Separation",
+      "RESTful API Concepts & Data Formats (JSON/XML)"
     ]
   },
   {
@@ -95,6 +119,12 @@
       "Modulation Techniques (AM, FM, PM)",
       "OSI 7-Layer Reference Model",
       "Multiplexing & Error Detection Codes"
+    ],
+    "prelimTopics": [
+      "Fundamentals of Communication Systems & Models",
+      "Signal Propagation: Analog vs. Digital Signals",
+      "Guided vs. Unguided Transmission Media",
+      "Modulation Techniques (AM, FM, PM)"
     ]
   },
   {
@@ -114,6 +144,12 @@
       "Customs of the Tagalogs & Early Visayan Societies",
       "Cavite Mutiny & Propaganda Movement",
       "Philippine Constitution Evolution"
+    ],
+    "prelimTopics": [
+      "Historical Methodology: Primary vs. Secondary Sources",
+      "Customs of the Tagalogs by Fray Juan de Plasencia",
+      "First Catholic Mass in the Philippines Controversy",
+      "The Cry of Rebellion (Balintawak vs. Pugad Lawin)"
     ]
   },
   {
@@ -133,6 +169,12 @@
       "19th Century Philippines under Spanish Rule",
       "Rizal's European Education & Propaganda Writings",
       "Analysis of Noli Me Tangere & El Filibusterismo"
+    ],
+    "prelimTopics": [
+      "Rizal Law (RA 1425) & 19th-Century Colonial Philippines",
+      "Rizal's Family, Lineage & Childhood in Calamba",
+      "Scholastic Honors at Ateneo Municipal & UST",
+      "First Voyage to Europe & Early Reformist Writings"
     ]
   },
   {
@@ -152,6 +194,12 @@
       "Cardiovascular Endurance & Aerobics",
       "Movement Mechanics & Injury Prevention",
       "Personal Fitness Regimen Design"
+    ],
+    "prelimTopics": [
+      "Physical Fitness Assessment & Health-Related Parameters",
+      "Movement Competency & Aerobic Conditioning",
+      "Rhythmic Activities & Dance Fundamentals",
+      "Nutritional Guidelines & Sports Injury Prevention"
     ]
   }
 ]

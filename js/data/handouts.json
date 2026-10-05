@@ -190,5 +190,115 @@
     "format": "DOCX",
     "summary": "Primary and secondary source analysis, customs of the Tagalogs, and Cavite mutiny.",
     "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx"
+  },
+  {
+    "id": "h_dsa_prelim_guide",
+    "subjectCode": "COSC1003",
+    "title": "DSA Prelim Master Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "Core algorithms, Big-O complexity analysis, and 1D/2D arrays.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_IT2601.docx"
+  },
+  {
+    "id": "h_dsa_prelim_h1",
+    "subjectCode": "COSC1003",
+    "title": "DSA Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Introduction to Data Structures and Algorithmic Thinking.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/02_Handout_1(32).pdf"
+  },
+  {
+    "id": "h_hci_prelim_guide",
+    "subjectCode": "COSC1007",
+    "title": "HCI Prelim Comprehensive Reviewer",
+    "period": "PRELIM",
+    "type": "Reviewer",
+    "format": "DOCX",
+    "summary": "Foundational HCI principles, ergonomic models, and cognitive interaction.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/HCI_Prelim_Reviewer.docx"
+  },
+  {
+    "id": "h_hci_prelim_h1",
+    "subjectCode": "COSC1007",
+    "title": "HCI Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "The Human and the Computer interaction dimensions.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(2)_copy.pdf"
+  },
+  {
+    "id": "h_os_prelim_guide",
+    "subjectCode": "COSC1008",
+    "title": "Platform Tech Prelim Combined Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "OS architecture, kernels, system calls, and dual-mode execution.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_Handouts_01_02.docx"
+  },
+  {
+    "id": "h_rizal_prelim_guide",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Prelim Master Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "RA 1425, 19th-century Philippines, Calamba youth, and Ateneo education.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Rizal_Study_Guide.docx"
+  },
+  {
+    "id": "h_rizal_prelim_slides1",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Prelim Topic 1 Lecture Presentation",
+    "period": "PRELIM",
+    "type": "Lecture Slides",
+    "format": "PPTX",
+    "summary": "Rizal Law and 19th-century context lecture slides.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/GEDC 1014 (JRIZAL) PRELIM TOPIC 1.pptx"
+  },
+  {
+    "id": "h_history_prelim_guide",
+    "subjectCode": "GEDC 1006",
+    "title": "Readings in Phil. History Prelim Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "Primary sources, Plasencia's Customs of the Tagalogs, and historical analysis.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx"
+  },
+  {
+    "id": "h_comm_prelim_h1",
+    "subjectCode": "COSC1001",
+    "title": "Principles of Comm Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Communication fundamentals, transmission media, and signal types.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_12.pdf"
+  },
+  {
+    "id": "h_ite_prelim_h1",
+    "subjectCode": "INTE1051",
+    "title": "IT Elective I Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Introduction to web systems and network client-server models.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(43).pdf"
+  },
+  {
+    "id": "h_pe_prelim_h1",
+    "subjectCode": "PHED 1007",
+    "title": "PATHFIT 3 Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Physical fitness concepts and conditioning benchmarks.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1A.pdf"
   }
 ]

@@ -182,9 +182,22 @@
         <!-- VIEW 3: SUBJECT HUB -->
         <!-- ========================================== -->
         <section id="view-subjects" class="view-section">
-          <div class="section-header">
-            <h2>Subject Hub (8 Courses)</h2>
-            <p>Curriculum repository, syllabus modules, handouts, and quick reviewers</p>
+          <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h2>Subject Hub (8 Courses)</h2>
+              <p>Curriculum repository, syllabus modules, handouts, and quick reviewers</p>
+            </div>
+            <div class="period-tab-group" style="margin-bottom:0;">
+              <button class="period-tab-btn active" id="filterAllPeriod" onclick="App.setGlobalSubjectFilter('ALL')">
+                📚 All Topics
+              </button>
+              <button class="period-tab-btn" id="filterMidtermPeriod" onclick="App.setGlobalSubjectFilter('MIDTERM')">
+                🎯 Midterm (Active)
+              </button>
+              <button class="period-tab-btn" id="filterPrelimPeriod" onclick="App.setGlobalSubjectFilter('PRELIM')">
+                📁 Prelim Archive
+              </button>
+            </div>
           </div>
 
           <div id="subjectsGrid" class="subjects-grid">

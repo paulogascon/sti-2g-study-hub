@@ -5,158 +5,206 @@
 
 const DEFAULT_SUBJECTS = [
   {
-    id: "COSC1003",
-    code: "COSC1003",
-    title: "Data Structure and Algorithms",
-    units: 3,
-    category: "Major Course",
-    instructor: "Angus, Cherry Ann A.",
-    room: "B305 (Lec) / B102 (Lab)",
-    accentColor: "#2563EB",
-    bgGradient: "linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)",
-    icon: "code-bracket",
-    description: "Fundamental data structures (Arrays, Linked Lists, Stacks, Queues, Trees) and algorithmic complexity (Big O, sorting, searching).",
-    midtermTopics: [
+    "id": "COSC1003",
+    "code": "COSC1003",
+    "title": "Data Structure and Algorithms",
+    "units": 3,
+    "category": "Major Course",
+    "instructor": "Angus, Cherry Ann A.",
+    "room": "B305 (Lec) / B102 (Lab)",
+    "accentColor": "#2563EB",
+    "bgGradient": "linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)",
+    "icon": "code-bracket",
+    "description": "Fundamental data structures (Arrays, Linked Lists, Stacks, Queues, Trees) and algorithmic complexity (Big O, sorting, searching).",
+    "midtermTopics": [
       "Abstract Data Types & Big-O Notation",
       "Singly and Doubly Linked Lists",
       "Stacks (LIFO) & Queues (FIFO)",
       "Trees & Binary Search Trees (BST)",
       "Sorting & Searching Algorithms"
+    ],
+    "prelimTopics": [
+      "Intro to Algorithms & Abstract Data Types",
+      "Array Implementations & Linear Data Structures",
+      "Algorithm Analysis & Big-O Notation",
+      "Searching Algorithms (Linear vs Binary Search)"
     ]
   },
   {
-    id: "COSC1007",
-    code: "COSC1007",
-    title: "Human-Computer Interaction",
-    units: 3,
-    category: "Major Course",
-    instructor: "Pasion, Charis B.",
-    room: "B207 (Lec) / MN307 (Lab)",
-    accentColor: "#0D9488",
-    bgGradient: "linear-gradient(135deg, #115E59 0%, #14B8A6 100%)",
-    icon: "cursor-arrow-rays",
-    description: "Design principles, usability engineering, user testing, heuristic evaluation, and interaction design for web/mobile interfaces.",
-    midtermTopics: [
+    "id": "COSC1007",
+    "code": "COSC1007",
+    "title": "Human-Computer Interaction",
+    "units": 3,
+    "category": "Major Course",
+    "instructor": "Pasion, Charis B.",
+    "room": "B207 (Lec) / MN307 (Lab)",
+    "accentColor": "#0D9488",
+    "bgGradient": "linear-gradient(135deg, #115E59 0%, #14B8A6 100%)",
+    "icon": "cursor-arrow-rays",
+    "description": "Design principles, usability engineering, user testing, heuristic evaluation, and interaction design for web/mobile interfaces.",
+    "midtermTopics": [
       "HCI Foundations & User-Centered Design",
       "Nielsen's 10 Usability Heuristics",
       "Hierarchical Task Analysis (HTA)",
       "Prototyping & Wireframing",
       "Usability Testing & Metrics"
+    ],
+    "prelimTopics": [
+      "Foundations of Human-Computer Interaction",
+      "Human Sensory Memory, Vision & Ergonomics",
+      "Computer Input/Output Hardware Devices",
+      "Interaction Styles & Direct Manipulation"
     ]
   },
   {
-    id: "COSC1008",
-    code: "COSC1008",
-    title: "Platform Technology 1 (Operating Systems)",
-    units: 3,
-    category: "Major Course",
-    instructor: "Gonzales, Danly S.",
-    room: "B304 (Lec) / MN306 (Lab)",
-    accentColor: "#7C3AED",
-    bgGradient: "linear-gradient(135deg, #5B21B6 0%, #8B5CF6 100%)",
-    icon: "cpu-chip",
-    description: "Operating system architecture, process management, CPU scheduling, concurrency, memory allocation, and virtual storage.",
-    midtermTopics: [
+    "id": "COSC1008",
+    "code": "COSC1008",
+    "title": "Platform Technology 1 (Operating Systems)",
+    "units": 3,
+    "category": "Major Course",
+    "instructor": "Gonzales, Danly S.",
+    "room": "B304 (Lec) / MN306 (Lab)",
+    "accentColor": "#7C3AED",
+    "bgGradient": "linear-gradient(135deg, #5B21B6 0%, #8B5CF6 100%)",
+    "icon": "cpu-chip",
+    "description": "Operating system architecture, process management, CPU scheduling, concurrency, memory allocation, and virtual storage.",
+    "midtermTopics": [
       "OS Architecture & System Calls",
       "Process Lifecycle & PCB",
       "CPU Scheduling Algorithms (FCFS, SJF, RR)",
       "Process Synchronization & Deadlocks",
       "Memory Management & Paging"
+    ],
+    "prelimTopics": [
+      "Computer System Architecture & Kernel Models",
+      "Operating System Services & User Interfaces",
+      "System Calls & Dual-Mode (Kernel/User) Operation",
+      "Process State Transitions & Process Control Block (PCB)"
     ]
   },
   {
-    id: "INTE1051",
-    code: "INTE1051",
-    title: "IT Elective I",
-    units: 3,
-    category: "IT Elective",
-    instructor: "Pasion, Charis B.",
-    room: "B207 (Lec) / MN308 (Lab)",
-    accentColor: "#D97706",
-    bgGradient: "linear-gradient(135deg, #92400E 0%, #F59E0B 100%)",
-    icon: "sparkles",
-    description: "Specialized technologies, modern development environments, application logic, and industry workflows.",
-    midtermTopics: [
+    "id": "INTE1051",
+    "code": "INTE1051",
+    "title": "IT Elective I",
+    "units": 3,
+    "category": "IT Elective",
+    "instructor": "Pasion, Charis B.",
+    "room": "B207 (Lec) / MN308 (Lab)",
+    "accentColor": "#D97706",
+    "bgGradient": "linear-gradient(135deg, #92400E 0%, #F59E0B 100%)",
+    "icon": "sparkles",
+    "description": "Specialized technologies, modern development environments, application logic, and industry workflows.",
+    "midtermTopics": [
       "Modern Development Paradigms",
       "Component Architecture & State Management",
       "API Integrations & Data Flow",
       "Testing & Deployment Best Practices"
+    ],
+    "prelimTopics": [
+      "Introduction to Modern Web Architecture",
+      "Client-Server Paradigms & HTTP/HTTPS Protocols",
+      "Frontend & Backend Separation",
+      "RESTful API Concepts & Data Formats (JSON/XML)"
     ]
   },
   {
-    id: "COSC1001",
-    code: "COSC1001",
-    title: "Principles of Communication",
-    units: 3,
-    category: "Core Foundation",
-    instructor: "Escauso, Irene May C.",
-    room: "ONLINE (W 5:30PM-8:30PM)",
-    accentColor: "#0284C7",
-    bgGradient: "linear-gradient(135deg, #075985 0%, #0EA5E9 100%)",
-    icon: "chat-bubble-left-right",
-    description: "Data communications, signal transmission, network topologies, OSI/TCP layers, and digital modulation basics.",
-    midtermTopics: [
+    "id": "COSC1001",
+    "code": "COSC1001",
+    "title": "Principles of Communication",
+    "units": 3,
+    "category": "Core Foundation",
+    "instructor": "Escauso, Irene May C.",
+    "room": "ONLINE (W 5:30PM-8:30PM)",
+    "accentColor": "#0284C7",
+    "bgGradient": "linear-gradient(135deg, #075985 0%, #0EA5E9 100%)",
+    "icon": "chat-bubble-left-right",
+    "description": "Data communications, signal transmission, network topologies, OSI/TCP layers, and digital modulation basics.",
+    "midtermTopics": [
       "Transmission Media & Signal Characteristics",
       "Modulation Techniques (AM, FM, PM)",
       "OSI 7-Layer Reference Model",
       "Multiplexing & Error Detection Codes"
+    ],
+    "prelimTopics": [
+      "Fundamentals of Communication Systems & Models",
+      "Signal Propagation: Analog vs. Digital Signals",
+      "Guided vs. Unguided Transmission Media",
+      "Modulation Techniques (AM, FM, PM)"
     ]
   },
   {
-    id: "GEDC1006",
-    code: "GEDC 1006",
-    title: "Readings in Philippine History",
-    units: 3,
-    category: "General Education",
-    instructor: "Pama, Delia P.",
-    room: "B305 (F 1:00PM-4:00PM)",
-    accentColor: "#DC2626",
-    bgGradient: "linear-gradient(135deg, #991B1B 0%, #EF4444 100%)",
-    icon: "book-open",
-    description: "Critical analysis of primary sources, historical controversies, customs, and socioeconomic evolution of the Philippines.",
-    midtermTopics: [
+    "id": "GEDC1006",
+    "code": "GEDC 1006",
+    "title": "Readings in Philippine History",
+    "units": 3,
+    "category": "General Education",
+    "instructor": "Pama, Delia P.",
+    "room": "B305 (F 1:00PM-4:00PM)",
+    "accentColor": "#DC2626",
+    "bgGradient": "linear-gradient(135deg, #991B1B 0%, #EF4444 100%)",
+    "icon": "book-open",
+    "description": "Critical analysis of primary sources, historical controversies, customs, and socioeconomic evolution of the Philippines.",
+    "midtermTopics": [
       "Primary vs. Secondary Sources Analysis",
       "Customs of the Tagalogs & Early Visayan Societies",
       "Cavite Mutiny & Propaganda Movement",
       "Philippine Constitution Evolution"
+    ],
+    "prelimTopics": [
+      "Historical Methodology: Primary vs. Secondary Sources",
+      "Customs of the Tagalogs by Fray Juan de Plasencia",
+      "First Catholic Mass in the Philippines Controversy",
+      "The Cry of Rebellion (Balintawak vs. Pugad Lawin)"
     ]
   },
   {
-    id: "GEDC1014",
-    code: "GEDC 1014",
-    title: "Rizal's Life and Works",
-    units: 3,
-    category: "General Education",
-    instructor: "Angeles, Jocen B.",
-    room: "MN424 (M 5:30PM-8:30PM)",
-    accentColor: "#B91C1C",
-    bgGradient: "linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)",
-    icon: "academic-cap",
-    description: "Life, writings, exile, trial, and enduring legacy of Dr. Jose Rizal; analysis of Noli Me Tangere and El Filibusterismo.",
-    midtermTopics: [
+    "id": "GEDC1014",
+    "code": "GEDC 1014",
+    "title": "Rizal's Life and Works",
+    "units": 3,
+    "category": "General Education",
+    "instructor": "Angeles, Jocen B.",
+    "room": "MN424 (M 5:30PM-8:30PM)",
+    "accentColor": "#B91C1C",
+    "bgGradient": "linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)",
+    "icon": "academic-cap",
+    "description": "Life, writings, exile, trial, and enduring legacy of Dr. Jose Rizal; analysis of Noli Me Tangere and El Filibusterismo.",
+    "midtermTopics": [
       "Rizal Law (RA 1425) Context & Rationale",
       "19th Century Philippines under Spanish Rule",
       "Rizal's European Education & Propaganda Writings",
       "Analysis of Noli Me Tangere & El Filibusterismo"
+    ],
+    "prelimTopics": [
+      "Rizal Law (RA 1425) & 19th-Century Colonial Philippines",
+      "Rizal's Family, Lineage & Childhood in Calamba",
+      "Scholastic Honors at Ateneo Municipal & UST",
+      "First Voyage to Europe & Early Reformist Writings"
     ]
   },
   {
-    id: "PHED1007",
-    code: "PHED 1007",
-    title: "P.E./PATHFIT 3: Individual-Dual Sports",
-    units: 2,
-    category: "Physical Education",
-    instructor: "Sagon, Benjamin Romel G.",
-    room: "FIELD 4 (T 10:00AM-12:00PM)",
-    accentColor: "#16A34A",
-    bgGradient: "linear-gradient(135deg, #166534 0%, #22C55E 100%)",
-    icon: "heart",
-    description: "Physical activity and fitness training, movement competency, health wellness, and sports-related skills.",
-    midtermTopics: [
+    "id": "PHED1007",
+    "code": "PHED 1007",
+    "title": "P.E./PATHFIT 3: Individual-Dual Sports",
+    "units": 2,
+    "category": "Physical Education",
+    "instructor": "Sagon, Benjamin Romel G.",
+    "room": "FIELD 4 (T 10:00AM-12:00PM)",
+    "accentColor": "#16A34A",
+    "bgGradient": "linear-gradient(135deg, #166534 0%, #22C55E 100%)",
+    "icon": "heart",
+    "description": "Physical activity and fitness training, movement competency, health wellness, and sports-related skills.",
+    "midtermTopics": [
       "Physical Fitness Assessments & Metrics",
       "Cardiovascular Endurance & Aerobics",
       "Movement Mechanics & Injury Prevention",
       "Personal Fitness Regimen Design"
+    ],
+    "prelimTopics": [
+      "Physical Fitness Assessment & Health-Related Parameters",
+      "Movement Competency & Aerobic Conditioning",
+      "Rhythmic Activities & Dance Fundamentals",
+      "Nutritional Guidelines & Sports Injury Prevention"
     ]
   }
 ];
@@ -781,5 +829,115 @@ const DEFAULT_HANDOUTS = [
     "format": "DOCX",
     "summary": "Primary and secondary source analysis, customs of the Tagalogs, and Cavite mutiny.",
     "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx"
+  },
+  {
+    "id": "h_dsa_prelim_guide",
+    "subjectCode": "COSC1003",
+    "title": "DSA Prelim Master Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "Core algorithms, Big-O complexity analysis, and 1D/2D arrays.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_IT2601.docx"
+  },
+  {
+    "id": "h_dsa_prelim_h1",
+    "subjectCode": "COSC1003",
+    "title": "DSA Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Introduction to Data Structures and Algorithmic Thinking.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/02_Handout_1(32).pdf"
+  },
+  {
+    "id": "h_hci_prelim_guide",
+    "subjectCode": "COSC1007",
+    "title": "HCI Prelim Comprehensive Reviewer",
+    "period": "PRELIM",
+    "type": "Reviewer",
+    "format": "DOCX",
+    "summary": "Foundational HCI principles, ergonomic models, and cognitive interaction.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/HCI_Prelim_Reviewer.docx"
+  },
+  {
+    "id": "h_hci_prelim_h1",
+    "subjectCode": "COSC1007",
+    "title": "HCI Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "The Human and the Computer interaction dimensions.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(2)_copy.pdf"
+  },
+  {
+    "id": "h_os_prelim_guide",
+    "subjectCode": "COSC1008",
+    "title": "Platform Tech Prelim Combined Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "OS architecture, kernels, system calls, and dual-mode execution.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_Handouts_01_02.docx"
+  },
+  {
+    "id": "h_rizal_prelim_guide",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Prelim Master Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "RA 1425, 19th-century Philippines, Calamba youth, and Ateneo education.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Rizal_Study_Guide.docx"
+  },
+  {
+    "id": "h_rizal_prelim_slides1",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Prelim Topic 1 Lecture Presentation",
+    "period": "PRELIM",
+    "type": "Lecture Slides",
+    "format": "PPTX",
+    "summary": "Rizal Law and 19th-century context lecture slides.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/GEDC 1014 (JRIZAL) PRELIM TOPIC 1.pptx"
+  },
+  {
+    "id": "h_history_prelim_guide",
+    "subjectCode": "GEDC 1006",
+    "title": "Readings in Phil. History Prelim Study Guide",
+    "period": "PRELIM",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "Primary sources, Plasencia's Customs of the Tagalogs, and historical analysis.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx"
+  },
+  {
+    "id": "h_comm_prelim_h1",
+    "subjectCode": "COSC1001",
+    "title": "Principles of Comm Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Communication fundamentals, transmission media, and signal types.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_12.pdf"
+  },
+  {
+    "id": "h_ite_prelim_h1",
+    "subjectCode": "INTE1051",
+    "title": "IT Elective I Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Introduction to web systems and network client-server models.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(43).pdf"
+  },
+  {
+    "id": "h_pe_prelim_h1",
+    "subjectCode": "PHED 1007",
+    "title": "PATHFIT 3 Prelim Handout 1",
+    "period": "PRELIM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Physical fitness concepts and conditioning benchmarks.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1A.pdf"
   }
 ];
