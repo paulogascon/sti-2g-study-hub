@@ -17,17 +17,23 @@
 </head>
 <body>
   <div class="app-container">
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="App.closeSidebar()"></div>
+
     <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
       <div class="brand-section">
-        <div class="brand-logo-badge">STI</div>
-        <div class="brand-title-wrap">
-          <h1>2G Study Hub</h1>
-          <div class="brand-subtitle">
-            <span>BSIT 2nd Year</span>
-            <span class="term-pill">MIDTERM</span>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="brand-logo-badge">STI</div>
+          <div class="brand-title-wrap">
+            <h1>2G Study Hub</h1>
+            <div class="brand-subtitle">
+              <span>BSIT 2nd Year</span>
+              <span class="term-pill">MIDTERM</span>
+            </div>
           </div>
         </div>
+        <button id="closeSidebarBtn" class="sidebar-close-btn" onclick="App.closeSidebar()" aria-label="Close menu">&times;</button>
       </div>
 
       <nav class="nav-menu">
@@ -68,9 +74,9 @@
             </div>
           </div>
         </div>
-        <button id="themeToggleBtn" class="theme-toggle-btn">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light theme">
           <span id="themeLabel">🌙 Dark Mode</span>
-          <span>Shift</span>
+          <span id="themeStatusBadge" class="theme-toggle-pill">Active</span>
         </button>
       </div>
     </aside>

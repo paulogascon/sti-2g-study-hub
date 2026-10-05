@@ -94,8 +94,12 @@ const App = {
 
   updateThemeButton(theme) {
     const textEl = document.getElementById('themeLabel');
+    const badgeEl = document.getElementById('themeStatusBadge');
     if (textEl) {
       textEl.textContent = theme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode';
+    }
+    if (badgeEl) {
+      badgeEl.textContent = theme === 'dark' ? 'Dark' : 'Light';
     }
   },
 
@@ -106,20 +110,34 @@ const App = {
         e.preventDefault();
         const targetView = link.dataset.view;
         this.switchView(targetView);
-
-        // Close sidebar on mobile after selecting
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) sidebar.classList.remove('open');
+        this.closeSidebar();
       });
     });
 
     const mobileToggle = document.getElementById('mobileNavToggle');
-    const sidebar = document.getElementById('sidebar');
-    if (mobileToggle && sidebar) {
+    if (mobileToggle) {
       mobileToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
+        this.toggleSidebar();
       });
     }
+  },
+
+  toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (!sidebar) return;
+    const willOpen = !sidebar.classList.contains('open');
+    sidebar.classList.toggle('open', willOpen);
+    if (overlay) overlay.classList.toggle('open', willOpen);
+    document.body.classList.toggle('sidebar-open', willOpen);
+  },
+
+  closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+    document.body.classList.remove('sidebar-open');
   },
 
   switchView(viewId) {
@@ -438,8 +456,7 @@ const App = {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar && sidebar.classList.contains('open')) sidebar.classList.remove('open');
+        App.closeSidebar();
       }
     });
 
