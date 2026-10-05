@@ -23,14 +23,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Setup Gradle 8.5
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.5'
+
+      - name: Accept Android SDK Licenses
+        run: |
+          yes | sdkmanager --licenses || true
 
       - name: Build Android APK
         run: |
           cd android
-          gradle wrapper
-          ./gradlew assembleDebug
+          gradle assembleDebug
 
       - name: Prepare APK Output
         run: |
@@ -43,14 +48,14 @@ jobs:
           tag_name: v1.0.0
           name: "STI 2G Study Hub v1.0.0 (Android APK)"
           body: |
-            ## 🎓 STI 2G Study Hub — Android APK Release
+            ## 🎓 STI 2G Study Hub — Official Android APK Release
             
             Official Android Application for **STI West Negros University (BSIT 2G)**.
             
             ### 📱 Download Instructions:
-            1. Tap **`STI_2G_Study_Hub.apk`** below to download.
-            2. Tap the file and select **Install** on your Android phone.
-            3. Enjoy full offline access to schedules, midterm reviewers, and handouts!
+            1. Tap **`STI_2G_Study_Hub.apk`** below to download directly to your phone.
+            2. Tap the file in your notification bar or **Downloads** folder and select **Install**.
+            3. Enjoy 100% offline access to schedules, midterm reviewers, and flashcard quizzes!
           files: release-output/STI_2G_Study_Hub.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
