@@ -73,11 +73,18 @@
             <span id="tickerStatusText" class="current-status-text">Loading class status...</span>
           </div>
         </div>
-        <div id="liveClock" class="clock-display">Mon, Oct 5, 2026</div>
+        <div class="header-actions">
+          <button id="enableNotifBtn" class="btn-notif">🔔 Enable Alerts</button>
+          <button id="testAlertBtn" class="btn-notif" title="Preview Alert Warning">🔊 Test Chime</button>
+          <div id="liveClock" class="clock-display">Mon, Oct 5, 2026</div>
+        </div>
       </header>
 
       <!-- View Container -->
       <div class="content-body">
+        
+        <!-- Live Class Warning Banner -->
+        <div id="activeClassAlertBanner" class="class-alert-banner warning" style="display: none;"></div>
         
         <!-- ========================================== -->
         <!-- VIEW 1: DASHBOARD -->
