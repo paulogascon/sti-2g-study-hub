@@ -1,0 +1,201 @@
+{
+  "COSC1003": {
+    "subjectTitle": "Data Structures and Algorithms",
+    "flashcards": [
+      {
+        "id": "fc_dsa_1",
+        "topic": "Stacks",
+        "front": "What principle governs a Stack data structure, and what are its primary operations?",
+        "back": "LIFO (Last-In, First-Out). Elements are added and removed from the same end called the 'top'. Core operations: push() to add, pop() to remove, and peek() to view the top element."
+      },
+      {
+        "id": "fc_dsa_2",
+        "topic": "Queues",
+        "front": "How does a Queue differ from a Stack in terms of access discipline?",
+        "back": "A Queue operates on FIFO (First-In, First-Out). Elements enter at the 'rear' (enqueue) and leave from the 'front' (dequeue)."
+      },
+      {
+        "id": "fc_dsa_3",
+        "topic": "Linked Lists",
+        "front": "What is the primary architectural difference between an Array and a Singly Linked List?",
+        "back": "An array stores elements in contiguous memory with fixed size and O(1) random index access. A linked list uses non-contiguous nodes linked by memory pointers, with dynamic sizing and O(n) sequential access."
+      },
+      {
+        "id": "fc_dsa_4",
+        "topic": "Binary Search Trees",
+        "front": "What is the BST (Binary Search Tree) ordering invariant property?",
+        "back": "For any node N: all keys in its left subtree are strictly less than N's key, and all keys in its right subtree are strictly greater than N's key."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_dsa_1",
+        "topic": "Time Complexity",
+        "question": "What is the worst-case time complexity of searching for an element in an unsorted Singly Linked List of n nodes?",
+        "options": ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+        "correctIndex": 2,
+        "explanation": "Because nodes in a linked list are scattered in memory and must be traversed sequentially from the head pointer, finding an item requires visiting up to n elements, yielding O(n)."
+      },
+      {
+        "id": "q_dsa_2",
+        "topic": "Stack Applications",
+        "question": "Which of the following problems is best solved utilizing a Stack data structure?",
+        "options": [
+          "Breadth-First Search (BFS) graph traversal",
+          "Balanced parentheses matching & function call recursion",
+          "CPU round-robin scheduling",
+          "Print job queueing"
+        ],
+        "correctIndex": 1,
+        "explanation": "Stacks operate on LIFO, making them the standard choice for parsing nested brackets, syntax validation, undo operations, and recursion call stacks."
+      },
+      {
+        "id": "q_dsa_3",
+        "topic": "Trees",
+        "question": "In an In-Order traversal (Left, Root, Right) of a Binary Search Tree (BST), the resulting output sequence will always be:",
+        "options": [
+          "In reverse descending order",
+          "Randomly shuffled",
+          "Sorted in ascending order",
+          "Grouped by node depth"
+        ],
+        "correctIndex": 2,
+        "explanation": "Traversing Left Subtree -> Root -> Right Subtree on a valid BST guarantees visiting keys in strictly ascending numerical order."
+      }
+    ]
+  },
+  "COSC1007": {
+    "subjectTitle": "Human-Computer Interaction",
+    "flashcards": [
+      {
+        "id": "fc_hci_1",
+        "topic": "Usability",
+        "front": "What are the 5 core usability quality attributes defined by Jakob Nielsen?",
+        "back": "1. Learnability (easy to accomplish tasks first time)\n2. Efficiency (speed after learning)\n3. Memorability (easy to re-establish proficiency)\n4. Errors (low rate, easy recovery)\n5. Satisfaction (pleasant design)."
+      },
+      {
+        "id": "fc_hci_2",
+        "topic": "Heuristics",
+        "front": "What does Nielsen's heuristic 'Visibility of System Status' dictate?",
+        "back": "The design should always keep users informed about what is going on, through appropriate, timely feedback within reasonable time (e.g., loading bars, active state rings)."
+      },
+      {
+        "id": "fc_hci_3",
+        "topic": "Task Analysis",
+        "front": "What is Hierarchical Task Analysis (HTA)?",
+        "back": "A structured UX method of decomposing high-level user goals into smaller sub-tasks, operations, and execution plans (e.g., Goal 0 -> Subtasks 1, 2, 3)."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_hci_1",
+        "topic": "Usability Heuristics",
+        "question": "Showing a confirmation dialog before permanently deleting a file satisfies which UX design principle?",
+        "options": [
+          "Flexibility and efficiency of use",
+          "Error prevention & user control",
+          "Aesthetic and minimalist design",
+          "Consistency and standards"
+        ],
+        "correctIndex": 1,
+        "explanation": "Confirmation modals eliminate accidental destruction by providing a checkpoint and an emergency exit (Error Prevention & User Control)."
+      },
+      {
+        "id": "q_hci_2",
+        "topic": "Fitts's Law",
+        "question": "According to Fitts's Law, what makes an interactive button fastest to acquire and click?",
+        "options": [
+          "Making it smaller and closer to the center",
+          "Making it larger and closer to the user's cursor/thumb reach",
+          "Using bright colors regardless of distance",
+          "Placing it deep inside nested dropdowns"
+        ],
+        "correctIndex": 1,
+        "explanation": "Fitts's Law states MT = a + b * log2(2D/W): target acquisition time decreases when target distance (D) is short and target width (W) is large."
+      }
+    ]
+  },
+  "COSC1008": {
+    "subjectTitle": "Platform Technology 1 / Operating Systems",
+    "flashcards": [
+      {
+        "id": "fc_os_1",
+        "topic": "Processes",
+        "front": "What is a Process Control Block (PCB)?",
+        "back": "A data structure maintained by the OS kernel containing all information about a process: Process ID (PID), Program Counter (PC), CPU registers, memory limits, and list of open I/O files."
+      },
+      {
+        "id": "fc_os_2",
+        "topic": "Scheduling",
+        "front": "What is the Convoy Effect in First-Come, First-Served (FCFS) CPU scheduling?",
+        "back": "A performance bottleneck where short processes get stuck waiting behind one massive, long CPU-burst process, dragging down average turnaround time."
+      },
+      {
+        "id": "fc_os_3",
+        "topic": "Deadlocks",
+        "front": "What are the Coffman 4 necessary conditions for a Deadlock?",
+        "back": "1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_os_1",
+        "topic": "CPU Scheduling",
+        "question": "Which CPU scheduling algorithm prevents indefinite starvation by dynamically assigning fixed time slices?",
+        "options": [
+          "Shortest Job First (Non-preemptive SJF)",
+          "Round Robin (RR) with Time Quantum",
+          "First-Come First-Served (FCFS)",
+          "Priority Scheduling without aging"
+        ],
+        "correctIndex": 1,
+        "explanation": "Round Robin shares CPU time equally in small time quanta (slices), guaranteeing every ready process gets regular CPU access without starvation."
+      },
+      {
+        "id": "q_os_2",
+        "topic": "Virtual Memory",
+        "question": "What is 'Thrashing' in operating system memory management?",
+        "options": [
+          "A CPU overclocking failure",
+          "When the OS spends significantly more time swapping pages in and out than executing instructions",
+          "When disk sectors get corrupted during writes",
+          "An infinite loop in user space"
+        ],
+        "correctIndex": 1,
+        "explanation": "Thrashing occurs when total memory demand exceeds physical RAM capacity, causing high page-fault frequencies and devastating CPU utilization."
+      }
+    ]
+  },
+  "GEDC1014": {
+    "subjectTitle": "Rizal's Life and Works",
+    "flashcards": [
+      {
+        "id": "fc_rizal_1",
+        "topic": "RA 1425",
+        "front": "Who authored Republic Act No. 1425 (The Rizal Law) and what was its core purpose?",
+        "back": "Authored primarily by Senator Claro M. Recto (sponsored by Jose P. Laurel). It mandates all educational institutions in the Philippines to offer courses on Jose Rizal's life, works, and writings, especially Noli Me Tangere and El Filibusterismo."
+      },
+      {
+        "id": "fc_rizal_2",
+        "topic": "Literary Works",
+        "front": "Contrast the tone and dedication of Noli Me Tangere vs. El Filibusterismo.",
+        "back": "Noli Me Tangere (1887, Berlin) is a romantic social novel dedicated to the Motherland (Inang Bayan). El Filibusterismo (1891, Ghent) is a darker, political, revolutionary novel dedicated to the martyrdom of GOMBURZA."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_rizal_1",
+        "topic": "Propaganda Movement",
+        "question": "What was the principal organ/newspaper of the Reform Movement founded in Barcelona in 1889?",
+        "options": [
+          "Kalayaan",
+          "La Solidaridad",
+          "Diario de Manila",
+          "El Renacimiento"
+        ],
+        "correctIndex": 1,
+        "explanation": "La Solidaridad was founded by Graciano Lopez Jaena and later edited by Marcelo H. Del Pilar as the official voice of Filipino reformists in Spain."
+      }
+    ]
+  }
+}

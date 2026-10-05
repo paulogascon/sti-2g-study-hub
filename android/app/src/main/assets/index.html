@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STI 2G Study Hub | Academic Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="STI 2G Hub">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <meta name="theme-color" content="#002b49">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand-section">
+        <div class="brand-logo-badge">STI</div>
+        <div class="brand-title-wrap">
+          <h1>2G Study Hub</h1>
+          <div class="brand-subtitle">
+            <span>BSIT 2nd Year</span>
+            <span class="term-pill">MIDTERM</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#dashboard" class="nav-link active" data-view="view-dashboard">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#schedule" class="nav-link" data-view="view-schedule">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Class Schedule</span>
+        </a>
+        <a href="#subjects" class="nav-link" data-view="view-subjects">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>Subject Hub</span>
+        </a>
+        <a href="#quiz" class="nav-link" data-view="view-quiz">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>Reviewer & Quiz</span>
+        </a>
+        <a href="#tasks" class="nav-link" data-view="view-tasks">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          <span>Deadlines & Tasks</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar">JP</div>
+          <div class="user-info">
+            <div class="user-name">Jhon Paulo Gascon</div>
+            <div class="user-role">STI WNU &bull; BSIT 2G</div>
+          </div>
+        </div>
+        <button id="themeToggleBtn" class="theme-toggle-btn">
+          <span id="themeLabel">🌙 Dark Mode</span>
+          <span>Shift</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <main class="main-wrapper">
+      <!-- Sticky Top Live Header -->
+      <header class="top-header">
+        <div style="display:flex; align-items:center; gap: 0.75rem;">
+          <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle menu">
+            <svg style="width:24px; height:24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="ticker-wrap">
+            <span id="tickerBadge" class="live-badge" style="display:none;"></span>
+            <span id="tickerStatusText" class="current-status-text">Loading class status...</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <span id="networkStatusPill" class="network-pill online">🟢 Online</span>
+          <button id="enableNotifBtn" class="btn-notif">🔔 Enable Alerts</button>
+          <button id="testAlertBtn" class="btn-notif" title="Preview Alert Warning">🔊 Test Chime</button>
+          <div id="liveClock" class="clock-display">Mon, Oct 5, 2026</div>
+        </div>
+      </header>
+
+      <!-- View Container -->
+      <div class="content-body">
+        
+        <!-- Live Class Warning Banner -->
+        <div id="activeClassAlertBanner" class="class-alert-banner warning" style="display: none;"></div>
+        
+        <!-- ========================================== -->
+        <!-- VIEW 1: DASHBOARD -->
+        <!-- ========================================== -->
+        <section id="view-dashboard" class="view-section active">
+          <div class="section-header">
+            <h2>Welcome to Your Study Hub, JP! 👋</h2>
+            <p>1st Semester, SY 2026–2027 &bull; STI West Negros University (Section BSIT 2G)</p>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="stat-card">
+              <div class="stat-icon" style="background: rgba(37, 99, 235, 0.15); color: #3b82f6;">
+                <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
+              <div class="stat-info">
+                <h3>Current Load</h3>
+                <div class="stat-number">8 Subjects</div>
+                <div class="stat-desc">23 Total Units &bull; Midterm Period</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div class="stat-info">
+                <h3>Midterm Target</h3>
+                <div class="stat-number" id="midtermCountdown">Loading...</div>
+                <div class="stat-desc">Preparation in progress</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div class="stat-info">
+                <h3>Pending Tasks</h3>
+                <div class="stat-number" id="pendingTasksCount">4</div>
+                <div class="stat-desc">Lab tasks & deliverables</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Access Action Banners -->
+          <div style="background: linear-gradient(135deg, rgba(2, 43, 73, 0.8), rgba(15, 23, 42, 0.9)); border: 1px solid var(--border-accent); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+              <span class="term-pill" style="margin-bottom: 0.5rem; display: inline-block;">MIDTERM SPRINT</span>
+              <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.35rem;">Review Midterm Flashcards & Practice Tests</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Test your knowledge in Data Structures, HCI Heuristics, OS Process Scheduling, and Rizal's Life.</p>
+            </div>
+            <button class="btn-primary" onclick="App.switchView('view-quiz')">
+              Launch Quiz Mode &rarr;
+            </button>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: CLASS SCHEDULE -->
+        <!-- ========================================== -->
+        <section id="view-schedule" class="view-section">
+          <div class="section-header">
+            <h2>Weekly Class Timetable</h2>
+            <p>Official schedule for BSIT 2G &bull; Lectures, Computer Laboratories, and PE</p>
+          </div>
+
+          <div class="schedule-controls">
+            <div class="day-pills">
+              <button class="day-pill-btn active" data-day="All" onclick="ScheduleModule.setDayFilter('All')">All Days</button>
+              <button class="day-pill-btn" data-day="Monday" onclick="ScheduleModule.setDayFilter('Monday')">Mon</button>
+              <button class="day-pill-btn" data-day="Tuesday" onclick="ScheduleModule.setDayFilter('Tuesday')">Tue</button>
+              <button class="day-pill-btn" data-day="Wednesday" onclick="ScheduleModule.setDayFilter('Wednesday')">Wed</button>
+              <button class="day-pill-btn" data-day="Thursday" onclick="ScheduleModule.setDayFilter('Thursday')">Thu</button>
+              <button class="day-pill-btn" data-day="Friday" onclick="ScheduleModule.setDayFilter('Friday')">Fri</button>
+            </div>
+            <button id="openAddSchedBtn" class="btn-secondary">
+              + Add / Custom Slot
+            </button>
+          </div>
+
+          <div id="scheduleGrid" class="schedule-grid">
+            <!-- Rendered by ScheduleModule -->
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: SUBJECT HUB -->
+        <!-- ========================================== -->
+        <section id="view-subjects" class="view-section">
+          <div class="section-header">
+            <h2>Subject Hub (8 Courses)</h2>
+            <p>Curriculum repository, syllabus modules, handouts, and quick reviewers</p>
+          </div>
+
+          <div id="subjectsGrid" class="subjects-grid">
+            <!-- Rendered by App.renderSubjects -->
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: REVIEWER & QUIZ -->
+        <!-- ========================================== -->
+        <section id="view-quiz" class="view-section">
+          <div class="section-header">
+            <h2>Reviewer & Exam Engine</h2>
+            <p>Master your Midterm topics through active recall and instant rationales</p>
+          </div>
+
+          <div class="quiz-mode-container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem; flex-wrap:wrap; gap: 1rem;">
+              <div style="flex:1; min-width: 250px;">
+                <label style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Select Subject:</label>
+                <select id="quizSubjectSelect" class="form-control" style="margin-top:0.3rem;">
+                  <!-- Options populated dynamically -->
+                </select>
+              </div>
+
+              <div class="mode-selector" style="margin-bottom:0;">
+                <button class="mode-tab active" data-mode="flashcards" onclick="QuizModule.setMode('flashcards')">📇 Flashcards</button>
+                <button class="mode-tab" data-mode="exam" onclick="QuizModule.setMode('exam')">📝 Practice Quiz</button>
+              </div>
+            </div>
+
+            <!-- Flashcard View -->
+            <div id="flashcardView">
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--text-muted);">
+                <span id="fcCounter">Card 1</span>
+                <span>Click card to reveal definition</span>
+              </div>
+              <div class="flashcard-scene" onclick="QuizModule.flipCard()">
+                <div id="activeFlashcard" class="flashcard">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+              <div class="flashcard-controls">
+                <button class="btn-secondary" onclick="QuizModule.prevFlashcard()">&larr; Previous</button>
+                <button class="btn-primary" onclick="QuizModule.nextFlashcard()">Next Card &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Mock Exam View -->
+            <div id="examView" style="display:none;">
+              <div id="examQuestionContainer">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 5: TASKS & DEADLINES -->
+        <!-- ========================================== -->
+        <section id="view-tasks" class="view-section">
+          <div class="section-header">
+            <h2>Academic Deliverables & Deadlines</h2>
+            <p>Track lab exercises, presentations, performance tasks, and exams</p>
+          </div>
+
+          <div class="task-grid-wrap">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">Active Tasks</h3>
+                <button id="openAddTaskBtn" class="btn-primary">+ Add Deliverable</button>
+              </div>
+              <div id="taskList" class="task-list">
+                <!-- Rendered by TasksModule -->
+              </div>
+            </div>
+
+            <div>
+              <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
+                <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Study Tips for Midterms</h4>
+                <ul style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); display:flex; flex-direction:column; gap:0.6rem;">
+                  <li>Break code practice (DSA) into small daily tracing exercises.</li>
+                  <li>In HCI, always reference Jakob Nielsen's 10 Heuristics for design critiques.</li>
+                  <li>For Platform Tech, memorize the Waiting Time formulas for CPU algorithms.</li>
+                  <li>Keep all generated reviewers in your <code>Antigravity Outputs</code> folder synchronized.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: ADD CUSTOM SCHEDULE SLOT -->
+  <!-- ========================================== -->
+  <div id="addScheduleModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Class Time Slot</h3>
+        <button id="closeAddSchedBtn" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="addScheduleForm">
+        <div class="form-group">
+          <label>Day of Week</label>
+          <select id="schedDayInput" class="form-control" required>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label>Start Time</label>
+            <input type="time" id="schedStartTimeInput" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>End Time</label>
+            <input type="time" id="schedEndTimeInput" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Subject Code</label>
+          <input type="text" id="schedCodeInput" class="form-control" placeholder="e.g. COSC1003" required>
+        </div>
+        <div class="form-group">
+          <label>Subject Title</label>
+          <input type="text" id="schedTitleInput" class="form-control" placeholder="e.g. Data Structures and Algorithms" required>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label>Room / Lab</label>
+            <input type="text" id="schedRoomInput" class="form-control" placeholder="e.g. Comp Lab 3" required>
+          </div>
+          <div class="form-group">
+            <label>Class Type</label>
+            <select id="schedTypeInput" class="form-control">
+              <option value="Lecture">Lecture</option>
+              <option value="Laboratory">Laboratory</option>
+              <option value="Activity">Activity / PE</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Instructor Name</label>
+          <input type="text" id="schedInstructorInput" class="form-control" placeholder="e.g. Prof. Aguillon">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">Save to Timetable</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: ADD TASK / DELIVERABLE -->
+  <!-- ========================================== -->
+  <div id="addTaskModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Deliverable</h3>
+        <button id="closeAddTaskBtn" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="addTaskForm">
+        <div class="form-group">
+          <label>Task Title</label>
+          <input type="text" id="taskTitleInput" class="form-control" placeholder="e.g. Lab Exercise 4" required>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select id="taskSubjectInput" class="form-control" required>
+            <option value="COSC1003">COSC1003 - Data Structures and Algorithms</option>
+            <option value="COSC1007">COSC1007 - Human-Computer Interaction</option>
+            <option value="COSC1008">COSC1008 - Platform Technology 1</option>
+            <option value="INTE1051">INTE1051 - IT Elective I</option>
+            <option value="COSC1001">COSC1001 - Principles of Communication</option>
+            <option value="GEDC 1006">GEDC 1006 - Readings in Philippine History</option>
+            <option value="GEDC 1014">GEDC 1014 - Rizal's Life and Works</option>
+            <option value="PHED 1007">PHED 1007 - P.E. / PATHFIT 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Due Date</label>
+          <input type="date" id="taskDueDateInput" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="taskPriorityInput" class="form-control">
+            <option value="High">High Priority</option>
+            <option value="Medium">Medium Priority</option>
+            <option value="Low">Low Priority</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">Add Task</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: SUBJECT HANDOUTS LIST -->
+  <!-- ========================================== -->
+  <div id="handoutsModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="handoutsModalTitle">Subject Handouts</h3>
+        <button id="closeHandoutsModalBtn" class="modal-close-btn">&times;</button>
+      </div>
+      <div id="handoutsModalList">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data/seeds.js"></script>
+  <script src="js/offline-storage.js"></script>
+  <script src="js/schedule.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
