@@ -1,5 +1,27 @@
 [
   {
+    "id": "h_rizal_study_guide_doc",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Midterm Comprehensive Study Guide",
+    "period": "MIDTERM",
+    "type": "Official Study Guide",
+    "format": "DOCX",
+    "summary": "Full midterm reviewer covering La Solidaridad, La Liga Filipina, Dapitan exile achievements, court-martial trial, and martyrdom.",
+    "localPath": "docs/Rizal_Midterm_Study_Guide.docx",
+    "downloadUrl": "docs/Rizal_Midterm_Study_Guide.docx"
+  },
+  {
+    "id": "h_hci_combined_guide_doc",
+    "subjectCode": "COSC1007",
+    "title": "HCI Midterm Combined Study Guide (Handout 1 & 2)",
+    "period": "MIDTERM",
+    "type": "Official Study Guide",
+    "format": "DOCX",
+    "summary": "Master combined reviewer covering HCI Design Process, Hardware Platforms, WIMP components, UI Layer Architecture, and Java Event-Driven programming.",
+    "localPath": "docs/HCI_Midterm_Combined_Study_Guide.docx",
+    "downloadUrl": "docs/HCI_Midterm_Combined_Study_Guide.docx"
+  },
+  {
     "id": "h_hci_guide",
     "subjectCode": "COSC1007",
     "title": "HCI Midterm Study Guide (Master Reviewer)",

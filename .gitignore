@@ -12,3 +12,10 @@ Desktop.ini
 # Backups
 *.bak
 *.zip
+
+# Android & Build caches
+.gradle/
+android/.gradle/
+android/build/
+android/app/build/
+*.py
