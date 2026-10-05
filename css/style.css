@@ -137,17 +137,22 @@ body {
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(3, 7, 18, 0.65);
+  background: rgba(3, 7, 18, 0.68);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 990;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s;
 }
 
 .sidebar-overlay.open {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -1801,7 +1806,6 @@ body {
 @media (max-width: 992px) {
   body.sidebar-open {
     overflow: hidden !important;
-    touch-action: none;
   }
 
   .sidebar {
@@ -1817,6 +1821,7 @@ body {
     padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
     transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   }
 

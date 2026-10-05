@@ -15,6 +15,7 @@ const App = {
     await this.loadData();
     this.renderSubjects();
     this.initModals();
+    this.initTouchGestures();
 
     // Initialize feature modules
     ScheduleModule.init();
@@ -158,20 +159,181 @@ const App = {
 
   toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
     if (!sidebar) return;
-    const willOpen = !sidebar.classList.contains('open');
-    sidebar.classList.toggle('open', willOpen);
-    if (overlay) overlay.classList.toggle('open', willOpen);
-    document.body.classList.toggle('sidebar-open', willOpen);
+    if (sidebar.classList.contains('open')) {
+      this.closeSidebar();
+    } else {
+      this.openSidebar();
+    }
   },
 
-  closeSidebar() {
+  openSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
-    if (sidebar) sidebar.classList.remove('open');
+    if (!sidebar) return;
+
+    sidebar.classList.add('open');
+    if (overlay) overlay.classList.add('open');
+    document.body.classList.add('sidebar-open');
+
+    // Notify Android native bridge if running in APK
+    if (window.AndroidBridge && typeof window.AndroidBridge.setDrawerState === 'function') {
+      try {
+        window.AndroidBridge.setDrawerState(true);
+      } catch (e) {}
+    }
+
+    // Push history state so Android hardware back button & swipe-back gesture works
+    if (window.history && window.history.pushState) {
+      try {
+        window.history.pushState({ drawerOpen: true }, '');
+      } catch (e) {}
+    }
+  },
+
+  closeSidebar(syncHistory = true) {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (!sidebar) return;
+
+    const wasOpen = sidebar.classList.contains('open');
+    sidebar.classList.remove('open');
     if (overlay) overlay.classList.remove('open');
     document.body.classList.remove('sidebar-open');
+
+    // Notify Android native bridge
+    if (window.AndroidBridge && typeof window.AndroidBridge.setDrawerState === 'function') {
+      try {
+        window.AndroidBridge.setDrawerState(false);
+      } catch (e) {}
+    }
+
+    // Pop dirty history entry if closed via touch/swipe/click
+    if (wasOpen && syncHistory && window.history && window.history.state && window.history.state.drawerOpen) {
+      try {
+        window.history.back();
+      } catch (e) {}
+    }
+  },
+
+  handleHardwareBack() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar && sidebar.classList.contains('open')) {
+      this.closeSidebar(false);
+      return true;
+    }
+    const openModal = document.querySelector('.modal-overlay.open');
+    if (openModal) {
+      openModal.classList.remove('open');
+      return true;
+    }
+    return false;
+  },
+
+  initTouchGestures() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (!sidebar) return;
+
+    let startX = 0;
+    let startY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let tracking = false;
+    let isEdgeSwipe = false;
+
+    // 1. Touch start on window
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      currentX = startX;
+      currentY = startY;
+
+      const isOpen = sidebar.classList.contains('open');
+      if (isOpen) {
+        // When drawer is open, any touch on sidebar or overlay can swipe left to close
+        tracking = true;
+        isEdgeSwipe = false;
+      } else if (startX <= 32) {
+        // Screen-edge swipe to open
+        tracking = true;
+        isEdgeSwipe = true;
+      } else {
+        tracking = false;
+      }
+    }, { passive: true });
+
+    // 2. Touch move
+    window.addEventListener('touchmove', (e) => {
+      if (!tracking || e.touches.length !== 1) return;
+      const touch = e.touches[0];
+      currentX = touch.clientX;
+      currentY = touch.clientY;
+
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+
+      // If user is clearly scrolling vertically, cancel horizontal swipe tracking
+      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 20) {
+        tracking = false;
+      }
+    }, { passive: true });
+
+    // 3. Touch end
+    window.addEventListener('touchend', (e) => {
+      if (!tracking) return;
+      tracking = false;
+
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+
+      // Predominantly horizontal gesture
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        const isOpen = sidebar.classList.contains('open');
+        // Swipe left (<--) to close sidebar: finger moved at least 32px to the left
+        if (isOpen && diffX < -32) {
+          App.closeSidebar();
+        }
+        // Swipe right (-->) from edge to open sidebar: finger moved at least 40px to the right
+        else if (!isOpen && isEdgeSwipe && diffX > 40) {
+          App.openSidebar();
+        }
+      }
+    }, { passive: true });
+
+    // 4. Click / tap on backdrop overlay (the right side of screen)
+    const dismissOverlay = (e) => {
+      if (sidebar.classList.contains('open')) {
+        e.preventDefault();
+        e.stopPropagation();
+        App.closeSidebar();
+      }
+    };
+
+    if (overlay) {
+      overlay.addEventListener('click', dismissOverlay);
+      overlay.addEventListener('touchend', dismissOverlay);
+      overlay.addEventListener('pointerdown', dismissOverlay);
+    }
+
+    // 5. Fallback: tap anywhere outside sidebar on right screen area
+    document.addEventListener('pointerdown', (e) => {
+      if (!sidebar.classList.contains('open')) return;
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      if (!sidebar.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
+        App.closeSidebar();
+      }
+    });
+
+    // 6. Browser / Android back navigation (popstate)
+    window.addEventListener('popstate', () => {
+      if (sidebar.classList.contains('open')) {
+        App.closeSidebar(false);
+      }
+      document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+    });
   },
 
   switchView(viewId) {
