@@ -10,29 +10,50 @@ const ScheduleModule = {
   dismissedBannerSlot: null,
 
   async init() {
+    // 1. Instantly load cached/saved data for zero-latency startup
     const saved = localStorage.getItem('sti_2g_schedule');
     if (saved) {
-      this.data = JSON.parse(saved);
-    } else {
       try {
-        const res = await fetch('js/data/schedule.json');
-        this.data = await res.json();
-      } catch (err) {
-        console.warn('Fetch fallback to DEFAULT_SCHEDULE', err);
+        this.data = JSON.parse(saved);
+      } catch (e) {
         this.data = typeof DEFAULT_SCHEDULE !== 'undefined' ? DEFAULT_SCHEDULE : [];
       }
-      this.save();
+    } else {
+      this.data = typeof DEFAULT_SCHEDULE !== 'undefined' ? DEFAULT_SCHEDULE : [];
     }
+
     this.render();
     this.updateLiveClassTicker();
     this.checkClassWarnings();
     this.initNotificationControls();
+
+    // 2. Background cloud synchronization: fetch latest schedule if online
+    this.refreshFromNetwork();
 
     // Check every 10 seconds for real-time alerts
     setInterval(() => {
       this.updateLiveClassTicker();
       this.checkClassWarnings();
     }, 10000);
+  },
+
+  async refreshFromNetwork() {
+    try {
+      const res = await fetch('js/data/schedule.json?nocache=' + Date.now());
+      if (res.ok) {
+        const fresh = await res.json();
+        if (fresh && Array.isArray(fresh) && fresh.length) {
+          this.data = fresh;
+          this.save();
+          this.render();
+          this.updateLiveClassTicker();
+          this.checkClassWarnings();
+          console.log('[Schedule] Synced latest class schedule from cloud');
+        }
+      }
+    } catch (err) {
+      // Offline mode: silently keep cached schedule
+    }
   },
 
   save() {

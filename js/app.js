@@ -22,20 +22,41 @@ const App = {
     if (typeof OfflineStorageModule !== 'undefined') {
       OfflineStorageModule.init();
     }
+
+    // Auto-sync when reconnecting or reopening app on phone
+    window.addEventListener('online', () => {
+      console.log('[Network] Reconnected to Internet: syncing data');
+      this.syncAllData();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && navigator.onLine) {
+        this.syncAllData();
+      }
+    });
   },
 
   async loadData() {
     try {
+      const timestamp = Date.now();
       const [subRes, handRes] = await Promise.all([
-        fetch('js/data/subjects.json'),
-        fetch('js/data/handouts.json')
+        fetch(`js/data/subjects.json?nocache=${timestamp}`),
+        fetch(`js/data/handouts.json?nocache=${timestamp}`)
       ]);
       this.subjects = await subRes.json();
       this.handouts = await handRes.json();
+      console.log('[Sync] Subjects & handouts synced from cloud');
     } catch (err) {
-      console.warn('Fetch fallback to embedded seed data', err);
+      console.warn('Offline mode: Using cached or embedded seed data', err);
       this.subjects = typeof DEFAULT_SUBJECTS !== 'undefined' ? DEFAULT_SUBJECTS : [];
       this.handouts = typeof DEFAULT_HANDOUTS !== 'undefined' ? DEFAULT_HANDOUTS : [];
+    }
+  },
+
+  async syncAllData() {
+    await this.loadData();
+    this.renderSubjects();
+    if (typeof ScheduleModule !== 'undefined' && ScheduleModule.refreshFromNetwork) {
+      ScheduleModule.refreshFromNetwork();
     }
   },
 
