@@ -322,42 +322,177 @@ body {
   color: var(--text-muted);
 }
 
-.theme-toggle-btn {
+/* ==========================================================================
+   LIQUID GLASS CIRCLE THEME SWITCHER
+   ========================================================================== */
+.theme-footer-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  background: transparent;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  color: var(--text-muted);
-  font-size: 0.8rem;
+  padding: 0.4rem 0.55rem 0.4rem 0.85rem;
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+[data-theme="light"] .theme-footer-row {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.theme-footer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
-.theme-toggle-btn:hover {
-  background: var(--bg-subtle);
-  color: var(--text-main);
-}
-
-.theme-toggle-pill {
-  font-size: 0.68rem;
+.theme-mode-text {
+  font-size: 0.84rem;
   font-weight: 600;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
-[data-theme="light"] .theme-toggle-pill {
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.1);
+.theme-mode-subtext {
+  font-size: 0.68rem;
   color: var(--text-muted);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+/* The Circular Liquid Glass Orb */
+.theme-liquid-orb {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: radial-gradient(circle at 35% 30%, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.85));
+  backdrop-filter: blur(20px) saturate(220%);
+  -webkit-backdrop-filter: blur(20px) saturate(220%);
+  box-shadow: 
+    0 4px 16px -2px rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(56, 189, 248, 0.35),
+    inset 0 2px 2px rgba(255, 255, 255, 0.55),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, border-color 0.28s ease, background 0.35s ease;
+  overflow: hidden;
+}
+
+.theme-liquid-orb:hover {
+  transform: scale(1.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 6px 24px -2px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(56, 189, 248, 0.55),
+    inset 0 2px 3px rgba(255, 255, 255, 0.75),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.theme-liquid-orb:active {
+  transform: scale(0.92);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 8px rgba(56, 189, 248, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Light Mode Orb */
+[data-theme="light"] .theme-liquid-orb {
+  background: radial-gradient(circle at 35% 30%, rgba(245, 158, 11, 0.35), rgba(255, 255, 255, 0.9));
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 4px 16px -2px rgba(245, 158, 11, 0.28),
+    0 0 14px rgba(245, 158, 11, 0.35),
+    inset 0 2px 3px rgba(255, 255, 255, 0.98),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .theme-liquid-orb:hover {
+  transform: scale(1.08);
+  box-shadow: 
+    0 6px 24px -2px rgba(245, 158, 11, 0.4),
+    0 0 20px rgba(245, 158, 11, 0.55),
+    inset 0 2px 3px rgba(255, 255, 255, 1);
+}
+
+/* Specular Dome Reflex */
+.theme-orb-specular {
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  right: 6px;
+  height: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+  border-radius: 50% 50% 40% 40%;
+  pointer-events: none;
+}
+
+[data-theme="light"] .theme-orb-specular {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+}
+
+/* Icon & Animation */
+.theme-orb-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.moon-svg {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
+}
+
+.sun-svg {
+  color: #f59e0b;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.7));
+}
+
+@keyframes themeOrbSpin {
+  0% {
+    transform: rotate(0deg) scale(0.7);
+    opacity: 0.4;
+  }
+  60% {
+    transform: rotate(200deg) scale(1.18);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.theme-icon-spin {
+  animation: themeOrbSpin 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* Main Content Area */

@@ -74,10 +74,21 @@
             </div>
           </div>
         </div>
-        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light theme">
-          <span id="themeLabel">🌙 Dark Mode</span>
-          <span id="themeStatusBadge" class="theme-toggle-pill">Active</span>
-        </button>
+        <div class="theme-footer-row">
+          <div class="theme-footer-meta" onclick="document.getElementById('themeToggleBtn').click()">
+            <span id="themeLabel" class="theme-mode-text">Dark Mode</span>
+            <span id="themeStatusBadge" class="theme-mode-subtext">Liquid Glass</span>
+          </div>
+          <button id="themeToggleBtn" class="theme-liquid-orb" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <span class="theme-orb-glow"></span>
+            <span class="theme-orb-specular"></span>
+            <span id="themeIconSlot" class="theme-orb-icon">
+              <svg class="theme-svg moon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
     </aside>
 
