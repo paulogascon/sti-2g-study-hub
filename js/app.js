@@ -19,6 +19,9 @@ const App = {
     ScheduleModule.init();
     QuizModule.init();
     TasksModule.init();
+    if (typeof OfflineStorageModule !== 'undefined') {
+      OfflineStorageModule.init();
+    }
   },
 
   async loadData() {
@@ -175,25 +178,31 @@ const App = {
         </div>
       `;
     } else {
-      listEl.innerHTML = items.map(h => `
-        <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem;">
-          <div style="display:flex; justify-content: space-between; align-items: flex-start;">
-            <h4 style="font-size: 0.95rem; font-weight: 600;">${h.title}</h4>
+      listEl.innerHTML = items.map(h => {
+        const isOffline = typeof OfflineStorageModule !== 'undefined' && OfflineStorageModule.isFileSavedOffline(h.id);
+        return `
+        <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.1rem; margin-bottom: 0.85rem;">
+          <div style="display:flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+            <h4 style="font-size: 0.98rem; font-weight: 600;">${h.title}</h4>
             <span style="font-size: 0.7rem; font-weight:700; background: var(--bg-subtle); padding: 2px 6px; border-radius: 4px;">${h.format}</span>
           </div>
-          <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0.4rem 0;">${h.summary}</p>
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0.4rem 0;">${h.summary}</p>
           ${h.localPath ? `
-            <div style="font-size: 0.72rem; font-family: monospace; color: var(--text-dim); word-break: break-all; margin-top: 0.4rem;">
+            <div style="font-size: 0.72rem; font-family: monospace; color: var(--text-dim); word-break: break-all; margin: 0.4rem 0;">
               📁 ${h.localPath}
             </div>
-            <div style="margin-top: 0.6rem;">
-              <a href="file:///${h.localPath.replace(/\\/g, '/')}" target="_blank" class="btn-secondary" style="font-size: 0.78rem; padding: 0.35rem 0.75rem; text-decoration: none;">
+            <div style="margin-top: 0.75rem; display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+              <a href="file:///${h.localPath.replace(/\\/g, '/')}" target="_blank" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.85rem; text-decoration: none;">
                 📄 Open Document
               </a>
+              <button class="btn-offline ${isOffline ? 'saved-offline' : ''}" onclick="OfflineStorageModule.toggleOfflineSave('${h.id}', '${h.localPath}', this)">
+                ${isOffline ? '✅ Available Offline' : '📶 Make Available Offline'}
+              </button>
             </div>
           ` : ''}
         </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     modal.classList.add('open');

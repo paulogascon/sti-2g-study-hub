@@ -484,6 +484,50 @@ body {
   color: var(--text-main);
 }
 
+/* Offline Storage & Network Indicators */
+.network-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.network-pill.online {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.network-pill.offline {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.btn-offline {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-offline:hover {
+  border-color: var(--border-accent);
+  color: var(--text-main);
+}
+
+.btn-offline.saved-offline {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--color-success);
+  color: #34d399;
+}
+
 /* Mobile Toggle Bar */
 .mobile-nav-toggle {
   display: none;

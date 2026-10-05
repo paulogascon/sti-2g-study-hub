@@ -6,6 +6,12 @@
   <title>STI 2G Study Hub | Academic Portal</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="STI 2G Hub">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <meta name="theme-color" content="#002b49">
 </head>
 <body>
   <div class="app-container">
@@ -74,6 +80,7 @@
           </div>
         </div>
         <div class="header-actions">
+          <span id="networkStatusPill" class="network-pill online">🟢 Online</span>
           <button id="enableNotifBtn" class="btn-notif">🔔 Enable Alerts</button>
           <button id="testAlertBtn" class="btn-notif" title="Preview Alert Warning">🔊 Test Chime</button>
           <div id="liveClock" class="clock-display">Mon, Oct 5, 2026</div>
@@ -396,6 +403,7 @@
 
   <!-- Scripts -->
   <script src="js/data/seeds.js"></script>
+  <script src="js/offline-storage.js"></script>
   <script src="js/schedule.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/tasks.js"></script>
