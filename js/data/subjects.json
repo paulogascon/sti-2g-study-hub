@@ -1,0 +1,157 @@
+[
+  {
+    "id": "COSC1003",
+    "code": "COSC1003",
+    "title": "Data Structure and Algorithms",
+    "units": 3,
+    "category": "Major Course",
+    "instructor": "Angus, Cherry Ann A.",
+    "room": "B305 (Lec) / B102 (Lab)",
+    "accentColor": "#2563EB",
+    "bgGradient": "linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)",
+    "icon": "code-bracket",
+    "description": "Fundamental data structures (Arrays, Linked Lists, Stacks, Queues, Trees) and algorithmic complexity (Big O, sorting, searching).",
+    "midtermTopics": [
+      "Abstract Data Types & Big-O Notation",
+      "Singly and Doubly Linked Lists",
+      "Stacks (LIFO) & Queues (FIFO)",
+      "Trees & Binary Search Trees (BST)",
+      "Sorting & Searching Algorithms"
+    ]
+  },
+  {
+    "id": "COSC1007",
+    "code": "COSC1007",
+    "title": "Human-Computer Interaction",
+    "units": 3,
+    "category": "Major Course",
+    "instructor": "Pasion, Charis B.",
+    "room": "B207 (Lec) / MN307 (Lab)",
+    "accentColor": "#0D9488",
+    "bgGradient": "linear-gradient(135deg, #115E59 0%, #14B8A6 100%)",
+    "icon": "cursor-arrow-rays",
+    "description": "Design principles, usability engineering, user testing, heuristic evaluation, and interaction design for web/mobile interfaces.",
+    "midtermTopics": [
+      "HCI Foundations & User-Centered Design",
+      "Nielsen's 10 Usability Heuristics",
+      "Hierarchical Task Analysis (HTA)",
+      "Prototyping & Wireframing",
+      "Usability Testing & Metrics"
+    ]
+  },
+  {
+    "id": "COSC1008",
+    "code": "COSC1008",
+    "title": "Platform Technology 1 (Operating Systems)",
+    "units": 3,
+    "category": "Major Course",
+    "instructor": "Gonzales, Danly S.",
+    "room": "B304 (Lec) / MN306 (Lab)",
+    "accentColor": "#7C3AED",
+    "bgGradient": "linear-gradient(135deg, #5B21B6 0%, #8B5CF6 100%)",
+    "icon": "cpu-chip",
+    "description": "Operating system architecture, process management, CPU scheduling, concurrency, memory allocation, and virtual storage.",
+    "midtermTopics": [
+      "OS Architecture & System Calls",
+      "Process Lifecycle & PCB",
+      "CPU Scheduling Algorithms (FCFS, SJF, RR)",
+      "Process Synchronization & Deadlocks",
+      "Memory Management & Paging"
+    ]
+  },
+  {
+    "id": "INTE1051",
+    "code": "INTE1051",
+    "title": "IT Elective I",
+    "units": 3,
+    "category": "IT Elective",
+    "instructor": "Pasion, Charis B.",
+    "room": "B207 (Lec) / MN308 (Lab)",
+    "accentColor": "#D97706",
+    "bgGradient": "linear-gradient(135deg, #92400E 0%, #F59E0B 100%)",
+    "icon": "sparkles",
+    "description": "Specialized technologies, modern development environments, application logic, and industry workflows.",
+    "midtermTopics": [
+      "Modern Development Paradigms",
+      "Component Architecture & State Management",
+      "API Integrations & Data Flow",
+      "Testing & Deployment Best Practices"
+    ]
+  },
+  {
+    "id": "COSC1001",
+    "code": "COSC1001",
+    "title": "Principles of Communication",
+    "units": 3,
+    "category": "Core Foundation",
+    "instructor": "Escauso, Irene May C.",
+    "room": "ONLINE (W 5:30PM-8:30PM)",
+    "accentColor": "#0284C7",
+    "bgGradient": "linear-gradient(135deg, #075985 0%, #0EA5E9 100%)",
+    "icon": "chat-bubble-left-right",
+    "description": "Data communications, signal transmission, network topologies, OSI/TCP layers, and digital modulation basics.",
+    "midtermTopics": [
+      "Transmission Media & Signal Characteristics",
+      "Modulation Techniques (AM, FM, PM)",
+      "OSI 7-Layer Reference Model",
+      "Multiplexing & Error Detection Codes"
+    ]
+  },
+  {
+    "id": "GEDC1006",
+    "code": "GEDC 1006",
+    "title": "Readings in Philippine History",
+    "units": 3,
+    "category": "General Education",
+    "instructor": "Pama, Delia P.",
+    "room": "B305 (F 1:00PM-4:00PM)",
+    "accentColor": "#DC2626",
+    "bgGradient": "linear-gradient(135deg, #991B1B 0%, #EF4444 100%)",
+    "icon": "book-open",
+    "description": "Critical analysis of primary sources, historical controversies, customs, and socioeconomic evolution of the Philippines.",
+    "midtermTopics": [
+      "Primary vs. Secondary Sources Analysis",
+      "Customs of the Tagalogs & Early Visayan Societies",
+      "Cavite Mutiny & Propaganda Movement",
+      "Philippine Constitution Evolution"
+    ]
+  },
+  {
+    "id": "GEDC1014",
+    "code": "GEDC 1014",
+    "title": "Rizal's Life and Works",
+    "units": 3,
+    "category": "General Education",
+    "instructor": "Angeles, Jocen B.",
+    "room": "MN424 (M 5:30PM-8:30PM)",
+    "accentColor": "#B91C1C",
+    "bgGradient": "linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)",
+    "icon": "academic-cap",
+    "description": "Life, writings, exile, trial, and enduring legacy of Dr. Jose Rizal; analysis of Noli Me Tangere and El Filibusterismo.",
+    "midtermTopics": [
+      "Rizal Law (RA 1425) Context & Rationale",
+      "19th Century Philippines under Spanish Rule",
+      "Rizal's European Education & Propaganda Writings",
+      "Analysis of Noli Me Tangere & El Filibusterismo"
+    ]
+  },
+  {
+    "id": "PHED1007",
+    "code": "PHED 1007",
+    "title": "P.E./PATHFIT 3: Individual-Dual Sports",
+    "units": 2,
+    "category": "Physical Education",
+    "instructor": "Sagon, Benjamin Romel G.",
+    "room": "FIELD 4 (T 10:00AM-12:00PM)",
+    "accentColor": "#16A34A",
+    "bgGradient": "linear-gradient(135deg, #166534 0%, #22C55E 100%)",
+    "icon": "heart",
+    "description": "Physical activity and fitness training, movement competency, health wellness, and sports-related skills.",
+    "midtermTopics": [
+      "Physical Fitness Assessments & Metrics",
+      "Cardiovascular Endurance & Aerobics",
+      "Movement Mechanics & Injury Prevention",
+      "Personal Fitness Regimen Design"
+    ]
+  }
+]

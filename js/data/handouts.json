@@ -1,0 +1,172 @@
+[
+  {
+    "id": "h_hci_guide",
+    "subjectCode": "COSC1007",
+    "title": "HCI Midterm Study Guide (Master Reviewer)",
+    "period": "MIDTERM",
+    "type": "Study Guide",
+    "format": "PDF / DOCX",
+    "summary": "Nielsen's 10 Usability Heuristics, Fitts's Law, HTA, and User-Centered Design principles.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/HCI_Study_Guide.pdf"
+  },
+  {
+    "id": "h_hci_m1",
+    "subjectCode": "COSC1007",
+    "title": "HCI Midterm Handout 1",
+    "period": "MIDTERM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Interaction models, input devices, and cognitive ergonomics.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/Handout_1.pdf"
+  },
+  {
+    "id": "h_hci_m2",
+    "subjectCode": "COSC1007",
+    "title": "HCI Midterm Handout 2",
+    "period": "MIDTERM",
+    "type": "Official Handout",
+    "format": "PDF",
+    "summary": "Prototyping fidelity, wireframes, and usability testing methodologies.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/Handout_2.pdf"
+  },
+  {
+    "id": "h_hci_defense",
+    "subjectCode": "COSC1007",
+    "title": "AuraPulse HCI Defense QA Master Guide",
+    "period": "MIDTERM",
+    "type": "Defense Prep",
+    "format": "DOCX",
+    "summary": "Panel Q&A defense answers, rationale behind design decisions, and system usability.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/AuraPulse_HCI_Defense_QA_Master_Guide_Aguillon_Haway.docx"
+  },
+  {
+    "id": "h_rizal_rev",
+    "subjectCode": "GEDC 1014",
+    "title": "JRizal Midterm Master Reviewer",
+    "period": "MIDTERM",
+    "type": "Reviewer",
+    "format": "DOCX",
+    "summary": "Exile in Dapitan, La Liga Filipina, trial, execution, and critical analysis of El Filibusterismo.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/JRizal-MIDTERMReviewer.docx"
+  },
+  {
+    "id": "h_rizal_m1",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Life Midterm Topic 1 Handout",
+    "period": "MIDTERM",
+    "type": "Lecture Notes",
+    "format": "PDF",
+    "summary": "19th century sociopolitical landscape and early nationalist writings.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-1.pdf"
+  },
+  {
+    "id": "h_rizal_m2",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Life Midterm Topic 2 Handout",
+    "period": "MIDTERM",
+    "type": "Lecture Notes",
+    "format": "PDF",
+    "summary": "European reform movement, Propagandists, and La Solidaridad.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-2.pdf"
+  },
+  {
+    "id": "h_rizal_m3",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Life Midterm Topic 3 Handout",
+    "period": "MIDTERM",
+    "type": "Lecture Notes",
+    "format": "PDF",
+    "summary": "Founding of La Liga Filipina and events leading to Dapitan deportation.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-3.pdf"
+  },
+  {
+    "id": "h_rizal_m4",
+    "subjectCode": "GEDC 1014",
+    "title": "Rizal Life Midterm Topic 4 Handout",
+    "period": "MIDTERM",
+    "type": "Lecture Notes",
+    "format": "PDF",
+    "summary": "Literary analysis: Comparing Noli Me Tangere and El Filibusterismo.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-4.pdf"
+  },
+  {
+    "id": "h_comm_q1",
+    "subjectCode": "COSC1001",
+    "title": "Principles of Communication - Module 04 Quiz Answers",
+    "period": "MIDTERM",
+    "type": "Quiz Reviewer",
+    "format": "DOCX",
+    "summary": "Complete verified question solutions and explanations for signal transmission.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Quiz_1_Answer.docx"
+  },
+  {
+    "id": "h_comm_pt1",
+    "subjectCode": "COSC1001",
+    "title": "Principles of Communication - Module 04 Performance Task",
+    "period": "MIDTERM",
+    "type": "Performance Task",
+    "format": "DOCX",
+    "summary": "Practical lab task documentation, transmission models, and network topology analysis.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Performance_Task_1_Answer.docx"
+  },
+  {
+    "id": "h_comm_sw1",
+    "subjectCode": "COSC1001",
+    "title": "Principles of Communication - Module 04 Seatwork",
+    "period": "MIDTERM",
+    "type": "Seatwork",
+    "format": "DOCX",
+    "summary": "Seatwork exercises and solutions on modulation and frequency bands.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Seatwork_1_Answer.docx"
+  },
+  {
+    "id": "h_ite_act1",
+    "subjectCode": "INTE1051",
+    "title": "IT Elective I - Midterm Activity 1",
+    "period": "MIDTERM",
+    "type": "Activity Handout",
+    "format": "PDF",
+    "summary": "Midterm application activity guidelines and technical implementation steps.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/IT ELECTIVE/MIDTERM/Midterm-Activity-1.pdf"
+  },
+  {
+    "id": "h_ite_lab",
+    "subjectCode": "INTE1051",
+    "title": "IT Elective I - Lab Activity Society Form",
+    "period": "MIDTERM",
+    "type": "Lab Activity",
+    "format": "DOCX",
+    "summary": "Membership form UI and client-side form validation exercise.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/IT ELECTIVE/MIDTERM/Lab_Activity-society.docx"
+  },
+  {
+    "id": "h_dsa_guide",
+    "subjectCode": "COSC1003",
+    "title": "Data Structures - Combined Handouts Study Guide",
+    "period": "FOUNDATION",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "Arrays, Linked Lists, Stacks, Queues, Big-O complexity comparison.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_Handouts_01_02.docx"
+  },
+  {
+    "id": "h_os_guide",
+    "subjectCode": "COSC1008",
+    "title": "Platform Technology / OS - Combined Study Guide",
+    "period": "FOUNDATION",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "Process management, CPU scheduling, memory management, and paging.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_IT2601.docx"
+  },
+  {
+    "id": "h_hist_guide",
+    "subjectCode": "GEDC 1006",
+    "title": "Readings in Philippine History - Study Guide",
+    "period": "FOUNDATION",
+    "type": "Study Guide",
+    "format": "DOCX",
+    "summary": "Primary and secondary source analysis, customs of the Tagalogs, and Cavite mutiny.",
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx"
+  }
+]
