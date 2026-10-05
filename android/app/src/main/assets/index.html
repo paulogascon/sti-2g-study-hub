@@ -72,23 +72,55 @@
 
     <!-- Main Wrapper -->
     <main class="main-wrapper">
-      <!-- Sticky Top Live Header -->
+      <!-- Sticky Top Live Header (Liquid Glass Experience) -->
       <header class="top-header">
-        <div style="display:flex; align-items:center; gap: 0.75rem;">
-          <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle menu">
-            <svg style="width:24px; height:24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </button>
-          <div class="ticker-wrap">
-            <span id="tickerBadge" class="live-badge" style="display:none;"></span>
-            <span id="tickerStatusText" class="current-status-text">Loading class status...</span>
+        <div class="top-header-bar">
+          <div class="header-left">
+            <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+              <svg style="width:22px; height:22px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div class="mobile-brand-mark">
+              <span class="brand-school-pill">STI</span>
+              <span class="brand-hub-name">2G Hub</span>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <button id="openDownloadModalHeaderBtn" class="liquid-glass-btn download-btn" onclick="App.openDownloadModal()" title="Download Official Mobile App (.apk)">
+              <span class="apk-icon">📱</span>
+              <span class="apk-label-desktop">Download App (.apk)</span>
+              <span class="apk-label-mobile">Get APK</span>
+            </button>
+            <span id="networkStatusPill" class="network-pill online">
+              <span class="pulse-dot"></span>
+              <span class="network-text">Online</span>
+            </span>
+            <button id="enableNotifBtn" class="btn-notif desktop-only">🔔 Enable Alerts</button>
+            <button id="testAlertBtn" class="btn-notif desktop-only" title="Preview Alert Warning">🔊 Test Chime</button>
+            <div id="liveClock" class="clock-display desktop-only">Mon, Oct 5, 2026</div>
           </div>
         </div>
-        <div class="header-actions">
-          <button id="openDownloadModalHeaderBtn" class="btn-notif" onclick="App.openDownloadModal()" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; font-weight: 700; cursor: pointer;">📱 Download App (.apk)</button>
-          <span id="networkStatusPill" class="network-pill online">🟢 Online</span>
-          <button id="enableNotifBtn" class="btn-notif">🔔 Enable Alerts</button>
-          <button id="testAlertBtn" class="btn-notif" title="Preview Alert Warning">🔊 Test Chime</button>
-          <div id="liveClock" class="clock-display">Mon, Oct 5, 2026</div>
+
+        <!-- Dynamic Island Liquid Glass Status Capsule -->
+        <div id="liveClassCapsule" class="liquid-status-capsule">
+          <div class="capsule-sheen"></div>
+          <div class="capsule-body">
+            <div class="capsule-headline">
+              <div class="capsule-badge-group">
+                <span id="tickerBadge" class="capsule-status-pill upcoming">⚡ UP NEXT</span>
+                <span id="tickerCountdown" class="capsule-countdown-pill">--</span>
+              </div>
+              <div class="capsule-meta-group">
+                <span id="tickerRoom" class="capsule-meta-pill room">📍 Loading...</span>
+                <span id="tickerTime" class="capsule-meta-pill time">🕒 --:--</span>
+              </div>
+            </div>
+            <div class="capsule-subject-row">
+              <div id="tickerSubject" class="capsule-subject-title">Loading class schedule...</div>
+            </div>
+          </div>
+          <!-- Hidden fallback for legacy text queries -->
+          <span id="tickerStatusText" style="display:none;"></span>
         </div>
       </header>
 

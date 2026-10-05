@@ -310,12 +310,58 @@ const ScheduleModule = {
   },
 
   // -------------------------------------------------------------
-  // LIVE HEADER TICKER
+  // TIME & COUNTDOWN HELPERS
+  // -------------------------------------------------------------
+  formatTime12h(timeStr) {
+    if (!timeStr) return '';
+    const [h, m] = timeStr.split(':').map(Number);
+    const period = h >= 12 ? 'PM' : 'AM';
+    const hour12 = h % 12 === 0 ? 12 : h % 12;
+    const minStr = m < 10 ? `0${m}` : `${m}`;
+    return `${hour12}:${minStr} ${period}`;
+  },
+
+  formatCountdown(mins) {
+    if (mins <= 0) return 'Starts now';
+    if (mins < 60) return `in ${mins}m`;
+    const hrs = Math.floor(mins / 60);
+    const remMins = mins % 60;
+    return remMins > 0 ? `in ${hrs}h ${remMins}m` : `in ${hrs}h`;
+  },
+
+  getNextUpcomingClass(currentDayIndex) {
+    const daysOrder = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    for (let offset = 1; offset <= 7; offset++) {
+      const targetDayIndex = (currentDayIndex + offset) % 7;
+      const targetDayName = daysOrder[targetDayIndex];
+      const dayClasses = this.data
+        .filter(c => c.day && c.day.toLowerCase() === targetDayName.toLowerCase())
+        .sort((a, b) => {
+          const [aH, aM] = a.startTime.split(':').map(Number);
+          const [bH, bM] = b.startTime.split(':').map(Number);
+          return (aH * 60 + aM) - (bH * 60 + bM);
+        });
+      if (dayClasses.length > 0) {
+        return {
+          ...dayClasses[0],
+          dayName: targetDayName,
+          isTomorrow: offset === 1
+        };
+      }
+    }
+    return null;
+  },
+
+  // -------------------------------------------------------------
+  // LIVE HEADER TICKER (DYNAMIC ISLAND / LIQUID GLASS CAPSULE)
   // -------------------------------------------------------------
   updateLiveClassTicker() {
     const tickerStatus = document.getElementById('tickerStatusText');
     const tickerBadge = document.getElementById('tickerBadge');
-    if (!tickerStatus) return;
+    const tickerCountdown = document.getElementById('tickerCountdown');
+    const tickerSubject = document.getElementById('tickerSubject');
+    const tickerRoom = document.getElementById('tickerRoom');
+    const tickerTime = document.getElementById('tickerTime');
 
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const now = new Date();
@@ -341,21 +387,93 @@ const ScheduleModule = {
     });
 
     if (ongoing) {
-      tickerStatus.innerHTML = `<strong>Ongoing:</strong> ${ongoing.subjectTitle} (${ongoing.room}) &bull; Ends at ${ongoing.endTime}`;
-      tickerBadge.style.display = 'inline-flex';
-      tickerBadge.className = 'live-badge';
-      tickerBadge.innerHTML = '<span class="live-pulse"></span> IN CLASS';
+      if (tickerBadge) {
+        tickerBadge.className = 'capsule-status-pill live';
+        tickerBadge.innerHTML = '<span class="pulse-dot"></span> IN CLASS NOW';
+      }
+      if (tickerCountdown) {
+        tickerCountdown.className = 'capsule-countdown-pill live';
+        tickerCountdown.textContent = `Ends at ${this.formatTime12h(ongoing.endTime)}`;
+        tickerCountdown.style.display = 'inline-block';
+      }
+      if (tickerSubject) {
+        tickerSubject.textContent = `${ongoing.subjectCode} — ${ongoing.subjectTitle}`;
+      }
+      if (tickerRoom) {
+        tickerRoom.innerHTML = `📍 <strong>${ongoing.room}</strong>`;
+        tickerRoom.style.display = 'inline-flex';
+      }
+      if (tickerTime) {
+        tickerTime.innerHTML = `🕒 ${this.formatTime12h(ongoing.startTime)} – ${this.formatTime12h(ongoing.endTime)}`;
+        tickerTime.style.display = 'inline-flex';
+      }
+      if (tickerStatus) {
+        tickerStatus.innerHTML = `<strong>Ongoing:</strong> ${ongoing.subjectTitle} (${ongoing.room}) &bull; Ends at ${this.formatTime12h(ongoing.endTime)}`;
+      }
     } else if (upNext) {
       const minsRemaining = upNext.startTotal - currentMinutes;
-      tickerStatus.innerHTML = `<strong>Up Next in ${minsRemaining}m:</strong> ${upNext.subjectTitle} at ${upNext.startTime} (${upNext.room})`;
-      tickerBadge.style.display = 'inline-flex';
-      tickerBadge.className = 'live-badge';
-      tickerBadge.style.background = 'rgba(56, 189, 248, 0.15)';
-      tickerBadge.style.color = '#38bdf8';
-      tickerBadge.innerHTML = 'UP NEXT';
+      const isUrgent = minsRemaining <= 15;
+
+      if (tickerBadge) {
+        tickerBadge.className = `capsule-status-pill ${isUrgent ? 'urgent' : 'upcoming'}`;
+        tickerBadge.innerHTML = isUrgent ? '🚨 STARTING SOON' : '⚡ UP NEXT';
+      }
+      if (tickerCountdown) {
+        tickerCountdown.className = `capsule-countdown-pill ${isUrgent ? 'urgent' : 'upcoming'}`;
+        tickerCountdown.textContent = this.formatCountdown(minsRemaining);
+        tickerCountdown.style.display = 'inline-block';
+      }
+      if (tickerSubject) {
+        tickerSubject.textContent = `${upNext.subjectCode} — ${upNext.subjectTitle}`;
+      }
+      if (tickerRoom) {
+        tickerRoom.innerHTML = `📍 <strong>${upNext.room}</strong>`;
+        tickerRoom.style.display = 'inline-flex';
+      }
+      if (tickerTime) {
+        tickerTime.innerHTML = `🕒 Starts at ${this.formatTime12h(upNext.startTime)}`;
+        tickerTime.style.display = 'inline-flex';
+      }
+      if (tickerStatus) {
+        tickerStatus.innerHTML = `<strong>Up Next (${this.formatCountdown(minsRemaining)}):</strong> ${upNext.subjectTitle} at ${this.formatTime12h(upNext.startTime)} (${upNext.room})`;
+      }
     } else {
-      tickerStatus.innerHTML = `No classes active right now &bull; Section 2G`;
-      tickerBadge.style.display = 'none';
+      const nextFuture = this.getNextUpcomingClass(now.getDay());
+      if (nextFuture) {
+        if (tickerBadge) {
+          tickerBadge.className = 'capsule-status-pill clear';
+          tickerBadge.innerHTML = '✨ ALL CLEAR TODAY';
+        }
+        if (tickerCountdown) {
+          tickerCountdown.className = 'capsule-countdown-pill clear';
+          tickerCountdown.textContent = nextFuture.isTomorrow ? 'Next class tomorrow' : `Next on ${nextFuture.dayName}`;
+          tickerCountdown.style.display = 'inline-block';
+        }
+        if (tickerSubject) {
+          tickerSubject.textContent = `${nextFuture.subjectCode} — ${nextFuture.subjectTitle}`;
+        }
+        if (tickerRoom) {
+          tickerRoom.innerHTML = `📍 <strong>${nextFuture.room}</strong>`;
+          tickerRoom.style.display = 'inline-flex';
+        }
+        if (tickerTime) {
+          tickerTime.innerHTML = `🕒 ${this.formatTime12h(nextFuture.startTime)}`;
+          tickerTime.style.display = 'inline-flex';
+        }
+        if (tickerStatus) {
+          tickerStatus.innerHTML = `All classes done for today &bull; Next: ${nextFuture.subjectTitle}`;
+        }
+      } else {
+        if (tickerBadge) {
+          tickerBadge.className = 'capsule-status-pill clear';
+          tickerBadge.innerHTML = '✨ ALL CLEAR';
+        }
+        if (tickerCountdown) tickerCountdown.style.display = 'none';
+        if (tickerSubject) tickerSubject.textContent = 'No classes scheduled right now • BSIT 2G';
+        if (tickerRoom) tickerRoom.style.display = 'none';
+        if (tickerTime) tickerTime.style.display = 'none';
+        if (tickerStatus) tickerStatus.innerHTML = 'No classes active right now &bull; Section 2G';
+      }
     }
   },
 

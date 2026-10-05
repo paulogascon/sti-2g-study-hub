@@ -33,10 +33,10 @@ const OfflineStorageModule = {
       const statusPill = document.getElementById('networkStatusPill');
       if (statusPill) {
         if (isOnline) {
-          statusPill.innerHTML = '🟢 Online';
+          statusPill.innerHTML = '<span class="pulse-dot"></span><span class="network-text">Online</span>';
           statusPill.className = 'network-pill online';
         } else {
-          statusPill.innerHTML = '🟡 Offline Mode (Active)';
+          statusPill.innerHTML = '<span class="pulse-dot offline"></span><span class="network-text">Offline</span>';
           statusPill.className = 'network-pill offline';
         }
       }
