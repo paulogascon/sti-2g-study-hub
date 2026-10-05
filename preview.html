@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STI 2G Hub — Mobile Phone Simulator</title>
+  <style>
+    :root {
+      --bg-canvas: #0b0f19;
+      --phone-border: #232a3b;
+      --phone-edge: #151b28;
+      --phone-glass: #000000;
+      --accent: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px, 28px 28px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+      color: #e2e8f0;
+      padding: 14px 10px;
+    }
+
+    /* TOP CONTROLS TOOLBAR */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(18, 24, 38, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .toolbar-label .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 3px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 4px 11px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn.active {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-icon {
+      padding: 4px 8px;
+    }
+
+    /* PHONE SIMULATOR CONTAINER */
+    .viewport-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex: 1;
+      overflow: visible;
+      transform-origin: top center;
+      transition: transform 0.25s ease;
+    }
+
+    /* SMARTPHONE CHASSIS */
+    .phone-device {
+      position: relative;
+      width: 412px;
+      height: 870px;
+      background: #1e2533;
+      border-radius: 54px;
+      padding: 12px;
+      box-shadow: 
+        0 0 0 2px #3b455b,
+        0 0 0 4px #0f141f,
+        0 25px 60px -12px rgba(0, 0, 0, 0.85),
+        0 0 80px rgba(37, 99, 235, 0.15);
+      box-sizing: content-box;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* PHYSICAL BUTTONS ON SIDE */
+    .phone-device::before {
+      /* Volume buttons */
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 130px;
+      width: 4px;
+      height: 48px;
+      background: #3b455b;
+      border-radius: 4px 0 0 4px;
+      box-shadow: 0 65px 0 #3b455b, 0 -45px 0 #3b455b; /* Volume down + Action button */
+    }
+
+    .phone-device::after {
+      /* Power button */
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 165px;
+      width: 4px;
+      height: 75px;
+      background: #3b455b;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* INNER DISPLAY BEZEL */
+    .phone-screen {
+      position: relative;
+      width: 393px;
+      height: 852px;
+      background: #000000;
+      border-radius: 44px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.1);
+    }
+
+    /* DYNAMIC ISLAND (iPhone) */
+    .dynamic-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 32px;
+      background: #000000;
+      border-radius: 20px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dynamic-island:hover {
+      width: 190px;
+      height: 36px;
+      border-radius: 22px;
+    }
+
+    .camera-lens {
+      width: 11px;
+      height: 11px;
+      background: radial-gradient(circle at 35% 35%, #1d3557, #020617);
+      border-radius: 50%;
+      box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.4);
+    }
+
+    .sensor {
+      width: 8px;
+      height: 8px;
+      background: #080e1c;
+      border-radius: 50%;
+    }
+
+    /* ANDROID CAMERA HOLE */
+    .android-punchhole {
+      display: none;
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 13px;
+      height: 13px;
+      background: radial-gradient(circle at 40% 40%, #202b3d, #020617);
+      border-radius: 50%;
+      z-index: 999;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* HARDWARE HOME INDICATOR BAR (iOS) */
+    .home-bar {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 135px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 999px;
+      z-index: 998;
+      pointer-events: none;
+      backdrop-filter: blur(4px);
+    }
+
+    /* THE APP IFRAME */
+    .app-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #0f172a;
+      display: block;
+    }
+
+    /* SAMSUNG GALAXY MODE */
+    .phone-device.samsung-mode {
+      border-radius: 46px;
+      width: 395px;
+      height: 855px;
+      box-shadow: 
+        0 0 0 2px #2f384a,
+        0 0 0 4px #0a0d14,
+        0 25px 60px -12px rgba(0, 0, 0, 0.85);
+    }
+    .phone-device.samsung-mode .phone-screen {
+      width: 393px;
+      height: 852px;
+      border-radius: 38px;
+    }
+    .phone-device.samsung-mode .dynamic-island {
+      display: none;
+    }
+    .phone-device.samsung-mode .android-punchhole {
+      display: block;
+    }
+    .phone-device.samsung-mode .home-bar {
+      display: none;
+    }
+
+    /* RESPONSIVE SCALING PRESETS */
+    .scale-85 { transform: scale(0.85); }
+    .scale-75 { transform: scale(0.75); }
+    .scale-65 { transform: scale(0.65); }
+    .scale-50 { transform: scale(0.50); }
+  </style>
+</head>
+<body>
+
+  <!-- SIMULATOR CONTROL BAR -->
+  <div class="toolbar">
+    <div class="toolbar-label">
+      <span class="pulse-dot"></span>
+      STI 2G Simulator
+    </div>
+
+    <!-- DEVICE MODEL SWITCHER -->
+    <div class="btn-group">
+      <button class="btn active" id="btnIphone" onclick="setDevice('iphone')">
+        📱 iPhone 15 Pro
+      </button>
+      <button class="btn" id="btnSamsung" onclick="setDevice('samsung')">
+        🤖 Galaxy S24
+      </button>
+    </div>
+
+    <!-- ZOOM / SCALE SWITCHER FOR NARROW SCREENS -->
+    <div class="btn-group">
+      <button class="btn" onclick="setScale(1)">100%</button>
+      <button class="btn active" id="btnScale85" onclick="setScale(0.85)">85%</button>
+      <button class="btn" id="btnScale75" onclick="setScale(0.75)">75%</button>
+      <button class="btn" id="btnScale65" onclick="setScale(0.65)">65%</button>
+    </div>
+
+    <!-- RELOAD BUTTON -->
+    <div class="btn-group">
+      <button class="btn btn-icon" onclick="reloadFrame()" title="Reload App Inside Phone">
+        🔄 Reload
+      </button>
+    </div>
+  </div>
+
+  <!-- PHONE VIEWPORT -->
+  <div class="viewport-wrapper scale-85" id="viewport">
+    <div class="phone-device" id="phoneDevice">
+      <!-- HARDWARE DETAILS -->
+      <div class="dynamic-island" id="island" title="iPhone Dynamic Island">
+        <div class="sensor"></div>
+        <div class="camera-lens"></div>
+      </div>
+      <div class="android-punchhole" id="punchhole"></div>
+
+      <!-- INNER TOUCHSCREEN -->
+      <div class="phone-screen">
+        <iframe src="index.html" class="app-frame" id="appIframe" title="STI 2G Study Hub"></iframe>
+        <div class="home-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setDevice(type) {
+      const device = document.getElementById('phoneDevice');
+      const btnIphone = document.getElementById('btnIphone');
+      const btnSamsung = document.getElementById('btnSamsung');
+
+      if (type === 'samsung') {
+        device.classList.add('samsung-mode');
+        btnSamsung.classList.add('active');
+        btnIphone.classList.remove('active');
+      } else {
+        device.classList.remove('samsung-mode');
+        btnIphone.classList.add('active');
+        btnSamsung.classList.remove('active');
+      }
+    }
+
+    function setScale(val) {
+      const vp = document.getElementById('viewport');
+      vp.className = 'viewport-wrapper';
+      vp.style.transform = `scale(${val})`;
+
+      // Update active state
+      document.querySelectorAll('.btn-group button').forEach(b => {
+        if (b.innerText.includes(`${Math.round(val * 100)}%`)) {
+          b.classList.add('active');
+        } else if (b.innerText.includes('%')) {
+          b.classList.remove('active');
+        }
+      });
+    }
+
+    function reloadFrame() {
+      const frame = document.getElementById('appIframe');
+      frame.src = frame.src;
+    }
+
+    // Auto-fit scale if window width is tight in VS Code split screen
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      if (w < 440) {
+        setScale(0.65);
+      } else if (w < 520) {
+        setScale(0.75);
+      } else if (w < 600) {
+        setScale(0.85);
+      }
+    });
+
+    // Run on startup
+    if (window.innerWidth < 500) {
+      setScale(0.75);
+    }
+  </script>
+</body>
+</html>
