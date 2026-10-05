@@ -223,6 +223,18 @@
         "topic": "Dapitan Exile",
         "front": "What were the three new animal species discovered by Rizal in Dapitan and named after him?",
         "back": "Draco rizali (flying lizard), Apogonia rizali (beetle), and Rhacophorus rizali (tree frog)."
+      },
+      {
+        "id": "fc_rizal_5",
+        "topic": "Philippine Revolution & Filipinismo",
+        "front": "What is Filipinismo as conceptualized by Jose Rizal?",
+        "back": "A sense of national identity distinct from Spanish colonial rule, emphasizing Filipino pride in indigenous culture, mutual unity across languages, and self-determination through education rather than assimilation."
+      },
+      {
+        "id": "fc_rizal_6",
+        "topic": "Katipunan Password",
+        "front": "Why did Andres Bonifacio and the Katipunan adopt 'Rizal' as their secret password?",
+        "back": "Katipuneros viewed Rizal as the moral symbol and intellectual catalyst of the Philippine Revolution. Third-grade members ('Bayani') used 'Rizal' as their secret recognition countersign."
       }
     ],
     "questions": [
@@ -277,6 +289,32 @@
         ],
         "correctIndex": 2,
         "explanation": "Governor-General Camilo de Polavieja approved and signed the military court-martial's death sentence on December 28, 1896."
+      },
+      {
+        "id": "q_rizal_5",
+        "topic": "Rizal vs. Bonifacio Philosophy",
+        "question": "What was the fundamental contrast between Jose Rizal's philosophy and Andres Bonifacio's approach to the Philippine Revolution?",
+        "options": [
+          "Rizal advocated armed insurrection, while Bonifacio sought peaceful petition in Madrid",
+          "Rizal insisted on intellectual enlightenment and education before self-rule, while Bonifacio saw urgent armed revolution as the only solution",
+          "Rizal favored American annexation, while Bonifacio wanted complete Spanish assimilation",
+          "Rizal rejected national unity, while Bonifacio advocated religious governance"
+        ],
+        "correctIndex": 1,
+        "explanation": "Rizal believed true independence required moral and educational preparation so Filipinos would not become tyrants themselves, whereas Bonifacio was convinced peaceful reform was futile and only armed revolt could break Spanish rule."
+      },
+      {
+        "id": "q_rizal_6",
+        "topic": "Rizal and Philippine Revolution",
+        "question": "Why did Jose Rizal decline to support the Katipunan's immediate armed uprising when approached in Dapitan?",
+        "options": [
+          "He believed the Spanish government had promised independence by 1900",
+          "The Katipunan lacked sufficient arms, naval capabilities, military training, and rich benefactors, risking useless bloodshed",
+          "He wanted to permanently settle in Dapitan as a private physician",
+          "He disagreed with Bonifacio's choice of revolutionary flag"
+        ],
+        "correctIndex": 1,
+        "explanation": "Rizal warned Dr. Pio Valenzuela that a revolution without arms, military training, and alliances was suicidal and would lead to the slaughter of innocent Filipinos."
       }
     ]
   }
