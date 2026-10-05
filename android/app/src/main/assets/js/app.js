@@ -11,6 +11,7 @@ const App = {
     this.initClock();
     this.initTheme();
     this.initNav();
+    this.initUserProfile();
     await this.loadData();
     this.renderSubjects();
     this.initModals();
@@ -441,6 +442,80 @@ const App = {
         }
       });
     });
+  },
+
+  // -------------------------------------------------------------
+  // STUDENT PROFILE PERSONALIZATION (100% Client-Side Offline)
+  // -------------------------------------------------------------
+  initUserProfile() {
+    this.updateProfileDisplay();
+  },
+
+  getStudentName() {
+    return localStorage.getItem('sti_2g_student_name') || '';
+  },
+
+  updateProfileDisplay() {
+    const savedName = this.getStudentName();
+    const nameEl = document.getElementById('userNameDisplay');
+    const avatarEl = document.getElementById('userAvatarInitials');
+    const welcomeEl = document.getElementById('homeWelcomeHeading');
+
+    if (savedName) {
+      if (nameEl) nameEl.textContent = savedName;
+      if (avatarEl) {
+        const parts = savedName.trim().split(/\s+/);
+        const initials = parts.length > 1
+          ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+          : savedName.slice(0, 2).toUpperCase();
+        avatarEl.textContent = initials;
+      }
+      if (welcomeEl) {
+        welcomeEl.textContent = `Welcome to Your Study Hub, ${savedName}! 👋`;
+      }
+    } else {
+      if (nameEl) nameEl.textContent = 'BSIT 2G Student';
+      if (avatarEl) avatarEl.textContent = '2G';
+      if (welcomeEl) {
+        welcomeEl.textContent = 'Welcome to Your Study Hub, Everyone! 👋';
+      }
+    }
+  },
+
+  openProfileModal() {
+    const modal = document.getElementById('profileModal');
+    const input = document.getElementById('studentNameInput');
+    if (input) {
+      input.value = this.getStudentName();
+      setTimeout(() => input.focus(), 100);
+    }
+    if (modal) modal.classList.add('open');
+  },
+
+  closeProfileModal() {
+    const modal = document.getElementById('profileModal');
+    if (modal) modal.classList.remove('open');
+  },
+
+  saveStudentProfile(e) {
+    if (e) e.preventDefault();
+    const input = document.getElementById('studentNameInput');
+    const val = input ? input.value.trim() : '';
+    if (val) {
+      localStorage.setItem('sti_2g_student_name', val);
+    } else {
+      localStorage.removeItem('sti_2g_student_name');
+    }
+    this.updateProfileDisplay();
+    this.closeProfileModal();
+  },
+
+  resetStudentProfile() {
+    localStorage.removeItem('sti_2g_student_name');
+    const input = document.getElementById('studentNameInput');
+    if (input) input.value = '';
+    this.updateProfileDisplay();
+    this.closeProfileModal();
   }
 };
 
