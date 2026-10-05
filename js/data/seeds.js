@@ -647,7 +647,8 @@ const DEFAULT_HANDOUTS = [
     "format": "DOCX",
     "summary": "Full midterm reviewer covering La Solidaridad, La Liga Filipina, Dapitan exile achievements, court-martial trial, and martyrdom.",
     "localPath": "docs/Rizal_Midterm_Study_Guide.docx",
-    "downloadUrl": "docs/Rizal_Midterm_Study_Guide.docx"
+    "downloadUrl": "docs/Rizal_Midterm_Study_Guide.docx",
+    "fileSize": "41.9 KB"
   },
   {
     "id": "h_hci_combined_guide_doc",
@@ -658,7 +659,8 @@ const DEFAULT_HANDOUTS = [
     "format": "DOCX",
     "summary": "Master combined reviewer covering HCI Design Process, Hardware Platforms, WIMP components, UI Layer Architecture, and Java Event-Driven programming.",
     "localPath": "docs/HCI_Midterm_Combined_Study_Guide.docx",
-    "downloadUrl": "docs/HCI_Midterm_Combined_Study_Guide.docx"
+    "downloadUrl": "docs/HCI_Midterm_Combined_Study_Guide.docx",
+    "fileSize": "43.3 KB"
   },
   {
     "id": "h_hci_guide",
@@ -668,7 +670,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "PDF / DOCX",
     "summary": "Nielsen's 10 Usability Heuristics, Fitts's Law, HTA, and User-Centered Design principles.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/HCI_Study_Guide.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/HCI_Study_Guide.pdf",
+    "downloadUrl": "docs/HCI_Study_Guide.pdf",
+    "fileSize": "9.9 KB"
   },
   {
     "id": "h_hci_m1",
@@ -678,7 +682,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Official Handout",
     "format": "PDF",
     "summary": "Interaction models, input devices, and cognitive ergonomics.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/Handout_1.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/Handout_1.pdf",
+    "downloadUrl": "docs/Handout_1.pdf",
+    "fileSize": "163.5 KB"
   },
   {
     "id": "h_hci_m2",
@@ -688,7 +694,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Official Handout",
     "format": "PDF",
     "summary": "Prototyping fidelity, wireframes, and usability testing methodologies.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/Handout_2.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/Handout_2.pdf",
+    "downloadUrl": "docs/Handout_2.pdf",
+    "fileSize": "221.4 KB"
   },
   {
     "id": "h_hci_defense",
@@ -698,7 +706,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Defense Prep",
     "format": "DOCX",
     "summary": "Panel Q&A defense answers, rationale behind design decisions, and system usability.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/AuraPulse_HCI_Defense_QA_Master_Guide_Aguillon_Haway.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/AuraPulse_HCI_Defense_QA_Master_Guide_Aguillon_Haway.docx",
+    "downloadUrl": "docs/AuraPulse_HCI_Defense_QA_Master_Guide_Aguillon_Haway.docx",
+    "fileSize": "39.1 KB"
   },
   {
     "id": "h_rizal_rev",
@@ -708,7 +718,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Reviewer",
     "format": "DOCX",
     "summary": "Exile in Dapitan, La Liga Filipina, trial, execution, and critical analysis of El Filibusterismo.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/JRizal-MIDTERMReviewer.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/JRizal-MIDTERMReviewer.docx",
+    "downloadUrl": "docs/JRizal-MIDTERMReviewer.docx",
+    "fileSize": "32.3 KB"
   },
   {
     "id": "h_rizal_m1",
@@ -718,7 +730,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Lecture Notes",
     "format": "PDF",
     "summary": "19th century sociopolitical landscape and early nationalist writings.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-1.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-1.pdf",
+    "downloadUrl": "docs/MIDTERM-TOPIC-1.pdf",
+    "fileSize": "333.6 KB"
   },
   {
     "id": "h_rizal_m2",
@@ -728,7 +742,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Lecture Notes",
     "format": "PDF",
     "summary": "European reform movement, Propagandists, and La Solidaridad.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-2.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-2.pdf",
+    "downloadUrl": "docs/MIDTERM-TOPIC-2.pdf",
+    "fileSize": "320.1 KB"
   },
   {
     "id": "h_rizal_m3",
@@ -738,7 +754,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Lecture Notes",
     "format": "PDF",
     "summary": "Founding of La Liga Filipina and events leading to Dapitan deportation.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-3.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-3.pdf",
+    "downloadUrl": "docs/MIDTERM-TOPIC-3.pdf",
+    "fileSize": "304.5 KB"
   },
   {
     "id": "h_rizal_m4",
@@ -748,7 +766,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Lecture Notes",
     "format": "PDF",
     "summary": "Literary analysis: Comparing Noli Me Tangere and El Filibusterismo.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-4.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/RIZAL LIFE/MIDTERM/MIDTERM-TOPIC-4.pdf",
+    "downloadUrl": "docs/MIDTERM-TOPIC-4.pdf",
+    "fileSize": "907.5 KB"
   },
   {
     "id": "h_comm_q1",
@@ -758,7 +778,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Quiz Reviewer",
     "format": "DOCX",
     "summary": "Complete verified question solutions and explanations for signal transmission.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Quiz_1_Answer.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Quiz_1_Answer.docx",
+    "downloadUrl": "docs/04_Quiz_1_Answer.docx",
+    "fileSize": "287.7 KB"
   },
   {
     "id": "h_comm_pt1",
@@ -768,7 +790,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Performance Task",
     "format": "DOCX",
     "summary": "Practical lab task documentation, transmission models, and network topology analysis.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Performance_Task_1_Answer.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Performance_Task_1_Answer.docx",
+    "downloadUrl": "docs/04_Performance_Task_1_Answer.docx",
+    "fileSize": "61.1 KB"
   },
   {
     "id": "h_comm_sw1",
@@ -778,7 +802,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Seatwork",
     "format": "DOCX",
     "summary": "Seatwork exercises and solutions on modulation and frequency bands.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Seatwork_1_Answer.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/MIDTERM HAND OUTS/04_Seatwork_1_Answer.docx",
+    "downloadUrl": "docs/04_Seatwork_1_Answer.docx",
+    "fileSize": "9.1 KB"
   },
   {
     "id": "h_ite_act1",
@@ -788,7 +814,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Activity Handout",
     "format": "PDF",
     "summary": "Midterm application activity guidelines and technical implementation steps.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/IT ELECTIVE/MIDTERM/Midterm-Activity-1.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/IT ELECTIVE/MIDTERM/Midterm-Activity-1.pdf",
+    "downloadUrl": "docs/Midterm-Activity-1.pdf",
+    "fileSize": "749.8 KB"
   },
   {
     "id": "h_ite_lab",
@@ -798,7 +826,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Lab Activity",
     "format": "DOCX",
     "summary": "Membership form UI and client-side form validation exercise.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/IT ELECTIVE/MIDTERM/Lab_Activity-society.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/IT ELECTIVE/MIDTERM/Lab_Activity-society.docx",
+    "downloadUrl": "docs/Lab_Activity-society.docx",
+    "fileSize": "955.9 KB"
   },
   {
     "id": "h_dsa_guide",
@@ -808,7 +838,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "DOCX",
     "summary": "Arrays, Linked Lists, Stacks, Queues, Big-O complexity comparison.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_Handouts_01_02.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_Handouts_01_02.docx",
+    "downloadUrl": "docs/Combined_Study_Guide_Handouts_01_02.docx",
+    "fileSize": "17.3 KB"
   },
   {
     "id": "h_os_guide",
@@ -818,7 +850,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "DOCX",
     "summary": "Process management, CPU scheduling, memory management, and paging.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_IT2601.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_IT2601.docx",
+    "downloadUrl": "docs/Combined_Study_Guide_IT2601.docx",
+    "fileSize": "16.1 KB"
   },
   {
     "id": "h_hist_guide",
@@ -828,7 +862,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "DOCX",
     "summary": "Primary and secondary source analysis, customs of the Tagalogs, and Cavite mutiny.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx",
+    "downloadUrl": "docs/Philippine_History_Study_Guide.docx",
+    "fileSize": "13.2 KB"
   },
   {
     "id": "h_dsa_prelim_guide",
@@ -838,7 +874,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "DOCX",
     "summary": "Core algorithms, Big-O complexity analysis, and 1D/2D arrays.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_IT2601.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_IT2601.docx",
+    "downloadUrl": "docs/Combined_Study_Guide_IT2601.docx",
+    "fileSize": "16.1 KB"
   },
   {
     "id": "h_dsa_prelim_h1",
@@ -848,7 +886,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Official Handout",
     "format": "PDF",
     "summary": "Introduction to Data Structures and Algorithmic Thinking.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/02_Handout_1(32).pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/02_Handout_1(32).pdf",
+    "downloadUrl": "docs/02_Handout_1(32).pdf",
+    "fileSize": "529.7 KB"
   },
   {
     "id": "h_hci_prelim_guide",
@@ -858,7 +898,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Reviewer",
     "format": "DOCX",
     "summary": "Foundational HCI principles, ergonomic models, and cognitive interaction.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/HCI_Prelim_Reviewer.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/HCI_Prelim_Reviewer.docx",
+    "downloadUrl": "docs/HCI_Prelim_Reviewer.docx",
+    "fileSize": "17.4 KB"
   },
   {
     "id": "h_hci_prelim_h1",
@@ -868,7 +910,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Official Handout",
     "format": "PDF",
     "summary": "The Human and the Computer interaction dimensions.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(2)_copy.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(2)_copy.pdf",
+    "downloadUrl": "docs/01_Handout_1(2)_copy.pdf",
+    "fileSize": "194.3 KB"
   },
   {
     "id": "h_os_prelim_guide",
@@ -878,7 +922,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "DOCX",
     "summary": "OS architecture, kernels, system calls, and dual-mode execution.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_Handouts_01_02.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Combined_Study_Guide_Handouts_01_02.docx",
+    "downloadUrl": "docs/Combined_Study_Guide_Handouts_01_02.docx",
+    "fileSize": "17.3 KB"
   },
   {
     "id": "h_rizal_prelim_guide",
@@ -888,7 +934,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "DOCX",
     "summary": "RA 1425, 19th-century Philippines, Calamba youth, and Ateneo education.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Rizal_Study_Guide.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Rizal_Study_Guide.docx",
+    "downloadUrl": "docs/Rizal_Study_Guide.docx",
+    "fileSize": "13.6 KB"
   },
   {
     "id": "h_rizal_prelim_slides1",
@@ -898,7 +946,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Lecture Slides",
     "format": "PPTX",
     "summary": "Rizal Law and 19th-century context lecture slides.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/GEDC 1014 (JRIZAL) PRELIM TOPIC 1.pptx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/GEDC 1014 (JRIZAL) PRELIM TOPIC 1.pptx",
+    "downloadUrl": "docs/GEDC 1014 (JRIZAL) PRELIM TOPIC 1.pptx",
+    "fileSize": "1.1 MB"
   },
   {
     "id": "h_history_prelim_guide",
@@ -908,7 +958,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Study Guide",
     "format": "DOCX",
     "summary": "Primary sources, Plasencia's Customs of the Tagalogs, and historical analysis.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/Philippine_History_Study_Guide.docx",
+    "downloadUrl": "docs/Philippine_History_Study_Guide.docx",
+    "fileSize": "13.2 KB"
   },
   {
     "id": "h_comm_prelim_h1",
@@ -918,7 +970,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Official Handout",
     "format": "PDF",
     "summary": "Communication fundamentals, transmission media, and signal types.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_12.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_12.pdf",
+    "downloadUrl": "docs/01_Handout_12.pdf",
+    "fileSize": "431.0 KB"
   },
   {
     "id": "h_ite_prelim_h1",
@@ -928,7 +982,9 @@ const DEFAULT_HANDOUTS = [
     "type": "Official Handout",
     "format": "PDF",
     "summary": "Introduction to web systems and network client-server models.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(43).pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1(43).pdf",
+    "downloadUrl": "docs/01_Handout_1(43).pdf",
+    "fileSize": "528.3 KB"
   },
   {
     "id": "h_pe_prelim_h1",
@@ -938,6 +994,8 @@ const DEFAULT_HANDOUTS = [
     "type": "Official Handout",
     "format": "PDF",
     "summary": "Physical fitness concepts and conditioning benchmarks.",
-    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1A.pdf"
+    "localPath": "C:/Paulo files/STI FOLDER/FIRST SEMESTER 2G/PRELIM HAND OUTS/01_Handout_1A.pdf",
+    "downloadUrl": "docs/01_Handout_116.pdf",
+    "fileSize": "358.6 KB"
   }
 ];

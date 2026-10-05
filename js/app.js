@@ -290,7 +290,7 @@ const App = {
         ` : activeList.map(h => {
           const isOffline = typeof OfflineStorageModule !== 'undefined' && OfflineStorageModule.isFileSavedOffline(h.id);
           const isMidterm = h.period === 'MIDTERM';
-          const fileUrl = h.downloadUrl || (h.localPath ? h.localPath.replace(/\\/g, '/') : '#');
+          const fileUrl = h.downloadUrl || '#';
           return `
           <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.15rem; margin-bottom: 0.85rem;">
             <div style="display:flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
@@ -304,18 +304,17 @@ const App = {
             </div>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">${h.summary}</p>
             
-            ${h.localPath ? `
-              <div style="font-size: 0.72rem; font-family: monospace; color: var(--text-dim); word-break: break-all; margin: 0.4rem 0;">
-                📁 ${h.localPath}
-              </div>
-            ` : ''}
+            <div style="font-size: 0.75rem; color: var(--text-dim); display:flex; gap:0.75rem; align-items:center; margin: 0.4rem 0;">
+              <span>📦 <strong>Size:</strong> ${h.fileSize || 'Standard'}</span>
+              <span>📑 <strong>Type:</strong> ${h.type || 'Reviewer'}</span>
+            </div>
 
             <div style="margin-top: 0.85rem; display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
               <a href="${fileUrl}" target="_blank" download class="btn-primary" style="font-size: 0.82rem; padding: 0.45rem 1rem; text-decoration: none;">
-                📥 Download / Open
+                📥 Download Document
               </a>
-              <button class="btn-offline ${isOffline ? 'saved-offline' : ''}" onclick="OfflineStorageModule.toggleOfflineSave('${h.id}', '${h.localPath}', this)">
-                ${isOffline ? '✅ Available Offline' : '📶 Make Available Offline'}
+              <button class="btn-offline ${isOffline ? 'saved-offline' : ''}" onclick="OfflineStorageModule.toggleOfflineSave('${h.id}', '${fileUrl}', this)">
+                ${isOffline ? '✅ Available Offline' : '📶 Save for Offline'}
               </button>
             </div>
           </div>
