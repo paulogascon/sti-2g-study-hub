@@ -8,6 +8,8 @@ const ScheduleModule = {
   currentFilterDay: 'All',
   notifiedAlerts: new Set(),
   dismissedBannerSlot: null,
+  _lastTickerSig: null,
+  _lastWarningSig: null,
 
   async init() {
     // 1. Instantly load cached/saved data for zero-latency startup
@@ -191,6 +193,15 @@ const ScheduleModule = {
       }
     });
 
+    const warningSig = upcomingWarning
+      ? `warn_${upcomingWarning.id}_${upcomingWarning.minsUntil}`
+      : ongoingClass
+        ? `ongoing_${ongoingClass.id}`
+        : 'none';
+
+    if (this._lastWarningSig === warningSig) return;
+    this._lastWarningSig = warningSig;
+
     // 1. Check Upcoming Class Warning (Highest priority alert)
     if (upcomingWarning) {
       if (this.dismissedBannerSlot === upcomingWarning.id) {
@@ -278,6 +289,7 @@ const ScheduleModule = {
 
   dismissAlert(slotId) {
     this.dismissedBannerSlot = slotId;
+    this._lastWarningSig = null;
     const banner = document.getElementById('activeClassAlertBanner');
     if (banner) banner.style.display = 'none';
   },
@@ -385,6 +397,16 @@ const ScheduleModule = {
         upNext = { ...c, startTotal };
       }
     });
+
+    const minsRemaining = upNext ? (upNext.startTotal - currentMinutes) : 0;
+    const tickerSig = ongoing
+      ? `ongoing_${ongoing.id}`
+      : upNext
+        ? `upnext_${upNext.id}_${minsRemaining}`
+        : `none_${now.getDay()}`;
+
+    if (this._lastTickerSig === tickerSig) return;
+    this._lastTickerSig = tickerSig;
 
     if (ongoing) {
       if (tickerBadge) {

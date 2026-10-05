@@ -62,13 +62,16 @@ const App = {
 
   initClock() {
     const clockEl = document.getElementById('liveClock');
+    if (!clockEl) return;
+    const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const update = () => {
-      const now = new Date();
-      const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-      if (clockEl) clockEl.textContent = now.toLocaleDateString('en-PH', options);
+      const formatted = new Date().toLocaleDateString('en-PH', options);
+      if (clockEl.textContent !== formatted) {
+        clockEl.textContent = formatted;
+      }
     };
     update();
-    setInterval(update, 1000);
+    setInterval(update, 10000);
   },
 
   initTheme() {
