@@ -78,7 +78,9 @@ const OfflineStorageModule = {
         await cache.delete(fileUrl);
       }
       this.updateOfflineButtonUI(buttonEl, false);
-      alert('Removed from offline cache.');
+      if (window.App && typeof App.showToast === 'function') {
+        App.showToast('Removed from offline cache.', 'info');
+      }
     } else {
       // Save for offline access
       this.offlineList.add(fileId);
@@ -93,7 +95,9 @@ const OfflineStorageModule = {
         }
       }
       this.updateOfflineButtonUI(buttonEl, true);
-      alert('Saved for Offline! This file can now be opened without Wi-Fi or data.');
+      if (window.App && typeof App.showToast === 'function') {
+        App.showToast('Saved for Offline! Available without Wi-Fi.', 'success');
+      }
     }
   },
 

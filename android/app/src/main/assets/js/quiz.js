@@ -31,6 +31,21 @@ const QuizModule = {
     this._initCelebrationOverlay();
   },
 
+  getSubjectData(code) {
+    if (!this.data) return null;
+    const target = code || this.currentSubject;
+    if (this.data[target]) return this.data[target];
+    const stripped = (target || '').replace(/\s+/g, '');
+    if (this.data[stripped]) return this.data[stripped];
+    for (const k of Object.keys(this.data)) {
+      if (k.replace(/\s+/g, '').toUpperCase() === stripped.toUpperCase()) {
+        return this.data[k];
+      }
+    }
+    const firstKey = Object.keys(this.data)[0];
+    return this.data[firstKey] || null;
+  },
+
   setSubject(subjectCode) {
     this.currentSubject = subjectCode;
     this.currentFcIndex = 0;
@@ -101,14 +116,24 @@ const QuizModule = {
   },
 
   renderSubjectSelector() {
-    const keys = Object.keys(this.data);
+    // Collect unique subjects by title
+    const seenTitles = new Set();
+    const uniqueKeys = [];
+    for (const k of Object.keys(this.data)) {
+      const item = this.data[k];
+      if (item && item.subjectTitle && !seenTitles.has(item.subjectTitle)) {
+        seenTitles.add(item.subjectTitle);
+        uniqueKeys.push(k);
+      }
+    }
+    const keys = uniqueKeys;
     if (keys.length === 0) return;
 
     // Update active trigger display
-    const activeSub = this.data[this.currentSubject] || this.data[keys[0]];
+    const activeSub = this.getSubjectData(this.currentSubject);
     const codeEl = document.getElementById('quizSelectCode');
     const titleEl = document.getElementById('quizSelectTitle');
-    if (codeEl) codeEl.textContent = this.currentSubject;
+    if (codeEl) codeEl.textContent = activeSub ? activeSub.subjectTitle.split(' ')[0] : this.currentSubject;
     if (titleEl && activeSub) titleEl.textContent = activeSub.subjectTitle;
 
     // Render custom options with smooth staggered list
@@ -116,7 +141,7 @@ const QuizModule = {
     if (menu) {
       menu.innerHTML = keys.map((k, idx) => {
         const item = this.data[k];
-        const isSelected = k === this.currentSubject;
+        const isSelected = activeSub && item.subjectTitle === activeSub.subjectTitle;
         return `
           <div class="custom-select-option ${isSelected ? 'selected' : ''}" 
                style="--idx: ${idx};"
@@ -159,7 +184,7 @@ const QuizModule = {
   // FLASHCARD ENGINE
   // -------------------------------------------------------------
   renderFlashcard() {
-    const sub = this.data[this.currentSubject];
+    const sub = this.getSubjectData(this.currentSubject);
     const cardEl = document.getElementById('activeFlashcard');
     const counterEl = document.getElementById('fcCounter');
     if (!sub || !sub.flashcards || sub.flashcards.length === 0) {
@@ -207,7 +232,7 @@ const QuizModule = {
   },
 
   nextFlashcard() {
-    const sub = this.data[this.currentSubject];
+    const sub = this.getSubjectData(this.currentSubject);
     if (!sub || !sub.flashcards) return;
     if (this.currentFcIndex < sub.flashcards.length - 1) {
       this.currentFcIndex++;
@@ -226,7 +251,7 @@ const QuizModule = {
   // EXAM ENGINE
   // -------------------------------------------------------------
   renderExam() {
-    const sub = this.data[this.currentSubject];
+    const sub = this.getSubjectData(this.currentSubject);
     const container = document.getElementById('examQuestionContainer');
     if (!container) return;
 
@@ -267,7 +292,7 @@ const QuizModule = {
     if (this.hasAnswered) return;
     this.hasAnswered = true;
 
-    const sub = this.data[this.currentSubject];
+    const sub = this.getSubjectData(this.currentSubject);
     const q = sub.questions[this.currentQIndex];
     const buttons = document.querySelectorAll('.option-btn');
     const explBox = document.getElementById('quizExplanation');
@@ -291,7 +316,8 @@ const QuizModule = {
   },
 
   nextQuestion() {
-    const sub = this.data[this.currentSubject];
+    const sub = this.getSubjectData(this.currentSubject);
+    if (!sub || !sub.questions) return;
     if (this.currentQIndex < sub.questions.length - 1) {
       this.currentQIndex++;
       this.renderExam();

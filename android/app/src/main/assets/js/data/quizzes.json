@@ -317,5 +317,547 @@
         "explanation": "Rizal warned Dr. Pio Valenzuela that a revolution without arms, military training, and alliances was suicidal and would lead to the slaughter of innocent Filipinos."
       }
     ]
+  },
+  "GEDC 1014": {
+    "subjectTitle": "Rizal's Life and Works",
+    "flashcards": [
+      {
+        "id": "fc_rizal_1",
+        "topic": "La Solidaridad",
+        "front": "When was La Solidaridad established and who was its first editor in Barcelona?",
+        "back": "Established on December 13, 1888 (first publication on February 15, 1889). Graciano Lopez Jaena served as its first editor before Marcelo H. del Pilar took over."
+      },
+      {
+        "id": "fc_rizal_2",
+        "topic": "La Liga Filipina",
+        "front": "Where and when was La Liga Filipina officially founded?",
+        "back": "Founded on July 3, 1892 at the house of Doroteo Ongjungco on Ilaya Street, Tondo, Manila."
+      },
+      {
+        "id": "fc_rizal_3",
+        "topic": "Mi Ultimo Adios",
+        "front": "Where did Rizal hide his final farewell poem on the eve of his execution?",
+        "back": "Inside an ordinary alcohol cooking lamp (cocinilla), which he handed to his sister Trinidad whispering 'there is something inside'."
+      },
+      {
+        "id": "fc_rizal_4",
+        "topic": "Dapitan Exile",
+        "front": "What were the three new animal species discovered by Rizal in Dapitan and named after him?",
+        "back": "Draco rizali (flying lizard), Apogonia rizali (beetle), and Rhacophorus rizali (tree frog)."
+      },
+      {
+        "id": "fc_rizal_5",
+        "topic": "Philippine Revolution & Filipinismo",
+        "front": "What is Filipinismo as conceptualized by Jose Rizal?",
+        "back": "A sense of national identity distinct from Spanish colonial rule, emphasizing Filipino pride in indigenous culture, mutual unity across languages, and self-determination through education rather than assimilation."
+      },
+      {
+        "id": "fc_rizal_6",
+        "topic": "Katipunan Password",
+        "front": "Why did Andres Bonifacio and the Katipunan adopt 'Rizal' as their secret password?",
+        "back": "Katipuneros viewed Rizal as the moral symbol and intellectual catalyst of the Philippine Revolution. Third-grade members ('Bayani') used 'Rizal' as their secret recognition countersign."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_rizal_1",
+        "topic": "La Solidaridad Pen Names",
+        "question": "What pen names were used by Jose Rizal in his contributions to La Solidaridad?",
+        "options": [
+          "Plaridel & Dolores Manapat",
+          "Dimasalang & Laong Laan",
+          "Diego Laura & Taga-Ilog",
+          "Naning & Tikbalang"
+        ],
+        "correctIndex": 1,
+        "explanation": "Jose Rizal wrote under the pen names 'Dimasalang' and 'Laong Laan'. Marcelo H. del Pilar used 'Plaridel', and Antonio Luna used 'Taga-Ilog'."
+      },
+      {
+        "id": "q_rizal_2",
+        "topic": "Katipunan Emissary",
+        "question": "Who was the Katipunan emissary sent by Andres Bonifacio to Dapitan to consult Rizal about the revolution?",
+        "options": [
+          "Dr. Pio Valenzuela",
+          "Emilio Jacinto",
+          "Deodato Arellano",
+          "Ambrosio Salvador"
+        ],
+        "correctIndex": 0,
+        "explanation": "Dr. Pio Valenzuela visited Dapitan in June 1896 posing as a companion to a blind patient to consult Rizal and offer a rescue plan, which Rizal rejected."
+      },
+      {
+        "id": "q_rizal_3",
+        "topic": "Governor-General Blanco Offer",
+        "question": "During his exile in Dapitan, Governor-General Ramon Blanco offered Rizal clemency on the condition that he serve as:",
+        "options": [
+          "A civil engineer in Zamboanga",
+          "A military surgeon/doctor in Cuba",
+          "A professor in Spain",
+          "A consul in Hong Kong"
+        ],
+        "correctIndex": 1,
+        "explanation": "Rizal volunteered to serve as a military surgeon in Cuba during the yellow fever epidemic. Governor-General Ramon Blanco granted him permission on July 1896."
+      },
+      {
+        "id": "q_rizal_4",
+        "topic": "Execution & Martyrdom",
+        "question": "Who was the Spanish Governor-General that signed the death sentence order for Jose Rizal's execution?",
+        "options": [
+          "Eulogio Despujol",
+          "Ramon Blanco",
+          "Camilo de Polavieja",
+          "Valeriano Weyler"
+        ],
+        "correctIndex": 2,
+        "explanation": "Governor-General Camilo de Polavieja approved and signed the military court-martial's death sentence on December 28, 1896."
+      },
+      {
+        "id": "q_rizal_5",
+        "topic": "Rizal vs. Bonifacio Philosophy",
+        "question": "What was the fundamental contrast between Jose Rizal's philosophy and Andres Bonifacio's approach to the Philippine Revolution?",
+        "options": [
+          "Rizal advocated armed insurrection, while Bonifacio sought peaceful petition in Madrid",
+          "Rizal insisted on intellectual enlightenment and education before self-rule, while Bonifacio saw urgent armed revolution as the only solution",
+          "Rizal favored American annexation, while Bonifacio wanted complete Spanish assimilation",
+          "Rizal rejected national unity, while Bonifacio advocated religious governance"
+        ],
+        "correctIndex": 1,
+        "explanation": "Rizal believed true independence required moral and educational preparation so Filipinos would not become tyrants themselves, whereas Bonifacio was convinced peaceful reform was futile and only armed revolt could break Spanish rule."
+      },
+      {
+        "id": "q_rizal_6",
+        "topic": "Rizal and Philippine Revolution",
+        "question": "Why did Jose Rizal decline to support the Katipunan's immediate armed uprising when approached in Dapitan?",
+        "options": [
+          "He believed the Spanish government had promised independence by 1900",
+          "The Katipunan lacked sufficient arms, naval capabilities, military training, and rich benefactors, risking useless bloodshed",
+          "He wanted to permanently settle in Dapitan as a private physician",
+          "He disagreed with Bonifacio's choice of revolutionary flag"
+        ],
+        "correctIndex": 1,
+        "explanation": "Rizal warned Dr. Pio Valenzuela that a revolution without arms, military training, and alliances was suicidal and would lead to the slaughter of innocent Filipinos."
+      }
+    ]
+  },
+  "COSC1001": {
+    "subjectTitle": "Principles of Communication",
+    "flashcards": [
+      {
+        "id": "fc_comm_1",
+        "topic": "Shannon-Weaver Model",
+        "front": "What are the core components of the Shannon-Weaver Mathematical Model of Communication?",
+        "back": "Sender (Information Source), Transmitter (Encoder), Channel (Noise Source), Receiver (Decoder), and Destination. Often called the mother of all linear models."
+      },
+      {
+        "id": "fc_comm_2",
+        "topic": "Berlo's SMCR Model",
+        "front": "What does Berlo's SMCR model stand for and what is its key requirement?",
+        "back": "Source, Message, Channel, Receiver. It emphasizes that effective communication requires alignment in communication skills, attitude, knowledge, and socio-cultural background between Source and Receiver."
+      },
+      {
+        "id": "fc_comm_3",
+        "topic": "Non-Verbal Communication",
+        "front": "What is the difference between Kinesics and Proxemics in communication?",
+        "back": "Kinesics refers to communication through body language, facial expressions, and gestures. Proxemics refers to the study of interpersonal space and distance in communication."
+      },
+      {
+        "id": "fc_comm_4",
+        "topic": "Communication Barriers",
+        "front": "What constitutes 'Psychological Noise' in the communication process?",
+        "back": "Internal mental preconceptions, biases, stress, emotions, or hostility that distort how a message is received or interpreted by an individual."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_comm_1",
+        "topic": "Communication Models",
+        "front": "Which communication model is characterized as transactional with simultaneous sending and receiving through continuous feedback?",
+        "question": "Which communication model is characterized as transactional with simultaneous sending and receiving through continuous feedback?",
+        "options": [
+          "Aristotle's Rhetorical Model",
+          "Shannon-Weaver Model",
+          "Barlund's Transactional Model",
+          "Lasswell's Linear Model"
+        ],
+        "correctIndex": 2,
+        "explanation": "Dean Barlund's Transactional Model posits that individuals simultaneously send and receive messages, integrating constant feedback within socio-cultural contexts."
+      },
+      {
+        "id": "q_comm_2",
+        "topic": "Barriers to Communication",
+        "question": "When technical jargon or specialized acronyms prevent an audience from understanding a speaker, which barrier has occurred?",
+        "options": [
+          "Physiological Barrier",
+          "Semantic Barrier",
+          "Environmental Barrier",
+          "Organizational Barrier"
+        ],
+        "correctIndex": 1,
+        "explanation": "Semantic barriers occur when misunderstandings arise from the choice of words, technical jargon, ambiguous symbols, or language differences."
+      },
+      {
+        "id": "q_comm_3",
+        "topic": "Non-Verbal Elements",
+        "question": "The tone of voice, pitch, volume, pacing, and inflection used during speech are categorized under:",
+        "options": [
+          "Paralanguage (Vocalics)",
+          "Chronemics",
+          "Haptics",
+          "Proxemics"
+        ],
+        "correctIndex": 0,
+        "explanation": "Paralanguage (vocalics) encompasses the non-verbal vocal aspects of speech, including pitch, rate, volume, inflection, and tone."
+      }
+    ]
+  },
+  "GEDC 1006": {
+    "subjectTitle": "Readings in Philippine History",
+    "flashcards": [
+      {
+        "id": "fc_hist_1",
+        "topic": "Historical Sources",
+        "front": "What distinguishes a Primary Source from a Secondary Source in historical research?",
+        "back": "A Primary Source is first-hand, contemporaneous evidence produced during the event under study (e.g. Pigafetta's chronicle, diaries, decrees). A Secondary Source interprets or analyzes primary sources after the fact (e.g. modern history textbooks)."
+      },
+      {
+        "id": "fc_hist_2",
+        "topic": "Antonio Pigafetta",
+        "front": "Who was Antonio Pigafetta and what was his primary contribution to Philippine historiography?",
+        "back": "An Italian scholar and explorer who served as Magellan's chronicler, writing 'Relazione del primo viaggio intorno al mondo', providing the earliest European written account of pre-colonial Visayan society and the Battle of Mactan."
+      },
+      {
+        "id": "fc_hist_3",
+        "topic": "Customs of the Tagalogs",
+        "front": "Who authored the 1589 document 'Costumbres de los Tagalos' (Customs of the Tagalogs)?",
+        "back": "Fray Juan de Plasencia, a Franciscan friar who documented indigenous Tagalog social hierarchy (Datu, Maharlica, Aliping Namamahay, Aliping Saguiguilid), legal customs, and religious worship."
+      },
+      {
+        "id": "fc_hist_4",
+        "topic": "Kartilya ng Katipunan",
+        "front": "Who wrote the 'Kartilya ng Katipunan' and what was its purpose?",
+        "back": "Emilio Jacinto ('Brain of the Katipunan'). It served as the ethical code of conduct and moral guide for members of the Kataas-taasang, Kagalang-galangang Katipunan ng mga Anak ng Bayan."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_hist_1",
+        "topic": "First Catholic Mass Controversy",
+        "question": "According to the eyewitness account of Antonio Pigafetta, where was the first Easter Sunday Mass celebrated in the Philippines on March 31, 1521?",
+        "options": [
+          "Limasawa (Mazaua), Southern Leyte",
+          "Butuan, Agusan del Norte",
+          "Mactan, Cebu",
+          "Homonhon, Eastern Samar"
+        ],
+        "correctIndex": 0,
+        "explanation": "Modern historical commissions (including the National Historical Commission of the Philippines) re-affirmed Limasawa (Mazaua), Southern Leyte as the true site based on Pigafetta's navigational coordinates and Albo's logbook."
+      },
+      {
+        "id": "q_hist_2",
+        "topic": "1872 Cavite Mutiny",
+        "question": "What immediate decree provoked the native Filipino soldiers and arsenal workers to revolt at Fort San Felipe in Cavite on January 20, 1872?",
+        "options": [
+          "Execution of Fathers Gomez, Burgos, and Zamora",
+          "Governor-General Rafael de Izquierdo's abolition of traditional exemption from tributes and polo y servicio (forced labor)",
+          "The closure of the Port of Manila to foreign commerce",
+          "The confiscation of friar hacienda lands"
+        ],
+        "correctIndex": 1,
+        "explanation": "Governor-General Rafael de Izquierdo abruptly repealed the historical tax exemptions and compulsory polo exemptions previously granted to arsenal workers, igniting the mutiny."
+      },
+      {
+        "id": "q_hist_3",
+        "topic": "Historical Criticism",
+        "question": "The verification of the physical authenticity, ink composition, paper age, and provenance of a historical manuscript is known as:",
+        "options": [
+          "Internal Criticism (Higher Criticism)",
+          "External Criticism (Lower Criticism)",
+          "Historiographical Synthesis",
+          "Positivist Hermeneutics"
+        ],
+        "correctIndex": 1,
+        "explanation": "External criticism examines the physical artifact (provenance, author's handwriting, paper, watermark, ink) to verify genuineness and expose forgeries."
+      }
+    ]
+  },
+  "GEDC1006": {
+    "subjectTitle": "Readings in Philippine History",
+    "flashcards": [
+      {
+        "id": "fc_hist_1",
+        "topic": "Historical Sources",
+        "front": "What distinguishes a Primary Source from a Secondary Source in historical research?",
+        "back": "A Primary Source is first-hand, contemporaneous evidence produced during the event under study (e.g. Pigafetta's chronicle, diaries, decrees). A Secondary Source interprets or analyzes primary sources after the fact (e.g. modern history textbooks)."
+      },
+      {
+        "id": "fc_hist_2",
+        "topic": "Antonio Pigafetta",
+        "front": "Who was Antonio Pigafetta and what was his primary contribution to Philippine historiography?",
+        "back": "An Italian scholar and explorer who served as Magellan's chronicler, writing 'Relazione del primo viaggio intorno al mondo', providing the earliest European written account of pre-colonial Visayan society and the Battle of Mactan."
+      },
+      {
+        "id": "fc_hist_3",
+        "topic": "Customs of the Tagalogs",
+        "front": "Who authored the 1589 document 'Costumbres de los Tagalos' (Customs of the Tagalogs)?",
+        "back": "Fray Juan de Plasencia, a Franciscan friar who documented indigenous Tagalog social hierarchy (Datu, Maharlica, Aliping Namamahay, Aliping Saguiguilid), legal customs, and religious worship."
+      },
+      {
+        "id": "fc_hist_4",
+        "topic": "Kartilya ng Katipunan",
+        "front": "Who wrote the 'Kartilya ng Katipunan' and what was its purpose?",
+        "back": "Emilio Jacinto ('Brain of the Katipunan'). It served as the ethical code of conduct and moral guide for members of the Kataas-taasang, Kagalang-galangang Katipunan ng mga Anak ng Bayan."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_hist_1",
+        "topic": "First Catholic Mass Controversy",
+        "question": "According to the eyewitness account of Antonio Pigafetta, where was the first Easter Sunday Mass celebrated in the Philippines on March 31, 1521?",
+        "options": [
+          "Limasawa (Mazaua), Southern Leyte",
+          "Butuan, Agusan del Norte",
+          "Mactan, Cebu",
+          "Homonhon, Eastern Samar"
+        ],
+        "correctIndex": 0,
+        "explanation": "Modern historical commissions (including the National Historical Commission of the Philippines) re-affirmed Limasawa (Mazaua), Southern Leyte as the true site based on Pigafetta's navigational coordinates and Albo's logbook."
+      },
+      {
+        "id": "q_hist_2",
+        "topic": "1872 Cavite Mutiny",
+        "question": "What immediate decree provoked the native Filipino soldiers and arsenal workers to revolt at Fort San Felipe in Cavite on January 20, 1872?",
+        "options": [
+          "Execution of Fathers Gomez, Burgos, and Zamora",
+          "Governor-General Rafael de Izquierdo's abolition of traditional exemption from tributes and polo y servicio (forced labor)",
+          "The closure of the Port of Manila to foreign commerce",
+          "The confiscation of friar hacienda lands"
+        ],
+        "correctIndex": 1,
+        "explanation": "Governor-General Rafael de Izquierdo abruptly repealed the historical tax exemptions and compulsory polo exemptions previously granted to arsenal workers, igniting the mutiny."
+      },
+      {
+        "id": "q_hist_3",
+        "topic": "Historical Criticism",
+        "question": "The verification of the physical authenticity, ink composition, paper age, and provenance of a historical manuscript is known as:",
+        "options": [
+          "Internal Criticism (Higher Criticism)",
+          "External Criticism (Lower Criticism)",
+          "Historiographical Synthesis",
+          "Positivist Hermeneutics"
+        ],
+        "correctIndex": 1,
+        "explanation": "External criticism examines the physical artifact (provenance, author's handwriting, paper, watermark, ink) to verify genuineness and expose forgeries."
+      }
+    ]
+  },
+  "INTE1051": {
+    "subjectTitle": "IT Elective I",
+    "flashcards": [
+      {
+        "id": "fc_inte_1",
+        "topic": "RESTful API Architecture",
+        "front": "What are the core HTTP request methods used in RESTful architectures and their CRUD mappings?",
+        "back": "GET (Read/Retrieve), POST (Create), PUT/PATCH (Update/Replace), DELETE (Remove). REST relies on stateless communication over standard HTTP status codes (200, 201, 400, 401, 404, 500)."
+      },
+      {
+        "id": "fc_inte_2",
+        "topic": "Asynchronous Event Loop",
+        "front": "How does the single-threaded JavaScript Event Loop handle asynchronous operations?",
+        "back": "Async operations (fetch, timers, DOM events) are handed off to browser Web APIs or thread pools. When finished, callbacks queue in the Microtask Queue (Promises) or Callback Queue (setTimeout), which the Event Loop executes once the Call Stack is empty."
+      },
+      {
+        "id": "fc_inte_3",
+        "topic": "Progressive Web Apps (PWA)",
+        "front": "What are the three essential components required to turn a web app into an installable PWA?",
+        "back": "1. HTTPS secure origin. 2. Web App Manifest (manifest.json with app identity and icons). 3. A registered Service Worker with a fetch event listener for offline caching."
+      },
+      {
+        "id": "fc_inte_4",
+        "topic": "Relational vs NoSQL",
+        "front": "When is a NoSQL document database (e.g. MongoDB) preferred over a Relational SQL database (e.g. PostgreSQL)?",
+        "back": "When data schemas are fluid and rapidly evolving, hierarchical or document-structured, require horizontal partitioning across distributed clusters, and do not require complex ACID multi-table joins."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_inte_1",
+        "topic": "HTTP Status Codes",
+        "question": "Which HTTP status code should a REST API return when a client successfully creates a new database record?",
+        "options": [
+          "200 OK",
+          "201 Created",
+          "204 No Content",
+          "202 Accepted"
+        ],
+        "correctIndex": 1,
+        "explanation": "HTTP 201 Created indicates that the request has succeeded and led to the creation of a new resource, typically accompanied by a Location header."
+      },
+      {
+        "id": "q_inte_2",
+        "topic": "Web Security",
+        "question": "Which security measure protects web users against malicious scripts injected into trusted websites?",
+        "options": [
+          "Cross-Origin Resource Sharing (CORS)",
+          "Content Security Policy (CSP)",
+          "SQL Injection Prepared Statements",
+          "Transport Layer Security (TLS)"
+        ],
+        "correctIndex": 1,
+        "explanation": "Content Security Policy (CSP) is an HTTP header standard that restricts the resources (scripts, images, stylesheets) that a browser is allowed to load, preventing Cross-Site Scripting (XSS)."
+      },
+      {
+        "id": "q_inte_3",
+        "topic": "State Management",
+        "question": "In modern web application development, what distinguishes localStorage from sessionStorage?",
+        "options": [
+          "localStorage is sent to the server on every HTTP request; sessionStorage is not",
+          "localStorage persists indefinitely across browser tabs and restarts; sessionStorage clears when the tab or session closes",
+          "localStorage holds up to 1GB; sessionStorage holds only 4KB",
+          "sessionStorage can only store encrypted cookies"
+        ],
+        "correctIndex": 1,
+        "explanation": "localStorage data has no expiration date and persists until manually cleared, whereas sessionStorage data persists only for the lifetime of that specific browser tab."
+      }
+    ]
+  },
+  "PHED 1007": {
+    "subjectTitle": "PATHFIT 3 / Physical Education",
+    "flashcards": [
+      {
+        "id": "fc_phed_1",
+        "topic": "FITT Principle",
+        "front": "What does the FITT exercise prescription principle stand for?",
+        "back": "Frequency (how often you exercise), Intensity (how hard you work), Time (duration of each session), Type (the specific mode of exercise, e.g. aerobic vs resistance)."
+      },
+      {
+        "id": "fc_phed_2",
+        "topic": "Health-Related Fitness Components",
+        "front": "What are the 5 core components of Health-Related Physical Fitness?",
+        "back": "1. Cardiovascular Endurance\n2. Muscular Strength\n3. Muscular Endurance\n4. Flexibility\n5. Body Composition."
+      },
+      {
+        "id": "fc_phed_3",
+        "topic": "Aerobic vs Anaerobic",
+        "front": "What is the key difference between Aerobic and Anaerobic exercise systems?",
+        "back": "Aerobic exercise uses continuous oxygen to break down glucose and fat for sustained, moderate activity (jogging, swimming). Anaerobic exercise breaks down glucose without oxygen for short, explosive bursts of maximum effort (sprinting, heavy lifting)."
+      },
+      {
+        "id": "fc_phed_4",
+        "topic": "RICE Principle for Acute Injuries",
+        "front": "What is the first-aid protocol for acute sprains and soft-tissue sports injuries?",
+        "back": "R.I.C.E. \u2014 Rest the injured area, Ice to reduce inflammation, Compress with an elastic bandage, Elevate the limb above heart level."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_phed_1",
+        "topic": "Target Heart Rate",
+        "question": "What is the standard formula to estimate an individual's Maximum Heart Rate (MHR)?",
+        "options": [
+          "220 minus Age",
+          "180 plus Resting Heart Rate",
+          "100 plus (Age times 2)",
+          "250 minus Body Weight in kg"
+        ],
+        "correctIndex": 0,
+        "explanation": "The traditional formula for estimating maximum heart rate is 220 minus Age. Target training zones typically range between 60% and 85% of this value."
+      },
+      {
+        "id": "q_phed_2",
+        "topic": "Muscular Performance",
+        "question": "The ability of a muscle or muscle group to perform repeated contractions over an extended period without fatiguing is known as:",
+        "options": [
+          "Muscular Power",
+          "Muscular Strength",
+          "Muscular Endurance",
+          "Speed"
+        ],
+        "correctIndex": 2,
+        "explanation": "Muscular endurance refers to the capacity to sustain repeated submaximal muscular contractions over time without succumbing to fatigue."
+      },
+      {
+        "id": "q_phed_3",
+        "topic": "Dynamic Warm-Up",
+        "question": "Why is dynamic stretching preferred over prolonged static stretching immediately before a vigorous workout or sports match?",
+        "options": [
+          "It temporarily numbs pain receptors in joints",
+          "It elevates core temperature, enhances neuromuscular coordination, and primes active ranges of motion without decreasing power output",
+          "It reduces cardiovascular demand so muscles do not require oxygen",
+          "It replaces the need for post-workout cool-down"
+        ],
+        "correctIndex": 1,
+        "explanation": "Dynamic stretching warms up muscle tissue, increases synovial fluid in joints, and stimulates neural pathways without reducing acute muscle strength or explosive power."
+      }
+    ]
+  },
+  "PHED1007": {
+    "subjectTitle": "PATHFIT 3 / Physical Education",
+    "flashcards": [
+      {
+        "id": "fc_phed_1",
+        "topic": "FITT Principle",
+        "front": "What does the FITT exercise prescription principle stand for?",
+        "back": "Frequency (how often you exercise), Intensity (how hard you work), Time (duration of each session), Type (the specific mode of exercise, e.g. aerobic vs resistance)."
+      },
+      {
+        "id": "fc_phed_2",
+        "topic": "Health-Related Fitness Components",
+        "front": "What are the 5 core components of Health-Related Physical Fitness?",
+        "back": "1. Cardiovascular Endurance\n2. Muscular Strength\n3. Muscular Endurance\n4. Flexibility\n5. Body Composition."
+      },
+      {
+        "id": "fc_phed_3",
+        "topic": "Aerobic vs Anaerobic",
+        "front": "What is the key difference between Aerobic and Anaerobic exercise systems?",
+        "back": "Aerobic exercise uses continuous oxygen to break down glucose and fat for sustained, moderate activity (jogging, swimming). Anaerobic exercise breaks down glucose without oxygen for short, explosive bursts of maximum effort (sprinting, heavy lifting)."
+      },
+      {
+        "id": "fc_phed_4",
+        "topic": "RICE Principle for Acute Injuries",
+        "front": "What is the first-aid protocol for acute sprains and soft-tissue sports injuries?",
+        "back": "R.I.C.E. \u2014 Rest the injured area, Ice to reduce inflammation, Compress with an elastic bandage, Elevate the limb above heart level."
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_phed_1",
+        "topic": "Target Heart Rate",
+        "question": "What is the standard formula to estimate an individual's Maximum Heart Rate (MHR)?",
+        "options": [
+          "220 minus Age",
+          "180 plus Resting Heart Rate",
+          "100 plus (Age times 2)",
+          "250 minus Body Weight in kg"
+        ],
+        "correctIndex": 0,
+        "explanation": "The traditional formula for estimating maximum heart rate is 220 minus Age. Target training zones typically range between 60% and 85% of this value."
+      },
+      {
+        "id": "q_phed_2",
+        "topic": "Muscular Performance",
+        "question": "The ability of a muscle or muscle group to perform repeated contractions over an extended period without fatiguing is known as:",
+        "options": [
+          "Muscular Power",
+          "Muscular Strength",
+          "Muscular Endurance",
+          "Speed"
+        ],
+        "correctIndex": 2,
+        "explanation": "Muscular endurance refers to the capacity to sustain repeated submaximal muscular contractions over time without succumbing to fatigue."
+      },
+      {
+        "id": "q_phed_3",
+        "topic": "Dynamic Warm-Up",
+        "question": "Why is dynamic stretching preferred over prolonged static stretching immediately before a vigorous workout or sports match?",
+        "options": [
+          "It temporarily numbs pain receptors in joints",
+          "It elevates core temperature, enhances neuromuscular coordination, and primes active ranges of motion without decreasing power output",
+          "It reduces cardiovascular demand so muscles do not require oxygen",
+          "It replaces the need for post-workout cool-down"
+        ],
+        "correctIndex": 1,
+        "explanation": "Dynamic stretching warms up muscle tissue, increases synovial fluid in joints, and stimulates neural pathways without reducing acute muscle strength or explosive power."
+      }
+    ]
   }
 }

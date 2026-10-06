@@ -4706,3 +4706,85 @@ button:active,
   border-color: rgba(2, 132, 199, 0.2);
 }
 
+/* ==========================================================================
+   LIQUID GLASS TOAST NOTIFICATION SYSTEM
+   ========================================================================== */
+.app-toast-container {
+  position: fixed;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 10000;
+  pointer-events: none;
+  width: 90%;
+  max-width: 420px;
+}
+
+.app-toast-pill {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(56, 189, 248, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.app-toast-pill.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.app-toast-pill.success {
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+.app-toast-pill.warning {
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.app-toast-pill.error {
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.app-toast-pill .toast-icon {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.app-toast-pill .toast-msg {
+  flex: 1;
+  line-height: 1.35;
+}
+
+[data-theme="light"] .app-toast-pill {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(2, 132, 199, 0.3);
+  box-shadow: 
+    0 12px 32px rgba(2, 132, 199, 0.15),
+    0 0 20px rgba(56, 189, 248, 0.2),
+    inset 0 1px 2px #ffffff;
+}
+

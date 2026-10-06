@@ -148,7 +148,9 @@ const ScheduleModule = {
 
   requestNotificationPermission() {
     if (!('Notification' in window)) {
-      alert('Your browser does not support desktop notifications.');
+      if (window.App && typeof App.showToast === 'function') {
+        App.showToast('Browser does not support system notifications.', 'warning');
+      }
       return;
     }
     Notification.requestPermission().then(perm => {
