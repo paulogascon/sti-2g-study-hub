@@ -531,6 +531,10 @@ const ScheduleModule = {
         if (tickerStatus) tickerStatus.innerHTML = 'No classes active right now &bull; Section 2G';
       }
     }
+
+    if (window.App && typeof App.updateHomeClassRadar === 'function') {
+      App.updateHomeClassRadar();
+    }
   },
 
   setDayFilter(day) {

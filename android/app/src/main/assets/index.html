@@ -108,13 +108,37 @@
         <!-- ========================================== -->
         <!-- VIEW 1: DASHBOARD -->
         <!-- ========================================== -->
+        <!-- ========================================== -->
+        <!-- VIEW 1: ENGAGING HOME / DASHBOARD -->
+        <!-- ========================================== -->
         <section id="view-dashboard" class="view-section active">
-          <div class="section-header">
-            <h2 id="homeWelcomeHeading">Welcome to Your Study Hub, Everyone! 👋</h2>
-            <p>1st Semester, SY 2026–2027 &bull; STI West Negros University (Section BSIT 2G)</p>
+          
+          <!-- 1. Personalized Student Greeting Hero -->
+          <div class="home-hero-header">
+            <div class="home-hero-left">
+              <div class="home-avatar-orb" onclick="App.openProfileModal()" title="Edit Student Profile">
+                <span id="homeAvatarInitials">JP</span>
+                <span class="avatar-online-dot"></span>
+              </div>
+              <div class="home-greeting-text">
+                <div class="home-badge-row">
+                  <span class="home-term-chip">🎯 MIDTERM SPRINT</span>
+                  <span class="home-unit-chip">23 UNITS</span>
+                </div>
+                <h2 id="homeWelcomeHeading" class="home-greeting-title">Hello, JP! 👋</h2>
+                <p class="home-greeting-sub">BSIT 2G &bull; STI West Negros University</p>
+              </div>
+            </div>
+            <button class="home-search-pill-btn" onclick="App.openSearchModal()" title="Quick Spotlight Search (Ctrl+K)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>Search</span>
+            </button>
           </div>
 
-          <!-- Mobile App Download & Install Hero Card (Liquid Glass with Edge Glow - hidden when downloaded) -->
+          <!-- Mobile App Download & Install Hero Card (Hidden when downloaded) -->
           <div class="app-download-hero-card web-only-control">
             <div class="hero-left-content">
               <div class="app-icon-badge">📱</div>
@@ -138,47 +162,117 @@
             </div>
           </div>
 
-          <div class="dashboard-grid">
-            <div class="stat-card clickable-stat-card" onclick="App.goToMidtermSubjects()" onkeydown="if(event.key==='Enter'||event.key===' ') App.goToMidtermSubjects()" role="button" tabindex="0" title="Click to view all 8 Midterm subjects in Subject Hub">
-              <div class="stat-icon" style="background: rgba(37, 99, 235, 0.2); color: #38bdf8;">
-                <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <!-- 2. Today's Class Radar Card (Live Dynamic Spotlight) -->
+          <div id="homeClassRadarCard" class="home-class-radar-card" onclick="App.switchView('view-schedule')" role="button" tabindex="0">
+            <div class="radar-card-top">
+              <div class="radar-live-indicator">
+                <span class="radar-pulse-ring"></span>
+                <span class="radar-pulse-core"></span>
+                <span id="radarStatusLabel" class="radar-status-text">UP NEXT CLASS</span>
               </div>
-              <div class="stat-info" style="flex: 1;">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap: 0.5rem;">
-                  <h3>Current Load</h3>
-                  <span class="stat-action-chip">
-                    <span>Midterm Hub</span>
-                    <span class="stat-chip-arrow">&rarr;</span>
-                  </span>
+              <span id="radarCountdownBadge" class="radar-time-badge">in 15h 4m</span>
+            </div>
+            <div class="radar-card-main">
+              <h3 id="radarSubjectTitle" class="radar-subject-name">COSC1001 — Principles of Communication</h3>
+              <div class="radar-meta-row">
+                <span id="radarRoomChip" class="radar-chip room-chip">📍 ONLINE (W 5:30PM-8:30PM)</span>
+                <span id="radarTimeChip" class="radar-chip time-chip">🕒 05:30 PM - 08:30 PM</span>
+                <span id="radarProfChip" class="radar-chip prof-chip">👤 Prof. Angus, Cherry Ann</span>
+              </div>
+            </div>
+            <div class="radar-card-footer">
+              <span class="radar-footer-hint">Tap to view full timetable &amp; room assignments &rarr;</span>
+            </div>
+          </div>
+
+          <!-- 3. Midterm Exam Countdown & Season Progress -->
+          <div class="midterm-countdown-banner">
+            <div class="countdown-left">
+              <div class="countdown-orb">🎯</div>
+              <div>
+                <div class="countdown-eyebrow">MIDTERM EXAMINATION WINDOW</div>
+                <div class="countdown-highlight-row">
+                  <span id="midtermCountdown" class="countdown-number">15 Days Left</span>
+                  <span class="countdown-dates-pill">Oct 22–28, 2026</span>
                 </div>
-                <div class="stat-number">8 Subjects</div>
-                <div class="stat-desc">23 Total Units &bull; Midterm Period (Tap to open)</div>
+                <p id="midtermCountdownDesc" class="countdown-desc">Review your notes daily to ace all 8 subjects!</p>
               </div>
             </div>
-
-            <div class="stat-card">
-              <div class="stat-icon" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">
-                <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="countdown-progress-wrapper">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 65%;"></div>
               </div>
-              <div class="stat-info">
-                <h3>Midterm Target</h3>
-                <div class="stat-number" id="midtermCountdown">16 Days Left</div>
-                <div class="stat-desc" id="midtermCountdownDesc">Exam Target: Oct 22–28, 2026</div>
+              <div class="progress-meta-row">
+                <span>Prelims Done</span>
+                <span class="progress-pct">65% Season Progress</span>
+                <span>Midterms Ahead</span>
               </div>
             </div>
           </div>
 
-          <!-- Quick Access Action Banners (Liquid Glass with Edge Glow) -->
-          <div class="quiz-action-banner">
-            <div>
-              <span class="term-pill" style="margin-bottom: 0.5rem; display: inline-block;">MIDTERM SPRINT</span>
-              <h3 class="banner-heading">Review Midterm Flashcards &amp; Practice Tests</h3>
-              <p class="banner-subtext">Test your knowledge in Data Structures, HCI Heuristics, OS Process Scheduling, and Rizal's Life.</p>
+          <!-- 4. Interactive Bento Quick Action Hub (4 Tiles) -->
+          <div class="home-bento-grid">
+            <div class="bento-card bento-subjects" onclick="App.goToMidtermSubjects()">
+              <div class="bento-icon-glow">📚</div>
+              <div class="bento-content">
+                <h4>Midterm Hub</h4>
+                <p>8 Subjects &bull; Handouts</p>
+              </div>
+              <div class="bento-arrow">&rarr;</div>
             </div>
-            <button class="btn-primary glass-glow-btn" onclick="App.switchView('view-quiz')">
-              Launch Quiz Mode &rarr;
-            </button>
+
+            <div class="bento-card bento-quiz" onclick="App.switchView('view-quiz')">
+              <div class="bento-icon-glow">⚡</div>
+              <div class="bento-content">
+                <h4>Quiz Sprint</h4>
+                <p>Flashcards &amp; Practice</p>
+              </div>
+              <div class="bento-arrow">&rarr;</div>
+            </div>
+
+            <div class="bento-card bento-sched" onclick="App.switchView('view-schedule')">
+              <div class="bento-icon-glow">🕒</div>
+              <div class="bento-content">
+                <h4>Timetable</h4>
+                <p>Rooms &amp; Laboratories</p>
+              </div>
+              <div class="bento-arrow">&rarr;</div>
+            </div>
+
+            <div class="bento-card bento-search" onclick="App.openSearchModal()">
+              <div class="bento-icon-glow">🔍</div>
+              <div class="bento-content">
+                <h4>Quick Finder</h4>
+                <p>Find Topics &amp; Files</p>
+              </div>
+              <div class="bento-arrow">&rarr;</div>
+            </div>
           </div>
+
+          <!-- 5. Enrolled Courses Quick Carousel (8 Subjects) -->
+          <div class="home-section-headline">
+            <div class="headline-left">
+              <span class="headline-icon">📖</span>
+              <h3>Active Midterm Subjects</h3>
+            </div>
+            <button class="headline-action-link" onclick="App.goToMidtermSubjects()">View All 8 &rarr;</button>
+          </div>
+
+          <div id="homeSubjectsCarousel" class="home-subjects-carousel">
+            <!-- Rendered dynamically by App.renderHomeSubjectsCarousel() -->
+          </div>
+
+          <!-- 6. Daily BSIT Pro-Tip & Knowledge Byte -->
+          <div class="home-protip-card">
+            <div class="protip-header">
+              <div class="protip-badge">💡 DAILY BSIT 2G PRO-TIP</div>
+              <button class="protip-refresh-btn" onclick="App.rotateDailyProTip()" title="Get another tip">🔄 New Tip</button>
+            </div>
+            <p id="homeProTipText" class="protip-body">
+              "In Data Structures, Stacks follow <strong>LIFO</strong> (Last-In, First-Out) while Queues follow <strong>FIFO</strong> (First-In, First-Out). Master this distinction for your COSC1003 Midterm Exam!"
+            </p>
+          </div>
+
         </section>
 
         <!-- ========================================== -->

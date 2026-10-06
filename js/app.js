@@ -15,6 +15,7 @@ const App = {
     try { this.initUserProfile(); } catch (e) { console.warn('Profile init:', e); }
     try { await this.loadData(); } catch (e) { console.warn('LoadData init:', e); }
     try { this.renderSubjects(); } catch (e) { console.warn('RenderSubjects init:', e); }
+    try { this.renderHomeSubjectsCarousel(); } catch (e) { console.warn('Home carousel init:', e); }
     try { this.checkAppDownloadedState(); } catch (e) { console.warn('App downloaded check:', e); }
     try { this.initSearchModal(); } catch (e) { console.warn('Search modal init:', e); }
     try { this.initModals(); } catch (e) { console.warn('Modals init:', e); }
@@ -22,6 +23,7 @@ const App = {
 
     // Initialize feature modules
     try { ScheduleModule.init(); } catch (e) { console.warn('Schedule init:', e); }
+    try { this.updateHomeClassRadar(); } catch (e) { console.warn('Home class radar init:', e); }
     try { QuizModule.init(); } catch (e) { console.warn('Quiz init:', e); }
     if (typeof OfflineStorageModule !== 'undefined') {
       try { OfflineStorageModule.init(); } catch (e) { console.warn('Storage init:', e); }
@@ -79,6 +81,8 @@ const App = {
   async syncAllData() {
     await this.loadData();
     this.renderSubjects();
+    this.renderHomeSubjectsCarousel();
+    this.updateHomeClassRadar();
     if (typeof ScheduleModule !== 'undefined' && ScheduleModule.refreshFromNetwork) {
       ScheduleModule.refreshFromNetwork();
     }
@@ -644,6 +648,8 @@ const App = {
       </div>
       `;
     }).join('');
+
+    this.renderHomeSubjectsCarousel();
   },
 
   toggleCardTopics(subjectCode, period, event) {
@@ -1170,25 +1176,26 @@ const App = {
     const savedName = this.getStudentName();
     const nameEl = document.getElementById('userNameDisplay');
     const avatarEl = document.getElementById('userAvatarInitials');
+    const homeAvatarEl = document.getElementById('homeAvatarInitials');
     const welcomeEl = document.getElementById('homeWelcomeHeading');
 
     if (savedName) {
       if (nameEl) nameEl.textContent = savedName;
-      if (avatarEl) {
-        const parts = savedName.trim().split(/\s+/);
-        const initials = parts.length > 1
-          ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-          : savedName.slice(0, 2).toUpperCase();
-        avatarEl.textContent = initials;
-      }
+      const parts = savedName.trim().split(/\s+/);
+      const initials = parts.length > 1
+        ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+        : savedName.slice(0, 2).toUpperCase();
+      if (avatarEl) avatarEl.textContent = initials;
+      if (homeAvatarEl) homeAvatarEl.textContent = initials;
       if (welcomeEl) {
-        welcomeEl.textContent = `Welcome to Your Study Hub, ${savedName}! 👋`;
+        welcomeEl.textContent = `Hello, ${savedName}! 👋`;
       }
     } else {
-      if (nameEl) nameEl.textContent = 'BSIT 2G Student';
-      if (avatarEl) avatarEl.textContent = '2G';
+      if (nameEl) nameEl.textContent = 'JP';
+      if (avatarEl) avatarEl.textContent = 'JP';
+      if (homeAvatarEl) homeAvatarEl.textContent = 'JP';
       if (welcomeEl) {
-        welcomeEl.textContent = 'Welcome to Your Study Hub, Everyone! 👋';
+        welcomeEl.textContent = 'Hello, JP! 👋';
       }
     }
   },
@@ -1342,6 +1349,138 @@ const App = {
       toast.classList.remove('show');
       setTimeout(() => toast.remove(), 400);
     }, 3200);
+  },
+
+  // -------------------------------------------------------------
+  // HOMEPAGE CONTROLLER METHODS (ENGAGING UI)
+  // -------------------------------------------------------------
+  renderHomeSubjectsCarousel() {
+    const container = document.getElementById('homeSubjectsCarousel');
+    if (!container) return;
+
+    if (!Array.isArray(this.subjects) || this.subjects.length === 0) {
+      if (typeof DEFAULT_SUBJECTS !== 'undefined' && Array.isArray(DEFAULT_SUBJECTS)) {
+        this.subjects = DEFAULT_SUBJECTS;
+      }
+    }
+
+    if (!Array.isArray(this.subjects) || this.subjects.length === 0) {
+      container.innerHTML = '<div style="padding:1rem;color:var(--text-muted);font-size:0.8rem;">Loading subjects...</div>';
+      return;
+    }
+
+    container.innerHTML = this.subjects.map(s => {
+      const code = s.code || s.id;
+      const title = s.title || s.name || 'Subject';
+      const units = s.units ? `${s.units} Units` : '3 Units';
+      const midtermTopicsCount = (s.midtermTopics && s.midtermTopics.length) || 0;
+      const color = s.accentColor || '#38bdf8';
+
+      return `
+        <div class="home-subject-chip-card" onclick="App.openSubjectHandouts('${code}', 'MIDTERM')" title="Open ${title} Study Guides">
+          <div class="subject-chip-top">
+            <span class="subject-chip-code" style="color: ${color}; border-color: ${color}40; background: ${color}1a;">${code}</span>
+            <span class="subject-chip-units">${units}</span>
+          </div>
+          <div class="subject-chip-title">${title}</div>
+          <div class="subject-chip-footer">
+            <span>${midtermTopicsCount} Midterm Topics</span>
+            <span class="subject-chip-handouts-link">&rarr;</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  },
+
+  updateHomeClassRadar() {
+    if (typeof ScheduleModule === 'undefined' || !ScheduleModule.data || !ScheduleModule.data.length) return;
+
+    const radarStatusLabel = document.getElementById('radarStatusLabel');
+    const radarCountdownBadge = document.getElementById('radarCountdownBadge');
+    const radarSubjectTitle = document.getElementById('radarSubjectTitle');
+    const radarRoomChip = document.getElementById('radarRoomChip');
+    const radarTimeChip = document.getElementById('radarTimeChip');
+    const radarProfChip = document.getElementById('radarProfChip');
+    if (!radarSubjectTitle) return;
+
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const now = new Date();
+    const currentDay = days[now.getDay()];
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    const todayClasses = ScheduleModule.data.filter(c => c.day && c.day.toLowerCase() === currentDay.toLowerCase());
+
+    let ongoing = null;
+    let upNext = null;
+
+    todayClasses.forEach(c => {
+      const [startH, startM] = c.startTime.split(':').map(Number);
+      const [endH, endM] = c.endTime.split(':').map(Number);
+      const startTotal = startH * 60 + startM;
+      const endTotal = endH * 60 + endM;
+
+      if (currentMinutes >= startTotal && currentMinutes < endTotal) {
+        ongoing = c;
+      } else if (currentMinutes < startTotal && (!upNext || startTotal < upNext.startTotal)) {
+        upNext = { ...c, startTotal };
+      }
+    });
+
+    if (ongoing) {
+      if (radarStatusLabel) radarStatusLabel.textContent = 'IN CLASS NOW';
+      if (radarCountdownBadge) radarCountdownBadge.textContent = `Ends at ${ScheduleModule.formatTime12h(ongoing.endTime)}`;
+      radarSubjectTitle.textContent = `${ongoing.subjectCode} — ${ongoing.subjectTitle}`;
+      if (radarRoomChip) radarRoomChip.textContent = `📍 ${ongoing.room || 'TBA'}`;
+      if (radarTimeChip) radarTimeChip.textContent = `🕒 ${ScheduleModule.formatTime12h(ongoing.startTime)} – ${ScheduleModule.formatTime12h(ongoing.endTime)}`;
+      if (radarProfChip) radarProfChip.textContent = `👤 ${ongoing.instructor || 'BSIT 2G Faculty'}`;
+    } else if (upNext) {
+      const mins = upNext.startTotal - currentMinutes;
+      if (radarStatusLabel) radarStatusLabel.textContent = mins <= 20 ? 'STARTING SOON' : 'UP NEXT CLASS';
+      if (radarCountdownBadge) radarCountdownBadge.textContent = ScheduleModule.formatCountdown(mins);
+      radarSubjectTitle.textContent = `${upNext.subjectCode} — ${upNext.subjectTitle}`;
+      if (radarRoomChip) radarRoomChip.textContent = `📍 ${upNext.room || 'TBA'}`;
+      if (radarTimeChip) radarTimeChip.textContent = `🕒 ${ScheduleModule.formatTime12h(upNext.startTime)} – ${ScheduleModule.formatTime12h(upNext.endTime)}`;
+      if (radarProfChip) radarProfChip.textContent = `👤 ${upNext.instructor || 'BSIT 2G Faculty'}`;
+    } else {
+      const nextFuture = ScheduleModule.getNextUpcomingClass(now.getDay());
+      if (nextFuture) {
+        if (radarStatusLabel) radarStatusLabel.textContent = nextFuture.isTomorrow ? 'TOMORROW’S CLASS' : `UPCOMING ON ${nextFuture.dayName.toUpperCase()}`;
+        if (radarCountdownBadge) radarCountdownBadge.textContent = nextFuture.isTomorrow ? 'Tomorrow' : nextFuture.dayName;
+        radarSubjectTitle.textContent = `${nextFuture.subjectCode} — ${nextFuture.subjectTitle}`;
+        if (radarRoomChip) radarRoomChip.textContent = `📍 ${nextFuture.room || 'TBA'}`;
+        if (radarTimeChip) radarTimeChip.textContent = `🕒 ${ScheduleModule.formatTime12h(nextFuture.startTime)} – ${ScheduleModule.formatTime12h(nextFuture.endTime)}`;
+        if (radarProfChip) radarProfChip.textContent = `👤 ${nextFuture.instructor || 'BSIT 2G Faculty'}`;
+      } else {
+        if (radarStatusLabel) radarStatusLabel.textContent = 'SEMESTER BREAK / NO CLASSES';
+        if (radarCountdownBadge) radarCountdownBadge.textContent = 'All Clear';
+        radarSubjectTitle.textContent = 'No classes scheduled right now';
+        if (radarRoomChip) radarRoomChip.textContent = '📍 Campus Closed';
+        if (radarTimeChip) radarTimeChip.textContent = '🕒 Relax & Study';
+        if (radarProfChip) radarProfChip.textContent = '👤 Section 2G';
+      }
+    }
+  },
+
+  dailyProTips: [
+    "In Data Structures, Stacks follow <strong>LIFO</strong> (Last-In, First-Out) while Queues follow <strong>FIFO</strong> (First-In, First-Out). Master this distinction for your COSC1003 Midterm Exam!",
+    "In Human-Computer Interaction (HCI), <strong>Jakob Nielsen's 1st Heuristic</strong> is 'Visibility of system status' — always keep users informed of what is happening with immediate feedback.",
+    "For Platform Technology (OS), <strong>Preemptive Scheduling</strong> allows the CPU to interrupt running tasks (like Round Robin & SRTF), while <strong>Non-Preemptive</strong> lets processes run until completion (like FCFS).",
+    "In Rizal's Life and Works, <strong>Republic Act No. 1425</strong> (The Rizal Law) was authored primarily by Senator Claro M. Recto and signed into law by President Ramon Magsaysay in 1956.",
+    "In Philippine History, <strong>Primary Sources</strong> are firsthand eyewitness accounts created during the time period (e.g. Pigafetta's chronicle), while <strong>Secondary Sources</strong> analyze or interpret them later.",
+    "In Principles of Communication, noise can be <strong>Physical</strong> (external sound), <strong>Physiological</strong> (hearing impairment, fatigue), or <strong>Psychological</strong> (prejudice, anxiety).",
+    "In Web Development, an efficient application utilizes <strong>IndexedDB</strong> and <strong>Service Workers</strong> to deliver 100% offline functionality without waiting on network roundtrips."
+  ],
+  currentProTipIndex: 0,
+
+  rotateDailyProTip() {
+    const el = document.getElementById('homeProTipText');
+    if (!el || !this.dailyProTips.length) return;
+    el.style.opacity = '0';
+    setTimeout(() => {
+      this.currentProTipIndex = (this.currentProTipIndex + 1) % this.dailyProTips.length;
+      el.innerHTML = `"${this.dailyProTips[this.currentProTipIndex]}"`;
+      el.style.opacity = '1';
+    }, 200);
   }
 };
 
