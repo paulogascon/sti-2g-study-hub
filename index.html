@@ -20,96 +20,31 @@
 </head>
 <body>
   <div class="app-container">
-    <!-- Mobile Drawer Backdrop Overlay -->
-    <div id="sidebarOverlay" class="sidebar-overlay" onclick="App.closeSidebar()"></div>
-
-    <!-- Sidebar -->
-    <aside id="sidebar" class="sidebar">
-      <div class="brand-section">
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <div class="brand-logo-badge">STI</div>
-          <div class="brand-title-wrap">
-            <h1>2G Study Hub</h1>
-            <div class="brand-subtitle">
-              <span>BSIT 2nd Year</span>
-              <span class="term-pill">MIDTERM</span>
-            </div>
-          </div>
-        </div>
-        <button id="themeToggleBtn" class="theme-liquid-orb" aria-label="Toggle dark/light theme" title="Toggle theme">
-          <span class="theme-orb-glow"></span>
-          <span class="theme-orb-specular"></span>
-          <span id="themeIconSlot" class="theme-orb-icon">
-            <svg class="theme-svg moon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </span>
-        </button>
-      </div>
-
-      <nav class="nav-menu">
-        <a href="#dashboard" class="nav-link active" data-view="view-dashboard">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span>Dashboard</span>
-        </a>
-        <a href="#schedule" class="nav-link" data-view="view-schedule">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          <span>Class Schedule</span>
-        </a>
-        <a href="#subjects" class="nav-link" data-view="view-subjects">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          <span>Subject Hub</span>
-        </a>
-        <a href="#quiz" class="nav-link" data-view="view-quiz">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          <span>Reviewer & Quiz</span>
-        </a>
-        <a href="#download" class="nav-link" onclick="App.openDownloadModal(); return false;" style="color: #34d399;">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-          <span>Get Mobile App (.apk)</span>
-        </a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div id="userProfileBadge" class="user-profile-badge" onclick="App.openProfileModal()" style="cursor: pointer;" title="Tap to personalize your student name">
-          <div id="userAvatarInitials" class="user-avatar">2G</div>
-          <div class="user-info" style="flex: 1;">
-            <div id="userNameDisplay" class="user-name">BSIT 2G Student</div>
-            <div class="user-role" style="display: flex; align-items: center; justify-content: space-between;">
-              <span>STI WNU &bull; BSIT 2G</span>
-              <span style="font-size: 0.72rem; opacity: 0.8;" title="Customize Profile">✏️</span>
-            </div>
-          </div>
-        </div>
-        <div class="sidebar-terms-link" onclick="App.openOnboardingModal()" style="margin-top: 0.55rem; text-align: center;">
-          <span style="font-size: 0.72rem; color: var(--text-dim); cursor: pointer; text-decoration: underline; opacity: 0.85;">
-            📜 Terms &amp; Permissions
-          </span>
-        </div>
-      </div>
-    </aside>
-
     <!-- Main Wrapper -->
     <main class="main-wrapper">
-      <!-- Sticky Top Live Header (Liquid Glass Experience) -->
+      <!-- Sticky Top Live Header (Glassmorphic) -->
       <header class="top-header">
         <div class="top-header-bar">
           <div class="header-left">
-            <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu">
-              <span class="nav-toggle-sheen"></span>
-              <svg class="nav-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" y1="7" x2="20" y2="7"></line>
-                <line x1="4" y1="12" x2="20" y2="12"></line>
-                <line x1="4" y1="17" x2="20" y2="17"></line>
-              </svg>
-            </button>
-            <div class="mobile-brand-mark">
+            <div class="header-brand-mark">
               <span class="brand-school-pill">STI</span>
               <span class="brand-hub-name">2G Hub</span>
+              <span class="term-pill">MIDTERM</span>
             </div>
           </div>
 
           <div class="header-actions">
+            <!-- Glassmorphism Theme Switcher -->
+            <button id="themeToggleBtn" class="theme-liquid-orb" aria-label="Toggle dark/light theme" title="Toggle theme">
+              <span class="theme-orb-glow"></span>
+              <span class="theme-orb-specular"></span>
+              <span id="themeIconSlot" class="theme-orb-icon">
+                <svg class="theme-svg moon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </span>
+            </button>
+
             <button id="openDownloadModalHeaderBtn" class="liquid-glass-btn download-btn" onclick="App.openDownloadModal()" title="Download Official Mobile App (.apk)">
               <span class="apk-icon">📱</span>
               <span class="apk-label-desktop">Download App (.apk)</span>
@@ -119,7 +54,7 @@
               <span class="pulse-dot"></span>
               <span class="network-text">Online</span>
             </span>
-            <button id="enableNotifBtn" class="btn-notif desktop-only">🔔 Enable Alerts</button>
+            <button id="enableNotifBtn" class="btn-notif desktop-only">🔔 Alerts</button>
             <button id="testAlertBtn" class="btn-notif desktop-only" title="Preview Alert Warning">🔊 Test Chime</button>
             <div id="liveClock" class="clock-display desktop-only">Mon, Oct 5, 2026</div>
           </div>
@@ -1119,6 +1054,72 @@
         </section>
 
       </div>
+
+      <!-- ========================================== -->
+      <!-- GLASSMORPHISM BOTTOM NAVIGATION BAR (TikTok-Style) -->
+      <!-- ========================================== -->
+      <nav id="bottomGlassNav" class="bottom-glass-nav" aria-label="Bottom Navigation">
+        <div class="bottom-nav-container">
+          <!-- 1. Home / Dashboard -->
+          <button class="bottom-nav-item active" data-view="view-dashboard" onclick="App.switchView('view-dashboard')" aria-label="Dashboard">
+            <div class="bottom-nav-icon-wrap">
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <span class="bottom-nav-label">Home</span>
+          </button>
+
+          <!-- 2. Class Schedule / Activity -->
+          <button class="bottom-nav-item" data-view="view-schedule" onclick="App.switchView('view-schedule')" aria-label="Class Schedule">
+            <div class="bottom-nav-icon-wrap">
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <span class="bottom-nav-label">Schedule</span>
+          </button>
+
+          <!-- 3. Center Elevated Action Button (FAB) -->
+          <div class="bottom-nav-fab-slot">
+            <button id="bottomNavFab" class="bottom-nav-fab" onclick="App.goToMidtermSubjects()" aria-label="Open Midterm Subjects Hub" title="Open Midterm Hub">
+              <div class="fab-ambient-glow"></div>
+              <div class="fab-circle">
+                <svg class="fab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </button>
+          </div>
+
+          <!-- 4. Reviewer & Quiz -->
+          <button class="bottom-nav-item" data-view="view-quiz" onclick="App.switchView('view-quiz')" aria-label="Reviewer & Quiz">
+            <div class="bottom-nav-icon-wrap">
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a4 4 0 0 0-4 4v1H6a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3h-2V6a4 4 0 0 0-4-4z"></path>
+                <path d="M9 13l2 2 4-4"></path>
+              </svg>
+            </div>
+            <span class="bottom-nav-label">Review</span>
+          </button>
+
+          <!-- 5. Profile & Settings -->
+          <button class="bottom-nav-item" onclick="App.openProfileModal()" aria-label="Student Profile">
+            <div class="bottom-nav-icon-wrap">
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <span class="bottom-nav-label">Profile</span>
+          </button>
+        </div>
+      </nav>
     </main>
   </div>
 

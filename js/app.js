@@ -185,22 +185,15 @@ const App = {
   },
 
   initNav() {
-    const links = document.querySelectorAll('.nav-link');
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetView = link.dataset.view;
-        this.switchView(targetView);
-        this.closeSidebar();
+    const bottomItems = document.querySelectorAll('.bottom-nav-item');
+    bottomItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const targetView = item.dataset.view;
+        if (targetView) {
+          this.switchView(targetView);
+        }
       });
     });
-
-    const mobileToggle = document.getElementById('mobileNavToggle');
-    if (mobileToggle) {
-      mobileToggle.addEventListener('click', () => {
-        this.toggleSidebar();
-      });
-    }
   },
 
   toggleSidebar() {
@@ -383,9 +376,14 @@ const App = {
   },
 
   switchView(viewId) {
-    document.querySelectorAll('.nav-link').forEach(l => {
+    document.querySelectorAll('.bottom-nav-item').forEach(l => {
       l.classList.toggle('active', l.dataset.view === viewId);
     });
+
+    const fab = document.getElementById('bottomNavFab');
+    if (fab) {
+      fab.classList.toggle('active', viewId === 'view-subjects');
+    }
 
     document.querySelectorAll('.view-section').forEach(sec => {
       sec.classList.remove('active');
@@ -1032,6 +1030,9 @@ const App = {
     }, 3200);
   }
 };
+
+// Global attachment for inline onclick and iframe host access
+window.App = App;
 
 // Launch Application on DOM Ready (immediate if already loaded or in iframe)
 if (document.readyState === 'loading') {
