@@ -211,136 +211,136 @@ const DEFAULT_SUBJECTS = [
 
 const DEFAULT_SCHEDULE = [
   {
-    id: "sched_1",
-    day: "Monday",
-    startTime: "08:00",
-    endTime: "10:00",
-    subjectCode: "COSC1003",
-    subjectTitle: "Data Structure and Algorithms",
-    room: "B305",
-    type: "Lecture",
-    instructor: "Angus, Cherry Ann A."
+    "id": "sched_1",
+    "day": "Monday",
+    "startTime": "08:00",
+    "endTime": "10:00",
+    "subjectCode": "COSC1003",
+    "subjectTitle": "Data Structure and Algorithms",
+    "room": "B305",
+    "type": "Lecture",
+    "instructor": "Angus, Cherry Ann A."
   },
   {
-    id: "sched_2",
-    day: "Monday",
-    startTime: "10:00",
-    endTime: "12:00",
-    subjectCode: "INTE1051",
-    subjectTitle: "IT Elective I",
-    room: "B207",
-    type: "Lecture",
-    instructor: "Pasion, Charis B."
+    "id": "sched_2",
+    "day": "Monday",
+    "startTime": "10:00",
+    "endTime": "12:00",
+    "subjectCode": "INTE1051",
+    "subjectTitle": "IT Elective I",
+    "room": "B207",
+    "type": "Lecture",
+    "instructor": "Pasion, Charis B."
   },
   {
-    id: "sched_3",
-    day: "Monday",
-    startTime: "13:00",
-    endTime: "16:00",
-    subjectCode: "COSC1007",
-    subjectTitle: "Human-Computer Interaction",
-    room: "MN307 (Comp. Lab4)",
-    type: "Laboratory",
-    instructor: "Pasion, Charis B."
+    "id": "sched_3",
+    "day": "Monday",
+    "startTime": "13:00",
+    "endTime": "16:00",
+    "subjectCode": "COSC1007",
+    "subjectTitle": "Human-Computer Interaction",
+    "room": "MN307 (Comp. Lab4)",
+    "type": "Laboratory",
+    "instructor": "Pasion, Charis B."
   },
   {
-    id: "sched_4",
-    day: "Monday",
-    startTime: "17:30",
-    endTime: "20:30",
-    subjectCode: "GEDC 1014",
-    subjectTitle: "Rizal's Life and Works",
-    room: "MN424",
-    type: "Lecture",
-    instructor: "Angeles, Jocen B."
+    "id": "sched_4",
+    "day": "Monday",
+    "startTime": "17:30",
+    "endTime": "20:30",
+    "subjectCode": "GEDC 1014",
+    "subjectTitle": "Rizal's Life and Works",
+    "room": "MN424",
+    "type": "Lecture",
+    "instructor": "Angeles, Jocen B."
   },
   {
-    id: "sched_5",
-    day: "Tuesday",
-    startTime: "10:00",
-    endTime: "12:00",
-    subjectCode: "PHED 1007",
-    subjectTitle: "P.E./PATHFIT 3: Individual-Dual Sports",
-    room: "FIELD 4",
-    type: "Activity",
-    instructor: "Sagon, Benjamin Romel G."
+    "id": "sched_5",
+    "day": "Tuesday",
+    "startTime": "10:00",
+    "endTime": "12:00",
+    "subjectCode": "PHED 1007",
+    "subjectTitle": "P.E./PATHFIT 3: Individual-Dual Sports",
+    "room": "FIELD 4",
+    "type": "Activity",
+    "instructor": "Sagon, Benjamin Romel G."
   },
   {
-    id: "sched_6",
-    day: "Tuesday",
-    startTime: "13:00",
-    endTime: "15:00",
-    subjectCode: "COSC1007",
-    subjectTitle: "Human-Computer Interaction",
-    room: "B207",
-    type: "Lecture",
-    instructor: "Pasion, Charis B."
+    "id": "sched_6",
+    "day": "Tuesday",
+    "startTime": "13:00",
+    "endTime": "15:00",
+    "subjectCode": "COSC1007",
+    "subjectTitle": "Human-Computer Interaction",
+    "room": "B207",
+    "type": "Lecture",
+    "instructor": "Pasion, Charis B."
   },
   {
-    id: "sched_7",
-    day: "Tuesday",
-    startTime: "16:00",
-    endTime: "19:00",
-    subjectCode: "INTE1051",
-    subjectTitle: "IT Elective I",
-    room: "MN308 (Comp. Lab3)",
-    type: "Laboratory",
-    instructor: "Pasion, Charis B."
+    "id": "sched_7",
+    "day": "Tuesday",
+    "startTime": "16:00",
+    "endTime": "19:00",
+    "subjectCode": "INTE1051",
+    "subjectTitle": "IT Elective I",
+    "room": "MN308 (Comp. Lab3)",
+    "type": "Laboratory",
+    "instructor": "Pasion, Charis B."
   },
   {
-    id: "sched_8",
-    day: "Wednesday",
-    startTime: "17:30",
-    endTime: "20:30",
-    subjectCode: "COSC1001",
-    subjectTitle: "Principles of Communication",
-    room: "ONLINE",
-    type: "Lecture",
-    instructor: "Escauso, Irene May C."
+    "id": "sched_8",
+    "day": "Wednesday",
+    "startTime": "17:30",
+    "endTime": "20:30",
+    "subjectCode": "COSC1001",
+    "subjectTitle": "Principles of Communication",
+    "room": "ONLINE",
+    "type": "Lecture",
+    "instructor": "Escauso, Irene May C."
   },
   {
-    id: "sched_9",
-    day: "Thursday",
-    startTime: "10:00",
-    endTime: "12:00",
-    subjectCode: "COSC1008",
-    subjectTitle: "Platform Technology 1 (Operating Systems)",
-    room: "B304",
-    type: "Lecture",
-    instructor: "Gonzales, Danly S."
+    "id": "sched_9",
+    "day": "Thursday",
+    "startTime": "10:00",
+    "endTime": "12:00",
+    "subjectCode": "COSC1008",
+    "subjectTitle": "Platform Technology 1 (Operating Systems)",
+    "room": "B304",
+    "type": "Lecture",
+    "instructor": "Gonzales, Danly S."
   },
   {
-    id: "sched_10",
-    day: "Thursday",
-    startTime: "16:00",
-    endTime: "19:00",
-    subjectCode: "COSC1003",
-    subjectTitle: "Data Structure and Algorithms",
-    room: "B102 (Comp. Lab1)",
-    type: "Laboratory",
-    instructor: "Angus, Cherry Ann A."
+    "id": "sched_10",
+    "day": "Thursday",
+    "startTime": "16:00",
+    "endTime": "19:00",
+    "subjectCode": "COSC1003",
+    "subjectTitle": "Data Structure and Algorithms",
+    "room": "B102 (Comp. Lab1)",
+    "type": "Laboratory",
+    "instructor": "Angus, Cherry Ann A."
   },
   {
-    id: "sched_11",
-    day: "Friday",
-    startTime: "09:00",
-    endTime: "12:00",
-    subjectCode: "COSC1008",
-    subjectTitle: "Platform Technology 1 (Operating Systems)",
-    room: "MN306 (Comp. Lab5)",
-    type: "Laboratory",
-    instructor: "Gonzales, Danly S."
+    "id": "sched_11",
+    "day": "Friday",
+    "startTime": "09:00",
+    "endTime": "12:00",
+    "subjectCode": "COSC1008",
+    "subjectTitle": "Platform Technology 1 (Operating Systems)",
+    "room": "MN306 (Comp. Lab5)",
+    "type": "Laboratory",
+    "instructor": "Gonzales, Danly S."
   },
   {
-    id: "sched_12",
-    day: "Friday",
-    startTime: "13:00",
-    endTime: "16:00",
-    subjectCode: "GEDC 1006",
-    subjectTitle: "Readings in Philippine History",
-    room: "B305",
-    type: "Lecture",
-    instructor: "Pama, Delia P."
+    "id": "sched_12",
+    "day": "Friday",
+    "startTime": "13:00",
+    "endTime": "16:00",
+    "subjectCode": "GEDC 1006",
+    "subjectTitle": "Readings in Philippine History",
+    "room": "B305",
+    "type": "Lecture",
+    "instructor": "Pama, Delia P."
   }
 ];
 
@@ -422,11 +422,7 @@ const DEFAULT_QUIZZES = {
         "id": "fc_hci_1",
         "topic": "HCI Design Process",
         "front": "What are the 5 sequential phases of the overall HCI Design Process?",
-        "back": "1. Requirement Analysis
-2. User Analysis
-3. Scenario and Task Modeling
-4. Interface Selection and Consolidation
-5. Wire-framing"
+        "back": "1. Requirement Analysis\n2. User Analysis\n3. Scenario and Task Modeling\n4. Interface Selection and Consolidation\n5. Wire-framing"
       },
       {
         "id": "fc_hci_2",
@@ -438,9 +434,7 @@ const DEFAULT_QUIZZES = {
         "id": "fc_hci_3",
         "topic": "Event-Driven Programming",
         "front": "What are the three core parts of Event-Driven programming in Java?",
-        "back": "1. Event: Object created when a state change occurs in the GUI.
-2. Event Source: The UI object that generates/fires the event.
-3. Event Listener: Registered code that detects the event and executes response code."
+        "back": "1. Event: Object created when a state change occurs in the GUI.\n2. Event Source: The UI object that generates/fires the event.\n3. Event Listener: Registered code that detects the event and executes response code."
       }
     ],
     "questions": [
@@ -517,10 +511,7 @@ const DEFAULT_QUIZZES = {
         "id": "fc_os_3",
         "topic": "Deadlocks",
         "front": "What are the Coffman 4 necessary conditions for a Deadlock?",
-        "back": "1. Mutual Exclusion
-2. Hold and Wait
-3. No Preemption
-4. Circular Wait."
+        "back": "1. Mutual Exclusion\n2. Hold and Wait\n3. No Preemption\n4. Circular Wait."
       }
     ],
     "questions": [

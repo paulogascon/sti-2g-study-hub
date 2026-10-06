@@ -1943,8 +1943,15 @@ h1, h2, h3, h4, h5, h6 {
 /* Subjects Hub Grid */
 .subjects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
   gap: 1.5rem;
+}
+
+@media (max-width: 680px) {
+  .subjects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 .subject-card {

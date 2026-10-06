@@ -47,13 +47,31 @@ const App = {
         fetch(`js/data/subjects.json?nocache=${timestamp}`),
         fetch(`js/data/handouts.json?nocache=${timestamp}`)
       ]);
+      if (!subRes.ok || !handRes.ok) {
+        throw new Error('HTTP fetch status not ok');
+      }
       this.subjects = await subRes.json();
       this.handouts = await handRes.json();
       console.log('[Sync] Subjects & handouts synced from cloud');
     } catch (err) {
       console.warn('Offline mode: Using cached or embedded seed data', err);
-      this.subjects = typeof DEFAULT_SUBJECTS !== 'undefined' ? DEFAULT_SUBJECTS : [];
-      this.handouts = typeof DEFAULT_HANDOUTS !== 'undefined' ? DEFAULT_HANDOUTS : [];
+      this.subjects = (typeof DEFAULT_SUBJECTS !== 'undefined' && Array.isArray(DEFAULT_SUBJECTS) && DEFAULT_SUBJECTS.length > 0)
+        ? DEFAULT_SUBJECTS
+        : [];
+      this.handouts = (typeof DEFAULT_HANDOUTS !== 'undefined' && Array.isArray(DEFAULT_HANDOUTS) && DEFAULT_HANDOUTS.length > 0)
+        ? DEFAULT_HANDOUTS
+        : [];
+    }
+
+    if (!Array.isArray(this.subjects) || this.subjects.length === 0) {
+      if (typeof DEFAULT_SUBJECTS !== 'undefined' && Array.isArray(DEFAULT_SUBJECTS)) {
+        this.subjects = DEFAULT_SUBJECTS;
+      }
+    }
+    if (!Array.isArray(this.handouts) || this.handouts.length === 0) {
+      if (typeof DEFAULT_HANDOUTS !== 'undefined' && Array.isArray(DEFAULT_HANDOUTS)) {
+        this.handouts = DEFAULT_HANDOUTS;
+      }
     }
   },
 
@@ -414,6 +432,24 @@ const App = {
   renderSubjects() {
     const grid = document.getElementById('subjectsGrid');
     if (!grid) return;
+
+    if (!Array.isArray(this.subjects) || this.subjects.length === 0) {
+      if (typeof DEFAULT_SUBJECTS !== 'undefined' && Array.isArray(DEFAULT_SUBJECTS)) {
+        this.subjects = DEFAULT_SUBJECTS;
+      }
+    }
+
+    if (!Array.isArray(this.subjects) || this.subjects.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+          <p style="font-size: 1.1rem; margin-bottom: 0.8rem;">📚 Refreshing subject curriculum...</p>
+          <button class="btn-card-action btn-midterm-highlight" style="display:inline-flex; width:auto; padding:0.6rem 1.4rem;" onclick="App.init()">
+            🔄 Reload Subjects
+          </button>
+        </div>
+      `;
+      return;
+    }
 
     grid.innerHTML = this.subjects.map(s => {
       const activeTopicPeriod = this.cardTopicPeriods[s.code] || 'midterm';
@@ -972,5 +1008,9 @@ const App = {
   }
 };
 
-// Launch Application on DOM Ready
-document.addEventListener('DOMContentLoaded', () => App.init());
+// Launch Application on DOM Ready (immediate if already loaded or in iframe)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => App.init());
+} else {
+  App.init();
+}
