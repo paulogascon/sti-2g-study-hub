@@ -9,6 +9,7 @@ const App = {
 
   async init() {
     this.initClock();
+    this.initMidtermCountdown();
     this.initTheme();
     this.initNav();
     this.initUserProfile();
@@ -20,10 +21,12 @@ const App = {
     // Initialize feature modules
     ScheduleModule.init();
     QuizModule.init();
-    TasksModule.init();
     if (typeof OfflineStorageModule !== 'undefined') {
       OfflineStorageModule.init();
     }
+
+    // Check Onboarding & Terms on initial app load
+    this.checkOnboardingTerms();
 
     // Auto-sync when reconnecting or reopening app on phone
     window.addEventListener('online', () => {
@@ -76,6 +79,40 @@ const App = {
     setInterval(update, 10000);
   },
 
+  initMidtermCountdown() {
+    const countdownEl = document.getElementById('midtermCountdown');
+    const descEl = document.getElementById('midtermCountdownDesc');
+    if (!countdownEl) return;
+
+    // STI 1st Semester Midterm Examination Target: Oct 22-28, 2026
+    const targetDate = new Date('2026-10-22T08:00:00');
+
+    const update = () => {
+      const now = new Date();
+      const diffMs = targetDate - now;
+
+      if (diffMs <= 0) {
+        countdownEl.textContent = 'Exam Week Active!';
+        if (descEl) descEl.textContent = 'Midterm Examinations in progress';
+        return;
+      }
+
+      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      if (days > 0) {
+        countdownEl.textContent = `${days} Days Left`;
+        if (descEl) descEl.textContent = `${hours}h left • Exam Target: Oct 22–28`;
+      } else {
+        countdownEl.textContent = `${hours} Hours Left`;
+        if (descEl) descEl.textContent = 'Midterm Exam Target: Today!';
+      }
+    };
+
+    update();
+    setInterval(update, 60000);
+  },
+
   initTheme() {
     const savedTheme = localStorage.getItem('sti_2g_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -94,17 +131,9 @@ const App = {
   },
 
   updateThemeButton(theme) {
-    const textEl = document.getElementById('themeLabel');
-    const badgeEl = document.getElementById('themeStatusBadge');
     const iconSlot = document.getElementById('themeIconSlot');
     const toggleBtn = document.getElementById('themeToggleBtn');
 
-    if (textEl) {
-      textEl.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
-    }
-    if (badgeEl) {
-      badgeEl.textContent = theme === 'dark' ? 'Liquid Glass' : 'Frosted Day';
-    }
     if (toggleBtn) {
       toggleBtn.setAttribute('title', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
       toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Current theme: Dark. Click to switch to Light mode' : 'Current theme: Light. Click to switch to Dark mode');
@@ -352,9 +381,35 @@ const App = {
     }
   },
 
+  goToMidtermSubjects() {
+    this.switchView('view-subjects');
+    this.setGlobalSubjectFilter('MIDTERM');
+    const target = document.getElementById('view-subjects');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  },
+
   activeHandoutSubject: null,
   activeHandoutPeriod: 'MIDTERM',
+  handoutCategoryFilter: 'ALL',
   cardTopicPeriods: {},
+
+  isStudyGuideHandout(h) {
+    if (h.isStudyGuide === true) return true;
+    const type = (h.type || '').toLowerCase();
+    const title = (h.title || '').toLowerCase();
+    const summary = (h.summary || '').toLowerCase();
+    if (type.includes('study guide') || type.includes('reviewer') || type.includes('defense prep')) return true;
+    if (title.includes('study guide') || title.includes('reviewer') || title.includes('combined') || title.includes('master guide') || title.includes('qa master')) return true;
+    if (summary.includes('study guide') || summary.includes('reviewer') || summary.includes('master reviewer') || summary.includes('combined reviewer')) return true;
+    return false;
+  },
+
+  setHandoutCategoryFilter(category) {
+    this.handoutCategoryFilter = category;
+    this.renderHandoutsModalContent();
+  },
 
   renderSubjects() {
     const grid = document.getElementById('subjectsGrid');
@@ -377,9 +432,31 @@ const App = {
           <span class="subject-units-badge">${s.units} Units</span>
         </div>
         <div class="subject-card-body">
-          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem; display: flex; flex-direction: column; gap: 2px;">
-            <div>👨‍🏫 <strong>Instructor:</strong> ${s.instructor || 'TBA'}</div>
-            <div>🏛 <strong>Room:</strong> ${s.room || 'TBA'}</div>
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: ${s.room || 'TBA'}">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">${s.room || 'TBA'}</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: ${s.instructor || 'TBA'}">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">${s.instructor || 'TBA'}</span>
+              </div>
+            </div>
           </div>
           <p class="subject-desc">${s.description}</p>
 
@@ -413,15 +490,23 @@ const App = {
             `).join('')}
           </ul>
 
-          <div class="subject-actions" style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1rem;">
-            <button class="btn-card-action" onclick="App.openSubjectHandouts('${s.code}', 'MIDTERM')" style="font-weight:700; color:#fbbf24;">
-              🎯 Midterm Files
+          <!-- Prominent Dedicated Midterm Files Button -->
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('${s.code}', 'MIDTERM')" title="Open Midterm Study Guides & Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
             </button>
-            <button class="btn-card-action" onclick="App.openSubjectHandouts('${s.code}', 'PRELIM')">
-              📁 Prelim Files
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('${s.code}', 'PRELIM')">
+              📁 Prelim Archive
             </button>
-            <button class="btn-card-action" onclick="App.startSubjectQuiz('${s.id}')" style="grid-column: span 2; justify-content: center;">
-              ⚡ Practice Exam & Flashcards
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('${s.id}')">
+              ⚡ Flashcards &amp; Quiz
             </button>
           </div>
         </div>
@@ -459,6 +544,7 @@ const App = {
   openSubjectHandouts(subjectCode, initialPeriod = 'MIDTERM') {
     this.activeHandoutSubject = subjectCode;
     this.activeHandoutPeriod = initialPeriod;
+    this.handoutCategoryFilter = 'ALL';
     const modal = document.getElementById('handoutsModal');
     if (!modal) return;
     this.renderHandoutsModalContent();
@@ -467,6 +553,7 @@ const App = {
 
   switchHandoutPeriod(period) {
     this.activeHandoutPeriod = period;
+    this.handoutCategoryFilter = 'ALL';
     this.renderHandoutsModalContent();
   },
 
@@ -478,7 +565,7 @@ const App = {
 
     const sub = this.subjects.find(s => s.code === subjectCode);
     if (titleEl) {
-      titleEl.innerHTML = `<span>${subjectCode} — ${sub ? sub.title : ''}</span>`;
+      titleEl.innerHTML = `<span>${subjectCode} &mdash; ${sub ? sub.title : ''}</span>`;
     }
 
     const allSubjectItems = this.handouts.filter(h => h.subjectCode === subjectCode);
@@ -486,58 +573,135 @@ const App = {
     const prelimItems = allSubjectItems.filter(h => h.period === 'PRELIM');
 
     const activeList = this.activeHandoutPeriod === 'MIDTERM' ? midtermItems : prelimItems;
+    const studyGuides = activeList.filter(h => this.isStudyGuideHandout(h));
+    const rawHandouts = activeList.filter(h => !this.isStudyGuideHandout(h));
+
+    const renderCard = (h, isGuide) => {
+      const isOffline = typeof OfflineStorageModule !== 'undefined' && OfflineStorageModule.isFileSavedOffline(h.id);
+      const isMidterm = h.period === 'MIDTERM';
+      const fileUrl = h.downloadUrl || '#';
+      const cardClass = isGuide ? 'handout-card study-guide-card' : 'handout-card raw-handout-card';
+      const typeBadge = isGuide 
+        ? '<span class="doc-badge doc-badge-guide">✨ GENERATED STUDY GUIDE</span>' 
+        : '<span class="doc-badge doc-badge-raw">📖 RAW LECTURE MODULE</span>';
+
+      return `
+        <div class="${cardClass}">
+          <div style="display:flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+            <div style="display:flex; align-items:center; gap: 6px; flex-wrap: wrap;">
+              <span class="period-badge ${isMidterm ? 'midterm' : 'prelim'}">
+                ${isMidterm ? '🎯 MIDTERM' : '📁 PRELIM'}
+              </span>
+              ${typeBadge}
+            </div>
+            <span class="doc-format-pill">${h.format}</span>
+          </div>
+
+          <h4 class="doc-card-title">${h.title}</h4>
+          <p class="doc-card-summary">${h.summary}</p>
+          
+          <div class="doc-card-meta">
+            <span>📦 <strong>Size:</strong> ${h.fileSize || 'Standard'}</span>
+            <span>📑 <strong>Type:</strong> ${h.type || (isGuide ? 'Study Guide' : 'Handout')}</span>
+            ${isGuide ? '<span class="doc-source-note">⚡ Based on Raw Handouts</span>' : ''}
+          </div>
+
+          <div class="doc-card-actions">
+            <a href="${fileUrl}" target="_blank" download class="btn-primary doc-btn-download">
+              📥 Download Document
+            </a>
+            <button class="btn-offline ${isOffline ? 'saved-offline' : ''}" onclick="OfflineStorageModule.toggleOfflineSave('${h.id}', '${fileUrl}', this)">
+              ${isOffline ? '✅ Available Offline' : '📶 Save for Offline'}
+            </button>
+          </div>
+        </div>
+      `;
+    };
 
     listEl.innerHTML = `
-      <!-- Segmented Control Period Switcher -->
+      <!-- Segmented Control Period Switcher (Midterm vs Prelim) -->
       <div class="period-tab-group">
         <button class="period-tab-btn ${this.activeHandoutPeriod === 'MIDTERM' ? 'active' : ''}" onclick="App.switchHandoutPeriod('MIDTERM')">
-          🎯 Midterm Handouts (${midtermItems.length})
+          🎯 Midterm Materials (${midtermItems.length})
         </button>
         <button class="period-tab-btn ${this.activeHandoutPeriod === 'PRELIM' ? 'active' : ''}" onclick="App.switchHandoutPeriod('PRELIM')">
           📁 Prelim Archive (${prelimItems.length})
         </button>
       </div>
 
+      <!-- Quick Sub-Category Filter -->
+      <div class="handout-category-tabs">
+        <button class="handout-cat-tab ${this.handoutCategoryFilter === 'ALL' ? 'active' : ''}" onclick="App.setHandoutCategoryFilter('ALL')">
+          All Materials (${activeList.length})
+        </button>
+        <button class="handout-cat-tab ${this.handoutCategoryFilter === 'GUIDE' ? 'active' : ''}" onclick="App.setHandoutCategoryFilter('GUIDE')">
+          ✨ Study Guides &amp; Reviewers (${studyGuides.length})
+        </button>
+        <button class="handout-cat-tab ${this.handoutCategoryFilter === 'RAW' ? 'active' : ''}" onclick="App.setHandoutCategoryFilter('RAW')">
+          📖 Raw Handouts &amp; Modules (${rawHandouts.length})
+        </button>
+      </div>
+
       <div class="period-handouts-container">
         ${activeList.length === 0 ? `
-          <div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); background: var(--bg-subtle); border-radius: var(--radius-md); border: 1px dashed var(--border-color);">
-            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📂</div>
-            <p style="font-weight: 600;">No ${this.activeHandoutPeriod.toLowerCase()} documents found for ${subjectCode}.</p>
-            <p style="font-size: 0.8rem; margin-top: 0.25rem;">Outputs from your ${this.activeHandoutPeriod} folder will synchronize automatically.</p>
+          <div class="empty-handouts-box">
+            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">📂</div>
+            <p style="font-weight: 700; font-size: 1rem; color: var(--text-main);">No ${this.activeHandoutPeriod.toLowerCase()} documents found for ${subjectCode}.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem;">Outputs from your ${this.activeHandoutPeriod} folder will synchronize automatically.</p>
           </div>
-        ` : activeList.map(h => {
-          const isOffline = typeof OfflineStorageModule !== 'undefined' && OfflineStorageModule.isFileSavedOffline(h.id);
-          const isMidterm = h.period === 'MIDTERM';
-          const fileUrl = h.downloadUrl || '#';
-          return `
-          <div style="background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.15rem; margin-bottom: 0.85rem;">
-            <div style="display:flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
-              <div>
-                <span class="period-badge ${isMidterm ? 'midterm' : 'prelim'}" style="margin-bottom: 0.35rem;">
-                  ${isMidterm ? '🎯 MIDTERM' : '📁 PRELIM'}
-                </span>
-                <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-top: 2px;">${h.title}</h4>
+        ` : `
+          <!-- SECTION 1: GENERATED STUDY GUIDES & COMBINED REVIEWERS -->
+          ${(this.handoutCategoryFilter === 'ALL' || this.handoutCategoryFilter === 'GUIDE') ? `
+            <div class="handout-category-section">
+              <div class="handout-section-banner guide-banner">
+                <div class="banner-title-box">
+                  <span class="banner-badge-orb gold-orb">✨</span>
+                  <div>
+                    <h4 class="banner-heading">Generated Study Guides &amp; Master Reviewers</h4>
+                    <p class="banner-caption">Consolidated study guides synthesized directly from raw lecture handouts</p>
+                  </div>
+                </div>
+                <span class="banner-count-tag gold-tag">${studyGuides.length} Available</span>
               </div>
-              <span style="font-size: 0.72rem; font-weight:700; background: var(--bg-subtle); border: 1px solid var(--border-color); padding: 3px 8px; border-radius: 6px;">${h.format}</span>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">${h.summary}</p>
-            
-            <div style="font-size: 0.75rem; color: var(--text-dim); display:flex; gap:0.75rem; align-items:center; margin: 0.4rem 0;">
-              <span>📦 <strong>Size:</strong> ${h.fileSize || 'Standard'}</span>
-              <span>📑 <strong>Type:</strong> ${h.type || 'Reviewer'}</span>
-            </div>
 
-            <div style="margin-top: 0.85rem; display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
-              <a href="${fileUrl}" target="_blank" download class="btn-primary" style="font-size: 0.82rem; padding: 0.45rem 1rem; text-decoration: none;">
-                📥 Download Document
-              </a>
-              <button class="btn-offline ${isOffline ? 'saved-offline' : ''}" onclick="OfflineStorageModule.toggleOfflineSave('${h.id}', '${fileUrl}', this)">
-                ${isOffline ? '✅ Available Offline' : '📶 Save for Offline'}
-              </button>
+              ${studyGuides.length > 0 ? `
+                <div class="handout-cards-grid">
+                  ${studyGuides.map(h => renderCard(h, true)).join('')}
+                </div>
+              ` : `
+                <div class="empty-category-note">
+                  <span>ℹ️ No standalone study guide yet for this period. Review raw handouts below or practice in Quiz Mode!</span>
+                </div>
+              `}
             </div>
-          </div>
-          `;
-        }).join('')}
+          ` : ''}
+
+          <!-- SECTION 2: RAW LECTURE HANDOUTS & COURSE MODULES -->
+          ${(this.handoutCategoryFilter === 'ALL' || this.handoutCategoryFilter === 'RAW') ? `
+            <div class="handout-category-section" style="margin-top: 1.5rem;">
+              <div class="handout-section-banner raw-banner">
+                <div class="banner-title-box">
+                  <span class="banner-badge-orb blue-orb">📖</span>
+                  <div>
+                    <h4 class="banner-heading">Raw Lecture Handouts &amp; Course Materials</h4>
+                    <p class="banner-caption">Original professor slides, syllabus modules, activities &amp; seatwork files</p>
+                  </div>
+                </div>
+                <span class="banner-count-tag blue-tag">${rawHandouts.length} Available</span>
+              </div>
+
+              ${rawHandouts.length > 0 ? `
+                <div class="handout-cards-grid">
+                  ${rawHandouts.map(h => renderCard(h, false)).join('')}
+                </div>
+              ` : `
+                <div class="empty-category-note">
+                  <span>ℹ️ No separate raw lecture modules attached. All materials are consolidated in the study guide above.</span>
+                </div>
+              `}
+            </div>
+          ` : ''}
+        `}
       </div>
     `;
   },
@@ -590,6 +754,13 @@ const App = {
       closeDownloadBtn.addEventListener('click', () => downloadModal.classList.remove('open'));
     }
 
+    // Onboarding Terms & Permissions modal close
+    const onboardingModal = document.getElementById('onboardingModal');
+    const closeOnboardingBtn = document.getElementById('closeOnboardingModalBtn');
+    if (closeOnboardingBtn && onboardingModal) {
+      closeOnboardingBtn.addEventListener('click', () => onboardingModal.classList.remove('open'));
+    }
+
     // Add Sched Modal
     const addSchedModal = document.getElementById('addScheduleModal');
     const openAddSchedBtn = document.getElementById('openAddSchedBtn');
@@ -621,32 +792,6 @@ const App = {
       });
     }
 
-    // Add Task Modal
-    const addTaskModal = document.getElementById('addTaskModal');
-    const openAddTaskBtn = document.getElementById('openAddTaskBtn');
-    const closeAddTaskBtn = document.getElementById('closeAddTaskBtn');
-    const addTaskForm = document.getElementById('addTaskForm');
-
-    if (openAddTaskBtn && addTaskModal) {
-      openAddTaskBtn.addEventListener('click', () => addTaskModal.classList.add('open'));
-    }
-    if (closeAddTaskBtn && addTaskModal) {
-      closeAddTaskBtn.addEventListener('click', () => addTaskModal.classList.remove('open'));
-    }
-    if (addTaskForm) {
-      addTaskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const task = {
-          title: document.getElementById('taskTitleInput').value,
-          subjectCode: document.getElementById('taskSubjectInput').value,
-          dueDate: document.getElementById('taskDueDateInput').value,
-          priority: document.getElementById('taskPriorityInput').value
-        };
-        TasksModule.addTask(task);
-        addTaskForm.reset();
-        addTaskModal.classList.remove('open');
-      });
-    }
 
     // Delegated modal backdrop click & Escape key dismiss
     document.addEventListener('keydown', (e) => {
@@ -735,6 +880,95 @@ const App = {
     if (input) input.value = '';
     this.updateProfileDisplay();
     this.closeProfileModal();
+  },
+
+  // -------------------------------------------------------------
+  // ONBOARDING, TERMS & CONDITIONS & APP PERMISSIONS
+  // -------------------------------------------------------------
+  checkOnboardingTerms() {
+    const accepted = localStorage.getItem('sti_2g_terms_accepted');
+    if (!accepted) {
+      setTimeout(() => {
+        this.openOnboardingModal();
+      }, 400);
+    }
+  },
+
+  openOnboardingModal() {
+    const modal = document.getElementById('onboardingModal');
+    if (modal) {
+      this.updatePermissionBadges();
+      modal.classList.add('open');
+    }
+  },
+
+  closeOnboardingModal() {
+    const modal = document.getElementById('onboardingModal');
+    if (modal) {
+      modal.classList.remove('open');
+    }
+  },
+
+  async acceptTermsAndPermissions(enableNotifs = true) {
+    localStorage.setItem('sti_2g_terms_accepted', 'true');
+    localStorage.setItem('sti_2g_terms_accepted_date', new Date().toISOString());
+
+    // Unlock Web Audio context on user gesture so campus chimes can ring automatically
+    if (typeof ScheduleModule !== 'undefined' && ScheduleModule.playChime) {
+      ScheduleModule.playChime();
+    }
+
+    if (enableNotifs && 'Notification' in window) {
+      try {
+        const perm = await Notification.requestPermission();
+        if (typeof ScheduleModule !== 'undefined') {
+          ScheduleModule.updateNotifButtonLabel();
+          if (perm === 'granted') {
+            ScheduleModule.sendSystemNotification(
+              'STI 2G Class Warnings Activated 🎓',
+              'You will receive automatic alerts 30m, 10m, and 5m before each class begins!'
+            );
+          }
+        }
+      } catch (err) {
+        console.warn('Notification permission error', err);
+      }
+    }
+
+    this.updatePermissionBadges();
+    this.closeOnboardingModal();
+  },
+
+  updatePermissionBadges() {
+    const notifBadge = document.getElementById('permNotifStatus');
+    const audioBadge = document.getElementById('permAudioStatus');
+    const storageBadge = document.getElementById('permStorageStatus');
+
+    if (notifBadge) {
+      if (!('Notification' in window)) {
+        notifBadge.textContent = 'Unavailable';
+        notifBadge.className = 'permission-status-pill disabled';
+      } else if (Notification.permission === 'granted') {
+        notifBadge.textContent = 'Active 🔔';
+        notifBadge.className = 'permission-status-pill granted';
+      } else if (Notification.permission === 'denied') {
+        notifBadge.textContent = 'Blocked 🔕';
+        notifBadge.className = 'permission-status-pill denied';
+      } else {
+        notifBadge.textContent = 'Required ⚠️';
+        notifBadge.className = 'permission-status-pill pending';
+      }
+    }
+
+    if (audioBadge) {
+      audioBadge.textContent = 'Ready 🔊';
+      audioBadge.className = 'permission-status-pill granted';
+    }
+
+    if (storageBadge) {
+      storageBadge.textContent = 'Offline Ready 💾';
+      storageBadge.className = 'permission-status-pill granted';
+    }
   }
 };
 

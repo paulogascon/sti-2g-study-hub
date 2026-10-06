@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
-  <title>STI 2G Study Hub | Academic Portal</title>
+  <!-- Typography: Plus Jakarta Sans & Inter (Ultra-Clean Professional Suite) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="preload" href="css/style.css" as="style">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
@@ -33,7 +36,15 @@
             </div>
           </div>
         </div>
-        <button id="closeSidebarBtn" class="sidebar-close-btn" onclick="App.closeSidebar()" aria-label="Close menu">&times;</button>
+        <button id="themeToggleBtn" class="theme-liquid-orb" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <span class="theme-orb-glow"></span>
+          <span class="theme-orb-specular"></span>
+          <span id="themeIconSlot" class="theme-orb-icon">
+            <svg class="theme-svg moon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
       </div>
 
       <nav class="nav-menu">
@@ -53,10 +64,6 @@
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           <span>Reviewer & Quiz</span>
         </a>
-        <a href="#tasks" class="nav-link" data-view="view-tasks">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-          <span>Deadlines & Tasks</span>
-        </a>
         <a href="#download" class="nav-link" onclick="App.openDownloadModal(); return false;" style="color: #34d399;">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span>Get Mobile App (.apk)</span>
@@ -74,20 +81,10 @@
             </div>
           </div>
         </div>
-        <div class="theme-footer-row">
-          <div class="theme-footer-meta" onclick="document.getElementById('themeToggleBtn').click()">
-            <span id="themeLabel" class="theme-mode-text">Dark Mode</span>
-            <span id="themeStatusBadge" class="theme-mode-subtext">Liquid Glass</span>
-          </div>
-          <button id="themeToggleBtn" class="theme-liquid-orb" aria-label="Toggle dark/light theme" title="Toggle theme">
-            <span class="theme-orb-glow"></span>
-            <span class="theme-orb-specular"></span>
-            <span id="themeIconSlot" class="theme-orb-icon">
-              <svg class="theme-svg moon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-              </svg>
-            </span>
-          </button>
+        <div class="sidebar-terms-link" onclick="App.openOnboardingModal()" style="margin-top: 0.55rem; text-align: center;">
+          <span style="font-size: 0.72rem; color: var(--text-dim); cursor: pointer; text-decoration: underline; opacity: 0.85;">
+            📜 Terms &amp; Permissions
+          </span>
         </div>
       </div>
     </aside>
@@ -99,7 +96,12 @@
         <div class="top-header-bar">
           <div class="header-left">
             <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu">
-              <svg style="width:22px; height:22px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              <span class="nav-toggle-sheen"></span>
+              <svg class="nav-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="17" x2="20" y2="17"></line>
+              </svg>
             </button>
             <div class="mobile-brand-mark">
               <span class="brand-school-pill">STI</span>
@@ -161,75 +163,68 @@
             <p>1st Semester, SY 2026–2027 &bull; STI West Negros University (Section BSIT 2G)</p>
           </div>
 
-          <!-- Mobile App Download & Install Hero Card -->
-          <div class="app-download-hero-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(2, 132, 199, 0.2)); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: var(--radius-xl); padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem;">
-            <div style="display: flex; align-items: center; gap: 1.25rem;">
-              <div style="width: 54px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, #0284c7, #10b981); display: flex; align-items: center; justify-content: center; font-size: 1.85rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);">
-                📱
-              </div>
+          <!-- Mobile App Download & Install Hero Card (Liquid Glass with Edge Glow) -->
+          <div class="app-download-hero-card">
+            <div class="hero-left-content">
+              <div class="app-icon-badge">📱</div>
               <div>
-                <div style="display:flex; align-items:center; gap: 8px; margin-bottom: 4px;">
-                  <span class="period-badge midterm" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">OFFICIAL v1.0.0 RELEASE</span>
-                  <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 600;">ANDROID &bull; IOS &bull; OFFLINE</span>
+                <div class="hero-meta-row">
+                  <span class="period-badge midterm">OFFICIAL v1.0.0 RELEASE</span>
+                  <span class="hero-platform-sub">ANDROID &bull; IOS &bull; OFFLINE</span>
                 </div>
-                <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-main);">Install STI 2G Study Hub on Your Phone</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Offline class timetable, class chimes, midterm study guides & practice exam flashcards.</p>
+                <h3 class="hero-card-title">Install STI 2G Study Hub on Your Phone</h3>
+                <p class="hero-card-desc">Offline class timetable, class chimes, midterm study guides &amp; practice exam flashcards.</p>
               </div>
             </div>
-            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
-              <a href="https://github.com/paulogascon/sti-2g-study-hub/releases/download/v1.0.0/STI_2G_Study_Hub.apk" download="STI_2G_Study_Hub.apk" class="btn-primary" style="background: #10b981; border-color: #059669; font-weight: 700; text-decoration: none; padding: 0.65rem 1.25rem; display: inline-flex; align-items: center; gap: 6px;">
+            <div class="hero-actions-row">
+              <a href="https://github.com/paulogascon/sti-2g-study-hub/releases/download/v1.0.0/STI_2G_Study_Hub.apk" download="STI_2G_Study_Hub.apk" class="apk-download-glass-btn">
                 <span>📥 Download Android APK</span>
-                <span style="font-size: 0.75rem; opacity: 0.85;">(7.4 MB)</span>
+                <span class="apk-size-pill">(7.4 MB)</span>
               </a>
-              <button class="btn-secondary" onclick="App.openDownloadModal()" style="font-weight: 600; padding: 0.65rem 1rem; cursor: pointer;">
+              <button class="btn-secondary glass-btn" onclick="App.openDownloadModal()">
                 📲 Install Guide (iOS / Android)
               </button>
             </div>
           </div>
 
           <div class="dashboard-grid">
-            <div class="stat-card">
-              <div class="stat-icon" style="background: rgba(37, 99, 235, 0.15); color: #3b82f6;">
+            <div class="stat-card clickable-stat-card" onclick="App.goToMidtermSubjects()" onkeydown="if(event.key==='Enter'||event.key===' ') App.goToMidtermSubjects()" role="button" tabindex="0" title="Click to view all 8 Midterm subjects in Subject Hub">
+              <div class="stat-icon" style="background: rgba(37, 99, 235, 0.2); color: #38bdf8;">
                 <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
               </div>
-              <div class="stat-info">
-                <h3>Current Load</h3>
+              <div class="stat-info" style="flex: 1;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap: 0.5rem;">
+                  <h3>Current Load</h3>
+                  <span class="stat-action-chip">
+                    <span>Midterm Hub</span>
+                    <span class="stat-chip-arrow">&rarr;</span>
+                  </span>
+                </div>
                 <div class="stat-number">8 Subjects</div>
-                <div class="stat-desc">23 Total Units &bull; Midterm Period</div>
+                <div class="stat-desc">23 Total Units &bull; Midterm Period (Tap to open)</div>
               </div>
             </div>
 
             <div class="stat-card">
-              <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+              <div class="stat-icon" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">
                 <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               </div>
               <div class="stat-info">
                 <h3>Midterm Target</h3>
-                <div class="stat-number" id="midtermCountdown">Loading...</div>
-                <div class="stat-desc">Preparation in progress</div>
-              </div>
-            </div>
-
-            <div class="stat-card">
-              <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
-                <svg style="width:28px; height:28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              </div>
-              <div class="stat-info">
-                <h3>Pending Tasks</h3>
-                <div class="stat-number" id="pendingTasksCount">4</div>
-                <div class="stat-desc">Lab tasks & deliverables</div>
+                <div class="stat-number" id="midtermCountdown">16 Days Left</div>
+                <div class="stat-desc" id="midtermCountdownDesc">Exam Target: Oct 22–28, 2026</div>
               </div>
             </div>
           </div>
 
-          <!-- Quick Access Action Banners -->
-          <div style="background: linear-gradient(135deg, rgba(2, 43, 73, 0.8), rgba(15, 23, 42, 0.9)); border: 1px solid var(--border-accent); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <!-- Quick Access Action Banners (Liquid Glass with Edge Glow) -->
+          <div class="quiz-action-banner">
             <div>
               <span class="term-pill" style="margin-bottom: 0.5rem; display: inline-block;">MIDTERM SPRINT</span>
-              <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.35rem;">Review Midterm Flashcards & Practice Tests</h3>
-              <p style="color: var(--text-muted); font-size: 0.9rem;">Test your knowledge in Data Structures, HCI Heuristics, OS Process Scheduling, and Rizal's Life.</p>
+              <h3 class="banner-heading">Review Midterm Flashcards &amp; Practice Tests</h3>
+              <p class="banner-subtext">Test your knowledge in Data Structures, HCI Heuristics, OS Process Scheduling, and Rizal's Life.</p>
             </div>
-            <button class="btn-primary" onclick="App.switchView('view-quiz')">
+            <button class="btn-primary glass-glow-btn" onclick="App.switchView('view-quiz')">
               Launch Quiz Mode &rarr;
             </button>
           </div>
@@ -301,11 +296,23 @@
 
           <div class="quiz-mode-container">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem; flex-wrap:wrap; gap: 1rem;">
-              <div style="flex:1; min-width: 250px;">
-                <label style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Select Subject:</label>
-                <select id="quizSubjectSelect" class="form-control" style="margin-top:0.3rem;">
-                  <!-- Options populated dynamically -->
-                </select>
+              <div class="custom-select-wrap" id="quizSubjectDropdown">
+                <label class="custom-select-label">Select Subject:</label>
+                <div class="custom-select-trigger" id="quizSelectTrigger" onclick="QuizModule.toggleSubjectDropdown()">
+                  <div class="custom-select-trigger-content">
+                    <span class="custom-select-code" id="quizSelectCode">COSC1003</span>
+                    <span class="custom-select-title" id="quizSelectTitle">Data Structures and Algorithms</span>
+                  </div>
+                  <span class="custom-select-chevron" id="quizSelectChevron">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </span>
+                </div>
+                <div class="custom-select-menu" id="quizSelectMenu">
+                  <!-- Rendered dynamically with smooth transition -->
+                </div>
+                <select id="quizSubjectSelect" style="display:none;"></select>
               </div>
 
               <div class="mode-selector" style="margin-bottom:0;">
@@ -335,40 +342,6 @@
             <div id="examView" style="display:none;">
               <div id="examQuestionContainer">
                 <!-- Rendered dynamically -->
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- VIEW 5: TASKS & DEADLINES -->
-        <!-- ========================================== -->
-        <section id="view-tasks" class="view-section">
-          <div class="section-header">
-            <h2>Academic Deliverables & Deadlines</h2>
-            <p>Track lab exercises, presentations, performance tasks, and exams</p>
-          </div>
-
-          <div class="task-grid-wrap">
-            <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
-                <h3 style="font-size: 1.1rem; font-weight: 700;">Active Tasks</h3>
-                <button id="openAddTaskBtn" class="btn-primary">+ Add Deliverable</button>
-              </div>
-              <div id="taskList" class="task-list">
-                <!-- Rendered by TasksModule -->
-              </div>
-            </div>
-
-            <div>
-              <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
-                <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Study Tips for Midterms</h4>
-                <ul style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); display:flex; flex-direction:column; gap:0.6rem;">
-                  <li>Break code practice (DSA) into small daily tracing exercises.</li>
-                  <li>In HCI, always reference Jakob Nielsen's 10 Heuristics for design critiques.</li>
-                  <li>For Platform Tech, memorize the Waiting Time formulas for CPU algorithms.</li>
-                  <li>Keep all generated reviewers in your <code>Antigravity Outputs</code> folder synchronized.</li>
-                </ul>
               </div>
             </div>
           </div>
@@ -441,54 +414,10 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- MODAL: ADD TASK / DELIVERABLE -->
-  <!-- ========================================== -->
-  <div id="addTaskModal" class="modal-overlay">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Add Deliverable</h3>
-        <button id="closeAddTaskBtn" class="modal-close-btn">&times;</button>
-      </div>
-      <form id="addTaskForm">
-        <div class="form-group">
-          <label>Task Title</label>
-          <input type="text" id="taskTitleInput" class="form-control" placeholder="e.g. Lab Exercise 4" required>
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <select id="taskSubjectInput" class="form-control" required>
-            <option value="COSC1003">COSC1003 - Data Structures and Algorithms</option>
-            <option value="COSC1007">COSC1007 - Human-Computer Interaction</option>
-            <option value="COSC1008">COSC1008 - Platform Technology 1</option>
-            <option value="INTE1051">INTE1051 - IT Elective I</option>
-            <option value="COSC1001">COSC1001 - Principles of Communication</option>
-            <option value="GEDC 1006">GEDC 1006 - Readings in Philippine History</option>
-            <option value="GEDC 1014">GEDC 1014 - Rizal's Life and Works</option>
-            <option value="PHED 1007">PHED 1007 - P.E. / PATHFIT 3</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Due Date</label>
-          <input type="date" id="taskDueDateInput" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label>Priority</label>
-          <select id="taskPriorityInput" class="form-control">
-            <option value="High">High Priority</option>
-            <option value="Medium">Medium Priority</option>
-            <option value="Low">Low Priority</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">Add Task</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ========================================== -->
   <!-- MODAL: SUBJECT HANDOUTS LIST -->
   <!-- ========================================== -->
   <div id="handoutsModal" class="modal-overlay">
-    <div class="modal-content">
+    <div class="modal-content handouts-modal-content">
       <div class="modal-header">
         <h3 id="handoutsModalTitle">Subject Handouts</h3>
         <button id="closeHandoutsModalBtn" class="modal-close-btn">&times;</button>
@@ -666,7 +595,135 @@
           <button type="button" class="btn-secondary" onclick="App.resetStudentProfile()" style="font-size: 0.82rem; padding: 0.5rem 0.85rem;">Reset Default</button>
           <button type="submit" class="btn-primary" style="font-weight: 700; padding: 0.5rem 1.25rem;">Save Profile</button>
         </div>
+        <div style="border-top: 1px solid var(--border-color); margin-top: 1.25rem; padding-top: 1rem;">
+          <button type="button" class="btn-secondary" style="width: 100%; font-size: 0.85rem;" onclick="App.closeProfileModal(); App.openOnboardingModal();">
+            📜 Review Terms &amp; App Permissions
+          </button>
+        </div>
       </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: TERMS & CONDITIONS & APP PERMISSIONS -->
+  <!-- ========================================== -->
+  <div id="onboardingModal" class="modal-overlay onboarding-modal-overlay">
+    <div class="modal-content onboarding-modal-content">
+      <div class="modal-header onboarding-modal-header">
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <div class="onboarding-logo-orb">🎓</div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em;">Terms &amp; Permissions</h3>
+            <p style="margin: 2px 0 0; font-size: 0.8rem; color: var(--text-muted);">STI West Negros University &bull; BSIT 2G</p>
+          </div>
+        </div>
+        <button id="closeOnboardingModalBtn" class="modal-close-btn" onclick="App.closeOnboardingModal()">&times;</button>
+      </div>
+
+      <div class="onboarding-body">
+        <!-- Automatic Class Warning Notice -->
+        <div class="onboarding-welcome-callout">
+          <div class="callout-icon">⚡</div>
+          <div class="callout-text">
+            <strong>Automatic Class Warning Setup</strong>
+            <p>To automatically alert you before each class begins, please allow notifications and audio chimes below.</p>
+          </div>
+        </div>
+
+        <!-- Permissions List -->
+        <div class="onboarding-section-title">Required App Features:</div>
+        <div class="permissions-list">
+          
+          <!-- 1. System Notifications -->
+          <div class="permission-item-card">
+            <div class="perm-icon-orb notif">🔔</div>
+            <div class="perm-info">
+              <div class="perm-title-row">
+                <span class="perm-name">Class Notification Warnings</span>
+                <span id="permNotifStatus" class="permission-status-pill pending">Required ⚠️</span>
+              </div>
+              <p class="perm-desc">
+                Sends automatic pop-up alerts <strong>30m, 10m, and 5m before each class begins</strong> with your room assignment and professor, even when your phone screen is off.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. Campus Bell Audio Chimes -->
+          <div class="permission-item-card">
+            <div class="perm-icon-orb sound">🔊</div>
+            <div class="perm-info">
+              <div class="perm-title-row">
+                <span class="perm-name">Campus Alert Chimes (Web Audio)</span>
+                <span id="permAudioStatus" class="permission-status-pill granted">Ready 🔊</span>
+              </div>
+              <p class="perm-desc">
+                Plays the STI campus alert bell sound when class is about to start so you never miss a lecture or laboratory.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. Local Storage / Offline Hub -->
+          <div class="permission-item-card">
+            <div class="perm-icon-orb storage">💾</div>
+            <div class="perm-info">
+              <div class="perm-title-row">
+                <span class="perm-name">100% Offline Timetable &amp; Reviewers</span>
+                <span id="permStorageStatus" class="permission-status-pill granted">Offline Ready 💾</span>
+              </div>
+              <p class="perm-desc">
+                Stores your class schedule, custom rooms, and flashcards directly on your device with zero data usage.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Terms & Conditions Section -->
+        <div class="onboarding-section-title" style="margin-top: 1.25rem;">Terms &amp; Privacy Agreement:</div>
+
+        <!-- Creator & Architect Highlight Card -->
+        <div class="terms-creator-highlight">
+          <div class="creator-badge-row">
+            <span class="creator-badge-pill">👨‍💻 CREATOR &amp; LEAD DEVELOPER</span>
+            <span class="creator-badge-school">STI WNU &bull; BSIT 2G</span>
+          </div>
+          <div class="creator-name-headline">
+            <div class="creator-avatar-orb">🎓</div>
+            <div>
+              <h3 class="creator-full-name">Jhon Paulo V. Gascon</h3>
+              <p class="creator-title-sub">Sole Architect, Designer &amp; Developer &bull; STI 2G Study Hub</p>
+            </div>
+          </div>
+          <p class="creator-declaration">
+            Designed and engineered by <strong>Jhon Paulo V. Gascon (JP)</strong> as a dedicated academic operating platform for BSIT 2G students at STI West Negros University.
+          </p>
+        </div>
+
+        <div class="terms-scroll-box">
+          <h4>1. Academic Companion Purpose</h4>
+          <p>This software was created and developed by <strong>Jhon Paulo V. Gascon</strong> exclusively as an educational study hub and timetable organizer for students in BS Information Technology (BSIT) Section 2G at STI West Negros University.</p>
+          
+          <h4>2. Privacy &amp; Offline-First Storage</h4>
+          <p>All student personalized data (custom schedule modifications, reviewer notes, practice quiz scores, and student name) is stored strictly on your local device via Web Storage. No personal data, tracking cookies, or credentials are transmitted or sold to third-party servers.</p>
+
+          <h4>3. Automated Class Warning Disclaimer</h4>
+          <p>The automated class warnings are calculated based on your local device clock and the BSIT 2G curriculum timetable. While built for high reliability, students should always cross-reference official STI WNU announcements and LMS/portal notices for room reassignments or suspension notices.</p>
+
+          <h4>4. Device Autoplay &amp; Notification Rules</h4>
+          <p>By tapping "Accept Terms &amp; Enable Class Warnings", you grant permission for the app to initialize browser notifications and campus audio alerts. You may modify or revoke notification permissions anytime through your browser or device settings.</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="onboarding-actions">
+          <button id="acceptPermissionsBtn" class="btn-primary glass-glow-btn onboarding-btn-primary" onclick="App.acceptTermsAndPermissions(true)">
+            <span>Accept Terms &amp; Enable Class Warnings 🔔</span>
+          </button>
+          <button id="acceptTermsOnlyBtn" class="btn-secondary glass-btn onboarding-btn-secondary" onclick="App.acceptTermsAndPermissions(false)">
+            <span>Continue Without Push Notifications</span>
+          </button>
+        </div>
+        <p class="onboarding-footnote">You can re-open or review these terms anytime from the sidebar profile menu.</p>
+      </div>
     </div>
   </div>
 
@@ -675,7 +732,6 @@
   <script src="js/offline-storage.js"></script>
   <script src="js/schedule.js"></script>
   <script src="js/quiz.js"></script>
-  <script src="js/tasks.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

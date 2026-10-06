@@ -37,6 +37,14 @@ const ScheduleModule = {
       this.updateLiveClassTicker();
       this.checkClassWarnings();
     }, 10000);
+
+    // Instant foreground update when user switches back to app
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        this.updateLiveClassTicker();
+        this.checkClassWarnings();
+      }
+    });
   },
 
   async refreshFromNetwork() {
@@ -69,7 +77,13 @@ const ScheduleModule = {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
-      const ctx = new AudioCtx();
+      if (!this._audioCtx || this._audioCtx.state === 'closed') {
+        this._audioCtx = new AudioCtx();
+      }
+      const ctx = this._audioCtx;
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
       const now = ctx.currentTime;
 
       // Note 1: C5 (523.25 Hz)
@@ -234,8 +248,16 @@ const ScheduleModule = {
       // Trigger alerts once per threshold
       const alertKey30 = `30m_${upcomingWarning.id}`;
       const alertKey10 = `10m_${upcomingWarning.id}`;
+      const alertKey5  = `5m_${upcomingWarning.id}`;
 
-      if (upcomingWarning.minsUntil <= 10 && !this.notifiedAlerts.has(alertKey10)) {
+      if (upcomingWarning.minsUntil <= 5 && !this.notifiedAlerts.has(alertKey5)) {
+        this.notifiedAlerts.add(alertKey5);
+        this.playChime();
+        this.sendSystemNotification(
+          `🚨 5-Minute Final Call: ${upcomingWarning.subjectCode}`,
+          `Class starts in 5 minutes! Proceed to room ${upcomingWarning.room} immediately (${upcomingWarning.subjectTitle}).`
+        );
+      } else if (upcomingWarning.minsUntil <= 10 && !this.notifiedAlerts.has(alertKey10)) {
         this.notifiedAlerts.add(alertKey10);
         this.playChime();
         this.sendSystemNotification(
@@ -258,6 +280,16 @@ const ScheduleModule = {
       if (this.dismissedBannerSlot === ongoingClass.id) {
         banner.style.display = 'none';
         return;
+      }
+
+      const alertKeyStart = `start_${ongoingClass.id}`;
+      if (!this.notifiedAlerts.has(alertKeyStart)) {
+        this.notifiedAlerts.add(alertKeyStart);
+        this.playChime();
+        this.sendSystemNotification(
+          `🔔 Class In Session: ${ongoingClass.subjectCode}`,
+          `${ongoingClass.subjectTitle} has started in room ${ongoingClass.room}!`
+        );
       }
 
       banner.className = 'class-alert-banner ongoing';
@@ -543,8 +575,30 @@ const ScheduleModule = {
         <h4 class="schedule-title">${c.subjectTitle}</h4>
         <span class="schedule-code">${c.subjectCode}</span>
         <div class="schedule-meta-row">
-          <span>🏛 ${c.room}</span>
-          <span>👨‍🏫 ${c.instructor || 'Instructor'}</span>
+          <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: ${c.room}">
+            <div class="meta-chip-orb room-orb">
+              <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+              </svg>
+            </div>
+            <div class="meta-chip-content">
+              <span class="meta-chip-label">Room</span>
+              <span class="meta-chip-value">${c.room}</span>
+            </div>
+          </div>
+
+          <div class="schedule-meta-chip instructor-chip" title="Instructor: ${c.instructor || 'Professor'}">
+            <div class="meta-chip-orb instructor-orb">
+              <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="meta-chip-content">
+              <span class="meta-chip-label">Instructor</span>
+              <span class="meta-chip-value">${c.instructor || 'Instructor'}</span>
+            </div>
+          </div>
         </div>
       </div>
     `).join('');
