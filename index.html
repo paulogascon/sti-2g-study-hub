@@ -1060,36 +1060,37 @@
       <!-- ========================================== -->
       <nav id="bottomGlassNav" class="bottom-glass-nav" aria-label="Bottom Navigation">
         <div class="bottom-nav-container">
-          <!-- 1. Home / Dashboard -->
-          <button class="bottom-nav-item active" data-view="view-dashboard" onclick="App.switchView('view-dashboard')" aria-label="Dashboard">
+          <!-- 1. Home / Diary -->
+          <button class="bottom-nav-item active" data-view="view-dashboard" onclick="App.switchView('view-dashboard')" aria-label="Dashboard (Home)" title="Home">
             <div class="bottom-nav-icon-wrap">
-              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                <path d="M9 7h6"></path>
+                <path d="M9 11h4"></path>
               </svg>
             </div>
-            <span class="bottom-nav-label">Home</span>
+            <span class="bottom-nav-active-dot"></span>
           </button>
 
-          <!-- 2. Class Schedule / Activity -->
-          <button class="bottom-nav-item" data-view="view-schedule" onclick="App.switchView('view-schedule')" aria-label="Class Schedule">
+          <!-- 2. Timetable / Activity (Running shoe) -->
+          <button class="bottom-nav-item" data-view="view-schedule" onclick="App.switchView('view-schedule')" aria-label="Class Timetable" title="Schedule">
             <div class="bottom-nav-icon-wrap">
-              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3.5 17.5l2-5 3.5 1.5 3.5-3.5 3 2.5 4.5-1v5.5H3.5z"></path>
+                <path d="M2 19h19"></path>
+                <circle cx="8" cy="13" r="1" fill="currentColor"></circle>
               </svg>
             </div>
-            <span class="bottom-nav-label">Schedule</span>
+            <span class="bottom-nav-active-dot"></span>
           </button>
 
-          <!-- 3. Center Elevated Action Button (FAB) -->
+          <!-- 3. Center Elevated Action Button (FAB - Midterm Hub) -->
           <div class="bottom-nav-fab-slot">
             <button id="bottomNavFab" class="bottom-nav-fab" onclick="App.goToMidtermSubjects()" aria-label="Open Midterm Subjects Hub" title="Open Midterm Hub">
               <div class="fab-ambient-glow"></div>
               <div class="fab-circle">
-                <svg class="fab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="fab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="12" y1="5" x2="12" y2="19"></line>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
@@ -1097,26 +1098,28 @@
             </button>
           </div>
 
-          <!-- 4. Reviewer & Quiz -->
-          <button class="bottom-nav-item" data-view="view-quiz" onclick="App.switchView('view-quiz')" aria-label="Reviewer & Quiz">
+          <!-- 4. Reviewer & Quiz (Apple icon) -->
+          <button class="bottom-nav-item" data-view="view-quiz" onclick="App.switchView('view-quiz')" aria-label="Reviewer & Quiz" title="Review">
             <div class="bottom-nav-icon-wrap">
-              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2a4 4 0 0 0-4 4v1H6a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3h-2V6a4 4 0 0 0-4-4z"></path>
-                <path d="M9 13l2 2 4-4"></path>
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20.9c1.5 0 2.5-.7 3.5-1.4 1 .7 2 1.4 3.5 1.4 2.5 0 4-2.2 4-5.5 0-3.8-2.8-7.4-7.5-7.4-4.7 0-7.5 3.6-7.5 7.4 0 3.3 1.5 5.5 4 5.5z"></path>
+                <path d="M12 4c.6-1.5 2-2 3-2"></path>
               </svg>
             </div>
-            <span class="bottom-nav-label">Review</span>
+            <span class="bottom-nav-active-dot"></span>
           </button>
 
-          <!-- 5. Profile & Settings -->
-          <button class="bottom-nav-item" onclick="App.openProfileModal()" aria-label="Student Profile">
+          <!-- 5. Profile & Settings (Smiley avatar) -->
+          <button class="bottom-nav-item" onclick="App.openProfileModal()" aria-label="Student Profile" title="Profile">
             <div class="bottom-nav-icon-wrap">
-              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
+              <svg class="bottom-nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M9 10h.01"></path>
+                <path d="M15 10h.01"></path>
+                <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
               </svg>
             </div>
-            <span class="bottom-nav-label">Profile</span>
+            <span class="bottom-nav-active-dot"></span>
           </button>
         </div>
       </nav>

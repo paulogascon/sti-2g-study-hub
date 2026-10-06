@@ -401,6 +401,8 @@
     if (window.innerWidth < 500) {
       setScale(0.75);
     }
+    // Bust cache on initial preview launch
+    reloadFrame();
   </script>
 </body>
 </html>
