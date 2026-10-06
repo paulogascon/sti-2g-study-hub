@@ -250,15 +250,48 @@ const App = {
   },
 
   initNav() {
-    const bottomItems = document.querySelectorAll('.bottom-nav-item');
-    bottomItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const targetView = item.dataset.view;
-        if (targetView) {
-          this.switchView(targetView);
-        }
-      });
-    });
+    // Navigation is wired with handleNavClick and handleFabClick
+  },
+
+  handleNavClick(buttonEl, viewId, customAction) {
+    if (!buttonEl) return;
+
+    // 1. Tactile haptic vibration if supported on Android/Mobile
+    if (navigator.vibrate) {
+      try { navigator.vibrate(12); } catch (e) {}
+    }
+
+    // 2. Play tactile spring bounce animation
+    buttonEl.classList.remove('nav-tap-pop');
+    void buttonEl.offsetWidth; // Force reflow
+    buttonEl.classList.add('nav-tap-pop');
+
+    // 3. Spawn liquid glass tap ripple radiating from center
+    const ripple = document.createElement('span');
+    ripple.className = 'nav-glass-ripple';
+    buttonEl.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 420);
+
+    // 4. View switch or custom action
+    if (customAction) {
+      customAction();
+    } else if (viewId) {
+      this.switchView(viewId);
+    }
+  },
+
+  handleFabClick(fabEl) {
+    if (!fabEl) return;
+
+    if (navigator.vibrate) {
+      try { navigator.vibrate([15, 30, 20]); } catch (e) {}
+    }
+
+    fabEl.classList.remove('fab-tap-bounce');
+    void fabEl.offsetWidth;
+    fabEl.classList.add('fab-tap-bounce');
+
+    this.goToMidtermSubjects();
   },
 
   toggleSidebar() {

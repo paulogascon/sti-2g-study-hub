@@ -4,7 +4,7 @@
 // Enables instant automatic cloud synchronization on refresh & 100% offline access
 // ==========================================================================
 
-const CACHE_NAME = 'sti-2g-hub-v19';
+const CACHE_NAME = 'sti-2g-hub-v20';
 const OFFLINE_SHELL = [
   './',
   './index.html',
