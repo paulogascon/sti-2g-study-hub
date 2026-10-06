@@ -1033,11 +1033,14 @@ const App = {
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     const isAppProtocol = window.location.protocol === 'file:' || window.isAndroidApp || navigator.userAgent.includes('wv') || (window.location.hostname === 'localhost' && window.location.port !== '3000');
     const isDownloaded = localStorage.getItem('sti2g_app_downloaded') === 'true';
-    const inSim = document.documentElement.classList.contains('in-simulator');
+    const inSim = document.documentElement.classList.contains('in-simulator') || new URLSearchParams(window.location.search).get('sim') === 'iphone' || window.self !== window.top;
 
     if (isStandalone || isAppProtocol || isDownloaded || inSim) {
       document.documentElement.classList.add('app-downloaded');
       document.body.classList.add('app-downloaded');
+      document.querySelectorAll('.app-download-hero-card, .web-only-control').forEach(el => {
+        el.style.display = 'none';
+      });
     }
   },
 
@@ -1045,6 +1048,9 @@ const App = {
     localStorage.setItem('sti2g_app_downloaded', 'true');
     document.documentElement.classList.add('app-downloaded');
     document.body.classList.add('app-downloaded');
+    document.querySelectorAll('.app-download-hero-card, .web-only-control').forEach(el => {
+      el.style.display = 'none';
+    });
   },
 
   initModals() {

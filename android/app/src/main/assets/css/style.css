@@ -5123,11 +5123,15 @@ button:active,
   color: #64748b;
 }
 
-/* Hide Get APK button & Online pill when downloaded / inside the app */
+/* Hide Get APK button, Online pill & App download hero card when downloaded / inside the app */
 .app-downloaded .web-only-control,
 .in-simulator .web-only-control,
 body.app-mode .web-only-control,
 [data-app-installed="true"] .web-only-control,
+.app-downloaded .app-download-hero-card,
+.in-simulator .app-download-hero-card,
+body.app-mode .app-download-hero-card,
+[data-app-installed="true"] .app-download-hero-card,
 .app-downloaded #networkStatusPill,
 .in-simulator #networkStatusPill,
 body.app-mode #networkStatusPill,
