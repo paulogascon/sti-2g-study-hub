@@ -1031,6 +1031,15 @@ const App = {
   }
 };
 
+// Simulator Environment Detection (e.g. VS Code Live Preview iframe or ?sim=iphone)
+try {
+  if (window.self !== window.top || new URLSearchParams(window.location.search).get('sim') === 'iphone') {
+    document.documentElement.classList.add('in-simulator');
+  }
+} catch (e) {
+  document.documentElement.classList.add('in-simulator');
+}
+
 // Global attachment for inline onclick and iframe host access
 window.App = App;
 

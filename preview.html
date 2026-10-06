@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STI 2G Hub — Mobile Phone Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>STI 2G Hub — iOS Mobile Simulator</title>
   <style>
     :root {
-      --bg-canvas: #0b0f19;
-      --phone-border: #232a3b;
-      --phone-edge: #151b28;
-      --phone-glass: #000000;
-      --accent: #2563eb;
+      --bg-editor: #18181b;
+      --phone-outer: #0d1117;
+      --titanium-rim: #272a33;
+      --chassis-depth: #111317;
+      --screen-w: 393px;
+      --screen-h: 852px;
+      --bezel-w: 413px;
+      --bezel-h: 872px;
     }
 
     * {
@@ -18,391 +21,371 @@
       margin: 0;
       padding: 0;
       user-select: none;
+      -webkit-user-select: none;
     }
 
-    body {
-      background-color: var(--bg-canvas);
-      background-image: 
-        radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 60%),
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 100% 100%, 28px 28px, 28px 28px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow-x: hidden;
-      color: #e2e8f0;
-      padding: 14px 10px;
-    }
-
-    /* TOP CONTROLS TOOLBAR */
-    .toolbar {
-      position: sticky;
-      top: 6px;
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--bg-editor);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: rgba(18, 24, 38, 0.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 6px 14px;
-      border-radius: 9999px;
-      margin-bottom: 16px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.2);
-      z-index: 1000;
-      flex-wrap: wrap;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    .toolbar-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: #94a3b8;
+    /* CENTERED AUTO-FIT CANVAS WRAPPER */
+    .simulator-canvas {
       display: flex;
       align-items: center;
-      gap: 5px;
-    }
-
-    .toolbar-label .pulse-dot {
-      width: 7px;
-      height: 7px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #10b981;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 4px;
-      background: rgba(0, 0, 0, 0.35);
-      padding: 3px;
-      border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .btn {
-      background: transparent;
-      border: none;
-      color: #94a3b8;
-      padding: 4px 11px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .btn:hover {
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .btn.active {
-      background: #2563eb;
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
-    }
-
-    .btn-icon {
-      padding: 4px 8px;
-    }
-
-    /* PHONE SIMULATOR CONTAINER */
-    .viewport-wrapper {
-      display: flex;
       justify-content: center;
-      align-items: center;
       width: 100%;
-      flex: 1;
-      overflow: visible;
-      transform-origin: top center;
-      transition: transform 0.25s ease;
+      height: 100%;
+      overflow: hidden;
     }
 
-    /* SMARTPHONE CHASSIS */
+    /* IPHONE 15/16 PRO TITANIUM CHASSIS */
     .phone-device {
       position: relative;
-      width: 412px;
-      height: 870px;
-      background: #1e2533;
+      width: var(--bezel-w);
+      height: var(--bezel-h);
+      min-width: var(--bezel-w);
+      min-height: var(--bezel-h);
+      background: var(--phone-outer);
       border-radius: 54px;
-      padding: 12px;
+      padding: 10px;
       box-shadow: 
-        0 0 0 2px #3b455b,
-        0 0 0 4px #0f141f,
-        0 25px 60px -12px rgba(0, 0, 0, 0.85),
-        0 0 80px rgba(37, 99, 235, 0.15);
-      box-sizing: content-box;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        0 0 0 2.5px var(--titanium-rim),
+        0 0 0 4.5px var(--chassis-depth),
+        0 25px 65px -10px rgba(0, 0, 0, 0.88),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+      transform-origin: center center;
+      transition: transform 0.08s ease-out;
+      will-change: transform;
     }
 
-    /* PHYSICAL BUTTONS ON SIDE */
-    .phone-device::before {
-      /* Volume buttons */
-      content: '';
-      position: absolute;
-      left: -5px;
-      top: 130px;
-      width: 4px;
-      height: 48px;
-      background: #3b455b;
-      border-radius: 4px 0 0 4px;
-      box-shadow: 0 65px 0 #3b455b, 0 -45px 0 #3b455b; /* Volume down + Action button */
-    }
-
-    .phone-device::after {
-      /* Power button */
-      content: '';
-      position: absolute;
-      right: -5px;
-      top: 165px;
-      width: 4px;
-      height: 75px;
-      background: #3b455b;
-      border-radius: 0 4px 4px 0;
-    }
-
-    /* INNER DISPLAY BEZEL */
+    /* PHONE INNER DISPLAY SCREEN */
     .phone-screen {
       position: relative;
-      width: 393px;
-      height: 852px;
+      width: var(--screen-w);
+      height: var(--screen-h);
       background: #000000;
       border-radius: 44px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
     }
 
-    /* DYNAMIC ISLAND (iPhone) */
-    .dynamic-island {
+    /* AUTHENTIC iOS STATUS BAR */
+    .ios-status-bar {
       position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 32px;
-      background: #000000;
-      border-radius: 20px;
-      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      z-index: 100;
+      pointer-events: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 10px;
-      box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.15);
-      transition: all 0.3s ease;
+      padding: 0 26px;
+      color: #ffffff;
+    }
+
+    .ios-time {
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      font-variant-numeric: tabular-nums;
+      margin-left: 2px;
+    }
+
+    /* DYNAMIC ISLAND PILL */
+    .dynamic-island {
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      width: 122px;
+      height: 32px;
+      background: #000000;
+      border-radius: 20px;
+      z-index: 101;
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 11px;
+      box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.08);
       cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .dynamic-island:hover {
-      width: 190px;
+      width: 180px;
       height: 36px;
       border-radius: 22px;
+    }
+
+    .sensor-dot {
+      width: 8px;
+      height: 8px;
+      background: #070c14;
+      border-radius: 50%;
     }
 
     .camera-lens {
       width: 11px;
       height: 11px;
-      background: radial-gradient(circle at 35% 35%, #1d3557, #020617);
+      background: radial-gradient(circle at 35% 35%, #1f3b60, #040810);
       border-radius: 50%;
       box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.4);
     }
 
-    .sensor {
-      width: 8px;
-      height: 8px;
-      background: #080e1c;
-      border-radius: 50%;
+    /* RIGHT STATUS ICONS: SIGNAL, 5G, BATTERY */
+    .ios-status-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* ANDROID CAMERA HOLE */
-    .android-punchhole {
-      display: none;
+    .ios-signal {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 10px;
+    }
+
+    .ios-signal span {
+      width: 3px;
+      background: #ffffff;
+      border-radius: 1px;
+    }
+
+    .ios-signal span:nth-child(1) { height: 4px; }
+    .ios-signal span:nth-child(2) { height: 6px; }
+    .ios-signal span:nth-child(3) { height: 8px; }
+    .ios-signal span:nth-child(4) { height: 10px; }
+
+    .ios-5g {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin: 0 1px;
+    }
+
+    .ios-battery {
+      width: 24px;
+      height: 12px;
+      border: 1.5px solid rgba(255, 255, 255, 0.88);
+      border-radius: 4.5px;
+      padding: 1.5px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .ios-battery::after {
+      content: '';
       position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 13px;
-      height: 13px;
-      background: radial-gradient(circle at 40% 40%, #202b3d, #020617);
-      border-radius: 50%;
-      z-index: 999;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      right: -3.5px;
+      top: 3px;
+      width: 2px;
+      height: 4.5px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 0 1.5px 1.5px 0;
     }
 
-    /* HARDWARE HOME INDICATOR BAR (iOS) */
-    .home-bar {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 135px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.65);
-      border-radius: 999px;
-      z-index: 998;
-      pointer-events: none;
-      backdrop-filter: blur(4px);
+    .ios-battery-fill {
+      width: 88%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 2px;
     }
 
-    /* THE APP IFRAME */
+    /* APP IFRAME VIEWPORT */
     .app-frame {
       width: 100%;
       height: 100%;
       border: none;
-      background: #0f172a;
+      background: #090e17;
       display: block;
     }
 
-    /* SAMSUNG GALAXY MODE */
-    .phone-device.samsung-mode {
-      border-radius: 46px;
-      width: 395px;
-      height: 855px;
-      box-shadow: 
-        0 0 0 2px #2f384a,
-        0 0 0 4px #0a0d14,
-        0 25px 60px -12px rgba(0, 0, 0, 0.85);
-    }
-    .phone-device.samsung-mode .phone-screen {
-      width: 393px;
-      height: 852px;
-      border-radius: 38px;
-    }
-    .phone-device.samsung-mode .dynamic-island {
-      display: none;
-    }
-    .phone-device.samsung-mode .android-punchhole {
-      display: block;
-    }
-    .phone-device.samsung-mode .home-bar {
-      display: none;
+    /* HARDWARE HOME INDICATOR BAR (iOS) */
+    .home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 4.5px;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 9999px;
+      z-index: 99;
+      pointer-events: none;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
 
-    /* RESPONSIVE SCALING PRESETS */
-    .scale-85 { transform: scale(0.85); }
-    .scale-75 { transform: scale(0.75); }
-    .scale-65 { transform: scale(0.65); }
-    .scale-50 { transform: scale(0.50); }
+    /* SUBTLE FLOATING CONTROLS (OUT OF THE WAY) */
+    .floating-mini-bar {
+      position: fixed;
+      bottom: 12px;
+      right: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.18;
+      transition: opacity 0.25s ease;
+      z-index: 999;
+    }
+
+    .floating-mini-bar:hover {
+      opacity: 0.95;
+    }
+
+    .mini-btn {
+      background: rgba(24, 24, 27, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 5px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .mini-btn:hover {
+      color: #ffffff;
+      background: rgba(37, 99, 235, 0.8);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
   </style>
 </head>
 <body>
 
-  <!-- SIMULATOR CONTROL BAR -->
-  <div class="toolbar">
-    <div class="toolbar-label">
-      <span class="pulse-dot"></span>
-      STI 2G Simulator
-    </div>
+  <!-- SIMULATOR VIEWPORT -->
+  <div class="simulator-canvas">
+    <div class="phone-device" id="phoneDevice">
+      
+      <!-- PHONE SCREEN -->
+      <div class="phone-screen">
+        
+        <!-- AUTHENTIC iOS STATUS BAR -->
+        <div class="ios-status-bar">
+          <span class="ios-time" id="iosClock">9:17</span>
 
-    <!-- DEVICE MODEL SWITCHER -->
-    <div class="btn-group">
-      <button class="btn active" id="btnIphone" onclick="setDevice('iphone')">
-        📱 iPhone 15 Pro
-      </button>
-      <button class="btn" id="btnSamsung" onclick="setDevice('samsung')">
-        🤖 Galaxy S24
-      </button>
-    </div>
+          <!-- DYNAMIC ISLAND -->
+          <div class="dynamic-island" id="dynamicIsland" title="iPhone Dynamic Island">
+            <div class="sensor-dot"></div>
+            <div class="camera-lens"></div>
+          </div>
 
-    <!-- ZOOM / SCALE SWITCHER FOR NARROW SCREENS -->
-    <div class="btn-group">
-      <button class="btn" onclick="setScale(1)">100%</button>
-      <button class="btn active" id="btnScale85" onclick="setScale(0.85)">85%</button>
-      <button class="btn" id="btnScale75" onclick="setScale(0.75)">75%</button>
-      <button class="btn" id="btnScale65" onclick="setScale(0.65)">65%</button>
-    </div>
+          <!-- STATUS ICONS -->
+          <div class="ios-status-icons">
+            <div class="ios-signal">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <span class="ios-5g">5G</span>
+            <div class="ios-battery">
+              <div class="ios-battery-fill"></div>
+            </div>
+          </div>
+        </div>
 
-    <!-- RELOAD BUTTON -->
-    <div class="btn-group">
-      <button class="btn btn-icon" onclick="reloadFrame()" title="Force Refresh App & Clear Cache" style="background: #10b981; color: white; font-weight: 700;">
-        🔄 Refresh Hub
-      </button>
+        <!-- APP CONTENT IFRAME -->
+        <iframe 
+          src="index.html?sim=iphone" 
+          class="app-frame" 
+          id="appIframe" 
+          title="STI 2G Study Hub">
+        </iframe>
+
+        <!-- iOS HOME INDICATOR -->
+        <div class="home-indicator"></div>
+      </div>
     </div>
   </div>
 
-  <!-- PHONE VIEWPORT -->
-  <div class="viewport-wrapper scale-85" id="viewport">
-    <div class="phone-device" id="phoneDevice">
-      <!-- HARDWARE DETAILS -->
-      <div class="dynamic-island" id="island" title="iPhone Dynamic Island">
-        <div class="sensor"></div>
-        <div class="camera-lens"></div>
-      </div>
-      <div class="android-punchhole" id="punchhole"></div>
-
-      <!-- INNER TOUCHSCREEN -->
-      <div class="phone-screen">
-        <iframe src="index.html" class="app-frame" id="appIframe" title="STI 2G Study Hub"></iframe>
-        <div class="home-bar"></div>
-      </div>
-    </div>
+  <!-- FLOATING DISCREET RELOAD BUTTON (Fades out when not hovering) -->
+  <div class="floating-mini-bar">
+    <button class="mini-btn" onclick="reloadFrame()" title="Reload Application Frame (Press R)">
+      🔄 Reload Hub
+    </button>
   </div>
 
   <script>
-    function setDevice(type) {
-      const device = document.getElementById('phoneDevice');
-      const btnIphone = document.getElementById('btnIphone');
-      const btnSamsung = document.getElementById('btnSamsung');
+    // AUTO-FIT ENGINE: Dynamically scales the phone to 100% fit any VS Code editor split pane
+    function updateSimulatorScale() {
+      const margin = 20; // 20px padding around phone
+      const availW = window.innerWidth - margin * 2;
+      const availH = window.innerHeight - margin * 2;
+      const phoneW = 413;
+      const phoneH = 872;
 
-      if (type === 'samsung') {
-        device.classList.add('samsung-mode');
-        btnSamsung.classList.add('active');
-        btnIphone.classList.remove('active');
-      } else {
-        device.classList.remove('samsung-mode');
-        btnIphone.classList.add('active');
-        btnSamsung.classList.remove('active');
+      // Scale to fit whichever dimension is tighter
+      const scale = Math.min(availW / phoneW, availH / phoneH);
+      const clampedScale = Math.max(Math.min(scale, 1.15), 0.22);
+
+      const device = document.getElementById('phoneDevice');
+      if (device) {
+        device.style.transform = `scale(${clampedScale})`;
       }
     }
 
-    function setScale(val) {
-      const vp = document.getElementById('viewport');
-      vp.className = 'viewport-wrapper';
-      vp.style.transform = `scale(${val})`;
-
-      // Update active state
-      document.querySelectorAll('.btn-group button').forEach(b => {
-        if (b.innerText.includes(`${Math.round(val * 100)}%`)) {
-          b.classList.add('active');
-        } else if (b.innerText.includes('%')) {
-          b.classList.remove('active');
-        }
-      });
+    // Dynamic iOS Real-Time Clock
+    function updateIosClock() {
+      const clock = document.getElementById('iosClock');
+      if (!clock) return;
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      if (hours > 12) hours -= 12;
+      if (hours === 0) hours = 12;
+      clock.textContent = `${hours}:${minutes}`;
     }
 
+    // Frame Reload Action
     function reloadFrame() {
       const frame = document.getElementById('appIframe');
-      frame.src = 'index.html?t=' + Date.now();
+      if (frame) {
+        frame.src = 'index.html?sim=iphone&t=' + Date.now();
+      }
     }
 
-    // Auto-fit scale if window width is tight in VS Code split screen
-    window.addEventListener('resize', () => {
-      const w = window.innerWidth;
-      if (w < 440) {
-        setScale(0.65);
-      } else if (w < 520) {
-        setScale(0.75);
-      } else if (w < 600) {
-        setScale(0.85);
+    // Listen to resize, orientation, and DOM ready events
+    window.addEventListener('resize', updateSimulatorScale);
+    window.addEventListener('orientationchange', updateSimulatorScale);
+    window.addEventListener('DOMContentLoaded', () => {
+      updateSimulatorScale();
+      updateIosClock();
+      setInterval(updateIosClock, 1000);
+    });
+
+    // Observe body resize for smooth split-pane dragging in VS Code
+    if (window.ResizeObserver) {
+      new ResizeObserver(updateSimulatorScale).observe(document.body);
+    }
+
+    // Keyboard shortcut: Press R to reload hub
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'r' || e.key === 'R') && !e.ctrlKey && !e.metaKey) {
+        const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        if (activeTag !== 'input' && activeTag !== 'textarea') {
+          reloadFrame();
+        }
       }
     });
 
-    // Run on startup
-    if (window.innerWidth < 500) {
-      setScale(0.75);
-    }
-    // Bust cache on initial preview launch
-    reloadFrame();
+    // Initial scale calculation
+    updateSimulatorScale();
   </script>
 </body>
 </html>

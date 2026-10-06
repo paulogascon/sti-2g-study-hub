@@ -131,20 +131,20 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.022em;
 }
 
-/* Scrollbar */
+/* Ultra-Sleek iOS Style Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-dim);
+  background: rgba(56, 189, 248, 0.45);
 }
 
 /* Layout Container */
@@ -4922,6 +4922,20 @@ button:active,
 
 .bottom-nav-item.active {
   color: #38bdf8;
+}
+
+/* ==========================================================================
+   VS CODE MOBILE SIMULATOR / IFRAME SAFE AREA INSETS
+   ========================================================================== */
+.in-simulator .top-header,
+[data-simulator="true"] .top-header {
+  padding-top: 52px !important;
+}
+
+.in-simulator .bottom-nav-container,
+[data-simulator="true"] .bottom-nav-container {
+  padding-bottom: 20px !important;
+  height: 76px !important;
 }
 
 [data-theme="light"] .bottom-nav-item.active {
