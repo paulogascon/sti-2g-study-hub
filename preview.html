@@ -40,18 +40,21 @@
 
     /* TOP CONTROLS TOOLBAR */
     .toolbar {
+      position: sticky;
+      top: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: rgba(18, 24, 38, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(18, 24, 38, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.3);
       padding: 6px 14px;
       border-radius: 9999px;
       margin-bottom: 16px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-      z-index: 100;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.2);
+      z-index: 1000;
       flex-wrap: wrap;
     }
 
@@ -321,8 +324,8 @@
 
     <!-- RELOAD BUTTON -->
     <div class="btn-group">
-      <button class="btn btn-icon" onclick="reloadFrame()" title="Reload App Inside Phone">
-        🔄 Reload
+      <button class="btn btn-icon" onclick="reloadFrame()" title="Force Refresh App & Clear Cache" style="background: #10b981; color: white; font-weight: 700;">
+        🔄 Refresh Hub
       </button>
     </div>
   </div>
@@ -379,7 +382,7 @@
 
     function reloadFrame() {
       const frame = document.getElementById('appIframe');
-      frame.src = frame.src;
+      frame.src = 'index.html?t=' + Date.now();
     }
 
     // Auto-fit scale if window width is tight in VS Code split screen

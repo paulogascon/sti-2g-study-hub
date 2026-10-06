@@ -8,29 +8,28 @@ const App = {
   handouts: [],
 
   async init() {
-    this.initClock();
-    this.initMidtermCountdown();
-    this.initTheme();
-    this.initNav();
-    this.initUserProfile();
-    await this.loadData();
-    this.renderSubjects();
-    this.initModals();
-    this.initTouchGestures();
+    try { this.initClock(); } catch (e) { console.warn('Clock init:', e); }
+    try { this.initMidtermCountdown(); } catch (e) { console.warn('Countdown init:', e); }
+    try { this.initTheme(); } catch (e) { console.warn('Theme init:', e); }
+    try { this.initNav(); } catch (e) { console.warn('Nav init:', e); }
+    try { this.initUserProfile(); } catch (e) { console.warn('Profile init:', e); }
+    try { await this.loadData(); } catch (e) { console.warn('LoadData init:', e); }
+    try { this.renderSubjects(); } catch (e) { console.warn('RenderSubjects init:', e); }
+    try { this.initModals(); } catch (e) { console.warn('Modals init:', e); }
+    try { this.initTouchGestures(); } catch (e) { console.warn('Gestures init:', e); }
 
     // Initialize feature modules
-    ScheduleModule.init();
-    QuizModule.init();
+    try { ScheduleModule.init(); } catch (e) { console.warn('Schedule init:', e); }
+    try { QuizModule.init(); } catch (e) { console.warn('Quiz init:', e); }
     if (typeof OfflineStorageModule !== 'undefined') {
-      OfflineStorageModule.init();
+      try { OfflineStorageModule.init(); } catch (e) { console.warn('Storage init:', e); }
     }
 
     // Check Onboarding & Terms on initial app load
-    this.checkOnboardingTerms();
+    try { this.checkOnboardingTerms(); } catch (e) { console.warn('Onboarding init:', e); }
 
     // Auto-sync when reconnecting or reopening app on phone
     window.addEventListener('online', () => {
-      console.log('[Network] Reconnected to Internet: syncing data');
       this.syncAllData();
     });
     document.addEventListener('visibilitychange', () => {

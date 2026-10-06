@@ -281,7 +281,778 @@
           </div>
 
           <div id="subjectsGrid" class="subjects-grid">
-            <!-- Rendered by App.renderSubjects -->
+
+      <div class="subject-card" data-code="COSC1003">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);">
+          <div class="subject-card-code">COSC1003</div>
+          <h3 class="subject-card-title">Data Structure and Algorithms</h3>
+          <span class="subject-units-badge">3 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: B305 (Lec) / B102 (Lab)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">B305 (Lec) / B102 (Lab)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Angus, Cherry Ann A.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Angus, Cherry Ann A.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Fundamental data structures (Arrays, Linked Lists, Stacks, Queues, Trees) and algorithmic complexity (Big O, sorting, searching).</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('COSC1003', 'midterm', event)">
+                🎯 Midterm (5)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('COSC1003', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Abstract Data Types & Big-O Notation</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Singly and Doubly Linked Lists</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Stacks (LIFO) & Queues (FIFO)</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Trees & Binary Search Trees (BST)</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Sorting & Searching Algorithms</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1003', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('COSC1003', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('COSC1003')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-card" data-code="COSC1007">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #115E59 0%, #14B8A6 100%);">
+          <div class="subject-card-code">COSC1007</div>
+          <h3 class="subject-card-title">Human-Computer Interaction</h3>
+          <span class="subject-units-badge">3 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: B207 (Lec) / MN307 (Lab)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">B207 (Lec) / MN307 (Lab)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Pasion, Charis B.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Pasion, Charis B.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Design principles, usability engineering, user testing, heuristic evaluation, and interaction design for web/mobile interfaces.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('COSC1007', 'midterm', event)">
+                🎯 Midterm (5)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('COSC1007', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>HCI Foundations & User-Centered Design</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Nielsen's 10 Usability Heuristics</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Hierarchical Task Analysis (HTA)</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Prototyping & Wireframing</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Usability Testing & Metrics</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1007', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('COSC1007', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('COSC1007')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-card" data-code="COSC1008">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #5B21B6 0%, #8B5CF6 100%);">
+          <div class="subject-card-code">COSC1008</div>
+          <h3 class="subject-card-title">Platform Technology 1 (Operating Systems)</h3>
+          <span class="subject-units-badge">3 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: B304 (Lec) / MN306 (Lab)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">B304 (Lec) / MN306 (Lab)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Gonzales, Danly S.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Gonzales, Danly S.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Operating system architecture, process management, CPU scheduling, concurrency, memory allocation, and virtual storage.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('COSC1008', 'midterm', event)">
+                🎯 Midterm (5)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('COSC1008', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>OS Architecture & System Calls</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Process Lifecycle & PCB</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>CPU Scheduling Algorithms (FCFS, SJF, RR)</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Process Synchronization & Deadlocks</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Memory Management & Paging</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1008', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('COSC1008', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('COSC1008')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-card" data-code="INTE1051">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #92400E 0%, #F59E0B 100%);">
+          <div class="subject-card-code">INTE1051</div>
+          <h3 class="subject-card-title">IT Elective I</h3>
+          <span class="subject-units-badge">3 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: B207 (Lec) / MN308 (Lab)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">B207 (Lec) / MN308 (Lab)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Pasion, Charis B.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Pasion, Charis B.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Specialized technologies, modern development environments, application logic, and industry workflows.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('INTE1051', 'midterm', event)">
+                🎯 Midterm (4)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('INTE1051', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Modern Development Paradigms</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Component Architecture & State Management</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>API Integrations & Data Flow</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Testing & Deployment Best Practices</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('INTE1051', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('INTE1051', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('INTE1051')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-card" data-code="COSC1001">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #075985 0%, #0EA5E9 100%);">
+          <div class="subject-card-code">COSC1001</div>
+          <h3 class="subject-card-title">Principles of Communication</h3>
+          <span class="subject-units-badge">3 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: ONLINE (W 5:30PM-8:30PM)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">ONLINE (W 5:30PM-8:30PM)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Escauso, Irene May C.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Escauso, Irene May C.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Data communications, signal transmission, network topologies, OSI/TCP layers, and digital modulation basics.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('COSC1001', 'midterm', event)">
+                🎯 Midterm (4)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('COSC1001', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Transmission Media & Signal Characteristics</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Modulation Techniques (AM, FM, PM)</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>OSI 7-Layer Reference Model</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Multiplexing & Error Detection Codes</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1001', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('COSC1001', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('COSC1001')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-card" data-code="GEDC 1006">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #991B1B 0%, #EF4444 100%);">
+          <div class="subject-card-code">GEDC 1006</div>
+          <h3 class="subject-card-title">Readings in Philippine History</h3>
+          <span class="subject-units-badge">3 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: B305 (F 1:00PM-4:00PM)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">B305 (F 1:00PM-4:00PM)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Pama, Delia P.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Pama, Delia P.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Critical analysis of primary sources, historical controversies, customs, and socioeconomic evolution of the Philippines.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('GEDC 1006', 'midterm', event)">
+                🎯 Midterm (4)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('GEDC 1006', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Primary vs. Secondary Sources Analysis</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Customs of the Tagalogs & Early Visayan Societies</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Cavite Mutiny & Propaganda Movement</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Philippine Constitution Evolution</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('GEDC 1006', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('GEDC 1006', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('GEDC1006')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-card" data-code="GEDC 1014">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%);">
+          <div class="subject-card-code">GEDC 1014</div>
+          <h3 class="subject-card-title">Rizal's Life and Works</h3>
+          <span class="subject-units-badge">3 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: MN424 (M 5:30PM-8:30PM)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">MN424 (M 5:30PM-8:30PM)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Angeles, Jocen B.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Angeles, Jocen B.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Life, writings, exile, trial, and enduring legacy of Dr. Jose Rizal; analysis of Noli Me Tangere and El Filibusterismo.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('GEDC 1014', 'midterm', event)">
+                🎯 Midterm (4)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('GEDC 1014', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Rizal Law (RA 1425) Context & Rationale</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>19th Century Philippines under Spanish Rule</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Rizal's European Education & Propaganda Writings</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Analysis of Noli Me Tangere & El Filibusterismo</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('GEDC 1014', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('GEDC 1014', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('GEDC1014')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="subject-card" data-code="PHED 1007">
+        <div class="subject-card-top" style="background: linear-gradient(135deg, #166534 0%, #22C55E 100%);">
+          <div class="subject-card-code">PHED 1007</div>
+          <h3 class="subject-card-title">P.E./PATHFIT 3: Individual-Dual Sports</h3>
+          <span class="subject-units-badge">2 Units</span>
+        </div>
+        <div class="subject-card-body">
+          <div class="subject-meta-chips-row">
+            <div class="schedule-meta-chip room-chip" title="Classroom / Laboratory: FIELD 4 (T 10:00AM-12:00PM)">
+              <div class="meta-chip-orb room-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18M5 21V7l8-4v18M13 7l6 3v11M9 9v1M9 13v1M9 17v1M17 13v1M17 17v1"/>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Room / Lab</span>
+                <span class="meta-chip-value">FIELD 4 (T 10:00AM-12:00PM)</span>
+              </div>
+            </div>
+
+            <div class="schedule-meta-chip instructor-chip" title="Instructor: Sagon, Benjamin Romel G.">
+              <div class="meta-chip-orb instructor-orb">
+                <svg class="meta-chip-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-chip-content">
+                <span class="meta-chip-label">Instructor</span>
+                <span class="meta-chip-value">Sagon, Benjamin Romel G.</span>
+              </div>
+            </div>
+          </div>
+          <p class="subject-desc">Physical activity and fitness training, movement competency, health wellness, and sports-related skills.</p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin: 0.85rem 0 0.4rem 0;">
+            <div style="display:flex; gap: 6px;">
+              <button 
+                class="period-badge midterm" 
+                style="cursor:pointer; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.2);"
+                onclick="App.toggleCardTopics('PHED 1007', 'midterm', event)">
+                🎯 Midterm (4)
+              </button>
+              <button 
+                class="period-badge" 
+                style="cursor:pointer; border: 1px solid var(--border-color); background: transparent;"
+                onclick="App.toggleCardTopics('PHED 1007', 'prelim', event)">
+                📁 Prelim (4)
+              </button>
+            </div>
+            <span style="font-size: 0.7rem; color: var(--text-dim); text-transform:uppercase; font-weight:700;">
+              Active
+            </span>
+          </div>
+
+          <ul class="subject-topics-list">
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Physical Fitness Assessments & Metrics</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Cardiovascular Endurance & Aerobics</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Movement Mechanics & Injury Prevention</span>
+              </li>
+              <li class="subject-topic-item">
+                <span class="subject-topic-dot" style="background: #f59e0b;"></span>
+                <span>Personal Fitness Regimen Design</span>
+              </li>
+          </ul>
+
+          <div class="subject-card-midterm-cta">
+            <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('PHED 1007', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
+              <span class="btn-pulse-dot"></span>
+              <span class="btn-cta-text">
+                <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
+                <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="subject-actions-row">
+            <button class="btn-card-action btn-secondary-glass" onclick="App.openSubjectHandouts('PHED 1007', 'PRELIM')">
+              📁 Prelim Archive
+            </button>
+            <button class="btn-card-action btn-secondary-glass" onclick="App.startSubjectQuiz('PHED1007')">
+              ⚡ Flashcards &amp; Quiz
+            </button>
+          </div>
+        </div>
+      </div>
           </div>
         </section>
 
