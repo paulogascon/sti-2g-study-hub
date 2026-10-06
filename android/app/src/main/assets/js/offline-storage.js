@@ -34,10 +34,10 @@ const OfflineStorageModule = {
       if (statusPill) {
         if (isOnline) {
           statusPill.innerHTML = '<span class="pulse-dot"></span><span class="network-text">Online</span>';
-          statusPill.className = 'network-pill online';
+          statusPill.className = 'network-pill online web-only-control';
         } else {
           statusPill.innerHTML = '<span class="pulse-dot offline"></span><span class="network-text">Offline</span>';
-          statusPill.className = 'network-pill offline';
+          statusPill.className = 'network-pill offline web-only-control';
         }
       }
     };

@@ -31,10 +31,8 @@
               <span class="brand-hub-name">2G Hub</span>
               <span class="term-pill">MIDTERM</span>
             </div>
-          </div>
 
-          <div class="header-actions">
-            <!-- Glassmorphism Theme Switcher -->
+            <!-- Glassmorphism Theme Switcher (Moved to left beside brand) -->
             <button id="themeToggleBtn" class="theme-liquid-orb" aria-label="Toggle dark/light theme" title="Toggle theme">
               <span class="theme-orb-glow"></span>
               <span class="theme-orb-specular"></span>
@@ -44,16 +42,34 @@
                 </svg>
               </span>
             </button>
+          </div>
 
-            <button id="openDownloadModalHeaderBtn" class="liquid-glass-btn download-btn" onclick="App.openDownloadModal()" title="Download Official Mobile App (.apk)">
+          <div class="header-actions">
+            <!-- New Quick Search & Finder Button (Spotlight / Ctrl+K) -->
+            <button id="headerSearchBtn" class="liquid-glass-btn search-btn" onclick="App.openSearchModal()" title="Quick Search: Subjects, Handouts, Rooms (Ctrl+K)">
+              <span class="search-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </span>
+              <span class="search-btn-label">Search</span>
+              <kbd class="search-kbd">⌘K</kbd>
+            </button>
+
+            <!-- Download Button (Hidden when downloaded or in app) -->
+            <button id="openDownloadModalHeaderBtn" class="liquid-glass-btn download-btn web-only-control" onclick="App.openDownloadModal()" title="Download Official Mobile App (.apk)">
               <span class="apk-icon">📱</span>
               <span class="apk-label-desktop">Download App (.apk)</span>
               <span class="apk-label-mobile">Get APK</span>
             </button>
-            <span id="networkStatusPill" class="network-pill online">
+
+            <!-- Network Status Pill (Hidden when downloaded or in app) -->
+            <span id="networkStatusPill" class="network-pill online web-only-control">
               <span class="pulse-dot"></span>
               <span class="network-text">Online</span>
             </span>
+
             <button id="enableNotifBtn" class="btn-notif desktop-only">🔔 Alerts</button>
             <button id="testAlertBtn" class="btn-notif desktop-only" title="Preview Alert Warning">🔊 Test Chime</button>
             <div id="liveClock" class="clock-display desktop-only">Mon, Oct 5, 2026</div>
@@ -98,8 +114,8 @@
             <p>1st Semester, SY 2026–2027 &bull; STI West Negros University (Section BSIT 2G)</p>
           </div>
 
-          <!-- Mobile App Download & Install Hero Card (Liquid Glass with Edge Glow) -->
-          <div class="app-download-hero-card">
+          <!-- Mobile App Download & Install Hero Card (Liquid Glass with Edge Glow - hidden when downloaded) -->
+          <div class="app-download-hero-card web-only-control">
             <div class="hero-left-content">
               <div class="app-icon-badge">📱</div>
               <div>
@@ -1498,6 +1514,45 @@
           </button>
         </div>
         <p class="onboarding-footnote">You can re-open or review these terms anytime from the sidebar profile menu.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: SPOTLIGHT QUICK SEARCH & FINDER -->
+  <!-- ========================================== -->
+  <div id="searchModal" class="modal-overlay search-modal-overlay">
+    <div class="search-modal-container">
+      <div class="search-modal-header">
+        <div class="search-input-wrapper">
+          <svg class="search-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="globalSearchInput" class="search-modal-input" placeholder="Search subjects, handouts, rooms, topics..." autofocus autocomplete="off" spellcheck="false">
+          <button id="clearSearchBtn" class="search-clear-btn" style="display:none;" onclick="App.clearSearchInput()">&times;</button>
+        </div>
+        <button id="closeSearchModalBtn" class="modal-close-btn" onclick="App.closeSearchModal()">&times;</button>
+      </div>
+
+      <!-- Quick Category Filter Pills -->
+      <div class="search-filter-pills">
+        <button class="search-pill active" data-cat="all" onclick="App.setSearchCategory('all')">✨ All</button>
+        <button class="search-pill" data-cat="subjects" onclick="App.setSearchCategory('subjects')">📚 Subjects (8)</button>
+        <button class="search-pill" data-cat="handouts" onclick="App.setSearchCategory('handouts')">📄 Handouts</button>
+        <button class="search-pill" data-cat="schedule" onclick="App.setSearchCategory('schedule')">🕒 Rooms &amp; Sched</button>
+      </div>
+
+      <!-- Dynamic Search Results -->
+      <div id="searchResultsList" class="search-results-list">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Search Footer Hints -->
+      <div class="search-modal-footer">
+        <div class="search-hint"><span>ESC</span> to close</div>
+        <div class="search-hint"><span>↵</span> to view</div>
+        <div class="search-hint"><span>Ctrl + K</span> shortcut</div>
       </div>
     </div>
   </div>

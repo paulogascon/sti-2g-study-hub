@@ -5046,4 +5046,336 @@ button:active,
   }
 }
 
+/* ==========================================================================
+   VIEW TRANSITION CIRCULAR RIPPLE THEME ANIMATION
+   ========================================================================== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 99999;
+}
+
+/* Fallback Ripple Circle Wave */
+.theme-ripple-wave {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%) scale(0);
+  animation: themeWaveExpand 0.52s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+@keyframes themeWaveExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(35);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   QUICK SEARCH BUTTON & SPOTLIGHT MODAL
+   ========================================================================== */
+.search-btn {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(37, 99, 235, 0.12));
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  padding: 0.42rem 0.85rem;
+  gap: 0.45rem;
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(37, 99, 235, 0.22));
+  border-color: #38bdf8;
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+}
+
+.search-svg {
+  width: 15px;
+  height: 15px;
+}
+
+.search-kbd {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+[data-theme="light"] .search-kbd {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #64748b;
+}
+
+/* Hide Get APK button & Online pill when downloaded / inside the app */
+.app-downloaded .web-only-control,
+.in-simulator .web-only-control,
+body.app-mode .web-only-control,
+[data-app-installed="true"] .web-only-control,
+.app-downloaded #networkStatusPill,
+.in-simulator #networkStatusPill,
+body.app-mode #networkStatusPill,
+[data-app-installed="true"] #networkStatusPill,
+.app-downloaded #openDownloadModalHeaderBtn,
+.in-simulator #openDownloadModalHeaderBtn,
+body.app-mode #openDownloadModalHeaderBtn,
+[data-app-installed="true"] #openDownloadModalHeaderBtn {
+  display: none !important;
+}
+
+/* Spotlight Search Modal */
+.search-modal-overlay {
+  align-items: flex-start;
+  padding-top: max(3.5rem, 8vh);
+}
+
+.search-modal-container {
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(32px) saturate(220%);
+  -webkit-backdrop-filter: blur(32px) saturate(220%);
+  border: 1.2px solid rgba(56, 189, 248, 0.3);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 580px;
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.85), 0 0 30px rgba(56, 189, 248, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 80vh;
+  animation: modalScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .search-modal-container {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(2, 132, 199, 0.25);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.15), 0 0 25px rgba(2, 132, 199, 0.15);
+}
+
+.search-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 0.75rem;
+}
+
+[data-theme="light"] .search-modal-header {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.6rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+[data-theme="light"] .search-input-wrapper {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.search-modal-icon {
+  width: 18px;
+  height: 18px;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.search-modal-input {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+}
+
+.search-clear-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.search-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.25rem 0.25rem 1.25rem;
+  overflow-x: auto;
+}
+
+.search-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .search-pill {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.search-pill.active {
+  background: #2563eb;
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+.search-results-list {
+  padding: 0.75rem 1.25rem;
+  overflow-y: auto;
+  max-height: 48vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+[data-theme="light"] .search-result-item {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.search-result-item:hover,
+.search-result-item.highlighted {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateX(3px);
+}
+
+.search-result-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.search-result-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(37, 99, 235, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.search-result-info {
+  min-width: 0;
+}
+
+.search-result-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-result-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-result-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.search-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.search-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+[data-theme="light"] .search-modal-footer {
+  background: rgba(0, 0, 0, 0.02);
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.search-hint span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 0.68rem;
+}
+
 

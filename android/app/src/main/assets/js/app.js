@@ -15,6 +15,8 @@ const App = {
     try { this.initUserProfile(); } catch (e) { console.warn('Profile init:', e); }
     try { await this.loadData(); } catch (e) { console.warn('LoadData init:', e); }
     try { this.renderSubjects(); } catch (e) { console.warn('RenderSubjects init:', e); }
+    try { this.checkAppDownloadedState(); } catch (e) { console.warn('App downloaded check:', e); }
+    try { this.initSearchModal(); } catch (e) { console.warn('Search modal init:', e); }
     try { this.initModals(); } catch (e) { console.warn('Modals init:', e); }
     try { this.initTouchGestures(); } catch (e) { console.warn('Gestures init:', e); }
 
@@ -137,13 +139,76 @@ const App = {
 
     const toggleBtn = document.getElementById('themeToggleBtn');
     if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('sti_2g_theme', next);
-        this.updateThemeButton(next);
+      toggleBtn.addEventListener('click', (e) => this.toggleTheme(e));
+    }
+  },
+
+  toggleTheme(event) {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    this.setThemeWithTransition(next, event);
+  },
+
+  setThemeWithTransition(next, event) {
+    const applyTheme = () => {
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('sti_2g_theme', next);
+      this.updateThemeButton(next);
+    };
+
+    // Calculate origin coordinates from click event or theme button center
+    let x = window.innerWidth / 2;
+    let y = 40;
+    if (event && event.clientX) {
+      x = event.clientX;
+      y = event.clientY;
+    } else {
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) {
+        const rect = btn.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      }
+    }
+
+    // Modern View Transitions API with circular clip-path expanding wave
+    if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      const transition = document.startViewTransition(() => {
+        applyTheme();
       });
+
+      transition.ready.then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`
+            ]
+          },
+          {
+            duration: 480,
+            easing: 'cubic-bezier(0.2, 0, 0, 1)',
+            pseudoElement: '::view-transition-new(root)'
+          }
+        );
+      });
+    } else {
+      // Fallback: visual ripple wave expanding across the screen
+      const wave = document.createElement('div');
+      wave.className = 'theme-ripple-wave';
+      wave.style.left = `${x}px`;
+      wave.style.top = `${y}px`;
+      wave.style.width = '60px';
+      wave.style.height = '60px';
+      wave.style.background = next === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(11, 15, 25, 0.95)';
+      document.body.appendChild(wave);
+      setTimeout(() => wave.remove(), 550);
+      applyTheme();
     }
   },
 
@@ -770,6 +835,216 @@ const App = {
     if (btnAndroid) btnAndroid.classList.toggle('active', tab === 'android');
     if (btnIos) btnIos.classList.toggle('active', tab === 'ios');
     if (btnPwa) btnPwa.classList.toggle('active', tab === 'pwa');
+  },
+
+  currentSearchCategory: 'all',
+  activeSearchResults: [],
+
+  initSearchModal() {
+    const input = document.getElementById('globalSearchInput');
+    const modal = document.getElementById('searchModal');
+    if (input) {
+      input.addEventListener('input', (e) => this.handleSearchInput(e.target.value));
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') this.closeSearchModal();
+      });
+    }
+
+    // Global keyboard shortcuts: Ctrl+K, Cmd+K, or "/"
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        this.openSearchModal();
+      } else if (e.key === '/' && !['input', 'textarea'].includes(document.activeElement?.tagName?.toLowerCase())) {
+        e.preventDefault();
+        this.openSearchModal();
+      }
+    });
+
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) this.closeSearchModal();
+      });
+    }
+  },
+
+  openSearchModal() {
+    const modal = document.getElementById('searchModal');
+    const input = document.getElementById('globalSearchInput');
+    if (modal) {
+      modal.classList.add('open');
+      if (input) {
+        setTimeout(() => input.focus(), 80);
+        this.handleSearchInput(input.value || '');
+      }
+    }
+  },
+
+  closeSearchModal() {
+    const modal = document.getElementById('searchModal');
+    if (modal) {
+      modal.classList.remove('open');
+    }
+  },
+
+  clearSearchInput() {
+    const input = document.getElementById('globalSearchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (input) {
+      input.value = '';
+      input.focus();
+      this.handleSearchInput('');
+    }
+    if (clearBtn) clearBtn.style.display = 'none';
+  },
+
+  setSearchCategory(cat) {
+    this.currentSearchCategory = cat;
+    document.querySelectorAll('.search-pill').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.cat === cat);
+    });
+    const input = document.getElementById('globalSearchInput');
+    this.handleSearchInput(input ? input.value : '');
+  },
+
+  handleSearchInput(query) {
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (clearBtn) {
+      clearBtn.style.display = query.trim() ? 'block' : 'none';
+    }
+    this.renderSearchResults(query.trim().toLowerCase());
+  },
+
+  renderSearchResults(q) {
+    const container = document.getElementById('searchResultsList');
+    if (!container) return;
+
+    const cat = this.currentSearchCategory;
+    const results = [];
+
+    // 1. Search Subjects
+    if (cat === 'all' || cat === 'subjects') {
+      const subs = this.subjects || [];
+      subs.forEach(s => {
+        const titleStr = s.title || s.name || '';
+        const codeStr = s.code || s.id || '';
+        const descStr = s.description || '';
+        const titleMatch = titleStr.toLowerCase().includes(q) || codeStr.toLowerCase().includes(q) || descStr.toLowerCase().includes(q);
+        if (!q || titleMatch) {
+          results.push({
+            type: 'subject',
+            icon: '📚',
+            title: titleStr,
+            sub: `${codeStr} • ${s.instructor || 'Prof'} • Room ${s.room || 'TBA'}`,
+            badge: `${(s.midtermTopics || s.topics || []).length} Topics`,
+            action: () => {
+              this.closeSearchModal();
+              this.switchView('subjects');
+            }
+          });
+        }
+      });
+    }
+
+    // 2. Search Handouts & Reviewers
+    if (cat === 'all' || cat === 'handouts') {
+      const hands = this.handouts || [];
+      hands.forEach(h => {
+        const titleMatch = h.title.toLowerCase().includes(q) || (h.subject && h.subject.toLowerCase().includes(q)) || (h.term && h.term.toLowerCase().includes(q));
+        if (!q || titleMatch) {
+          results.push({
+            type: 'handout',
+            icon: '📄',
+            title: h.title,
+            sub: `${h.subject || 'STI 2G'} • ${h.term || 'Midterm'} Reviewer (${h.fileType || 'Doc'})`,
+            badge: h.term || 'Handout',
+            action: () => {
+              this.closeSearchModal();
+              if (h.downloadUrl) {
+                window.open(h.downloadUrl, '_blank');
+              } else {
+                this.switchView('subjects');
+              }
+            }
+          });
+        }
+      });
+    }
+
+    // 3. Search Schedule & Rooms
+    if (cat === 'all' || cat === 'schedule') {
+      const schedule = (typeof ScheduleModule !== 'undefined' && ScheduleModule.classes) ? ScheduleModule.classes : [];
+      schedule.forEach(c => {
+        const subStr = c.subject || '';
+        const roomStr = c.room || '';
+        const profStr = c.instructor || '';
+        const dayStr = c.day || '';
+        const match = subStr.toLowerCase().includes(q) || roomStr.toLowerCase().includes(q) || profStr.toLowerCase().includes(q) || dayStr.toLowerCase().includes(q);
+        if (!q || match) {
+          results.push({
+            type: 'schedule',
+            icon: '🕒',
+            title: `${subStr} (${c.type || 'Lec'})`,
+            sub: `${dayStr} ${c.startTime || ''}-${c.endTime || ''} • Room ${roomStr} • ${profStr}`,
+            badge: roomStr || 'Class',
+            action: () => {
+              this.closeSearchModal();
+              this.switchView('schedule');
+            }
+          });
+        }
+      });
+    }
+
+    if (results.length === 0) {
+      container.innerHTML = `
+        <div class="search-empty-state">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+          <div>No results found for "<strong>${q}</strong>"</div>
+          <div style="font-size: 0.75rem; margin-top: 0.25rem; opacity: 0.8;">Try searching for a subject code (e.g. COSC1001), handout, or room (B305).</div>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = results.map((r, idx) => `
+      <div class="search-result-item" onclick="App.triggerSearchResult(${idx})">
+        <div class="search-result-left">
+          <div class="search-result-icon">${r.icon}</div>
+          <div class="search-result-info">
+            <div class="search-result-title">${r.title}</div>
+            <div class="search-result-sub">${r.sub}</div>
+          </div>
+        </div>
+        <span class="search-result-badge">${r.badge}</span>
+      </div>
+    `).join('');
+
+    this.activeSearchResults = results;
+  },
+
+  triggerSearchResult(index) {
+    if (this.activeSearchResults && this.activeSearchResults[index]) {
+      this.activeSearchResults[index].action();
+    }
+  },
+
+  checkAppDownloadedState() {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    const isAppProtocol = window.location.protocol === 'file:' || window.isAndroidApp || navigator.userAgent.includes('wv') || (window.location.hostname === 'localhost' && window.location.port !== '3000');
+    const isDownloaded = localStorage.getItem('sti2g_app_downloaded') === 'true';
+    const inSim = document.documentElement.classList.contains('in-simulator');
+
+    if (isStandalone || isAppProtocol || isDownloaded || inSim) {
+      document.documentElement.classList.add('app-downloaded');
+      document.body.classList.add('app-downloaded');
+    }
+  },
+
+  markAppDownloaded() {
+    localStorage.setItem('sti2g_app_downloaded', 'true');
+    document.documentElement.classList.add('app-downloaded');
+    document.body.classList.add('app-downloaded');
   },
 
   initModals() {
