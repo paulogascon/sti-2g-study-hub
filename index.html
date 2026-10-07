@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="preload" href="css/style.css?v=26" as="style">
-  <link rel="stylesheet" href="css/style.css?v=26">
+  <link rel="preload" href="css/style.css?v=27" as="style">
+  <link rel="stylesheet" href="css/style.css?v=27">
   <title>STI Omni &bull; BSIT 2G Study Hub</title>
   <link rel="icon" href="assets/icons/sti_crest_modern_128.png">
   <link rel="manifest" href="manifest.json">
@@ -57,8 +57,8 @@
           </div>
 
           <div class="header-actions">
-            <!-- New Quick Search & Finder Button (Spotlight / Ctrl+K) -->
-            <button id="headerSearchBtn" class="liquid-glass-btn search-btn" onclick="App.openSearchModal()" title="Quick Search: Subjects, Handouts, Rooms (Ctrl+K)">
+            <!-- Quick Search & Finder Button -->
+            <button id="headerSearchBtn" class="liquid-glass-btn search-btn" onclick="App.openSearchModal()" title="Quick Search: Subjects, Handouts, Rooms">
               <span class="search-btn-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="11" cy="11" r="8"></circle>
@@ -66,7 +66,6 @@
                 </svg>
               </span>
               <span class="search-btn-label">Search</span>
-              <kbd class="search-kbd">⌘K</kbd>
             </button>
 
             <!-- Download Button (Hidden when downloaded or in app) -->
@@ -141,13 +140,6 @@
                 <p class="home-greeting-sub"><img src="assets/icons/sti_crest_modern_128.png" alt="STI WNU" class="home-crest-micro"> BSIT 2G &bull; STI West Negros University</p>
               </div>
             </div>
-            <button class="home-search-pill-btn" onclick="App.openSearchModal()" title="Quick Spotlight Search (Ctrl+K)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <span>Search</span>
-            </button>
           </div>
 
           <!-- Mobile App Download & Install Hero Card (Hidden when downloaded) -->
@@ -1664,13 +1656,6 @@
       <!-- Dynamic Search Results -->
       <div id="searchResultsList" class="search-results-list">
         <!-- Rendered dynamically -->
-      </div>
-
-      <!-- Search Footer Hints -->
-      <div class="search-modal-footer">
-        <div class="search-hint"><span>ESC</span> to close</div>
-        <div class="search-hint"><span>↵</span> to view</div>
-        <div class="search-hint"><span>Ctrl + K</span> shortcut</div>
       </div>
     </div>
   </div>
