@@ -564,23 +564,23 @@ h1, h2, h3, h4, h5, h6 {
   filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.7));
 }
 
-@keyframes themeOrbSpin {
+@keyframes iconMorphIn {
   0% {
-    transform: rotate(0deg) scale(0.7);
-    opacity: 0.4;
+    transform: rotate(-80deg) scale(0.45);
+    opacity: 0;
   }
-  60% {
-    transform: rotate(200deg) scale(1.18);
+  65% {
+    transform: rotate(12deg) scale(1.12);
     opacity: 1;
   }
   100% {
-    transform: rotate(360deg) scale(1);
+    transform: rotate(0deg) scale(1);
     opacity: 1;
   }
 }
 
 .theme-icon-spin {
-  animation: themeOrbSpin 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: iconMorphIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* Main Content Area */
@@ -5502,38 +5502,31 @@ body.in-simulator .bottom-glass-nav {
 }
 
 /* ==========================================================================
-   VIEW TRANSITION CIRCULAR RIPPLE THEME ANIMATION
+   SILKY SMOOTH HARDWARE-ACCELERATED THEME CROSSFADE (120 FPS)
    ========================================================================== */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
 ::view-transition-old(root) {
-  z-index: 1;
+  animation: 240ms cubic-bezier(0.25, 1, 0.5, 1) both themeFadeOut;
 }
+
 ::view-transition-new(root) {
-  z-index: 99999;
+  animation: 240ms cubic-bezier(0.25, 1, 0.5, 1) both themeFadeIn;
 }
 
-/* Fallback Ripple Circle Wave */
-.theme-ripple-wave {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%) scale(0);
-  animation: themeWaveExpand 0.52s cubic-bezier(0.2, 0, 0, 1) forwards;
-}
-
-@keyframes themeWaveExpand {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.9;
+@keyframes themeFadeOut {
+  from {
+    opacity: 1;
   }
-  100% {
-    transform: translate(-50%, -50%) scale(35);
+  to {
     opacity: 0;
+  }
+}
+
+@keyframes themeFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

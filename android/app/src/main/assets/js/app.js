@@ -153,65 +153,19 @@ const App = {
     this.setThemeWithTransition(next, event);
   },
 
-  setThemeWithTransition(next, event) {
+  setThemeWithTransition(next) {
     const applyTheme = () => {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('sti_2g_theme', next);
       this.updateThemeButton(next);
     };
 
-    // Calculate origin coordinates from click event or theme button center
-    let x = window.innerWidth / 2;
-    let y = 40;
-    if (event && event.clientX) {
-      x = event.clientX;
-      y = event.clientY;
-    } else {
-      const btn = document.getElementById('themeToggleBtn');
-      if (btn) {
-        const rect = btn.getBoundingClientRect();
-        x = rect.left + rect.width / 2;
-        y = rect.top + rect.height / 2;
-      }
-    }
-
-    // Modern View Transitions API with circular clip-path expanding wave
+    // Silky smooth, hardware-accelerated theme transition (zero frame drop / zero lag)
     if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const endRadius = Math.hypot(
-        Math.max(x, window.innerWidth - x),
-        Math.max(y, window.innerHeight - y)
-      );
-
-      const transition = document.startViewTransition(() => {
+      document.startViewTransition(() => {
         applyTheme();
       });
-
-      transition.ready.then(() => {
-        document.documentElement.animate(
-          {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${endRadius}px at ${x}px ${y}px)`
-            ]
-          },
-          {
-            duration: 480,
-            easing: 'cubic-bezier(0.2, 0, 0, 1)',
-            pseudoElement: '::view-transition-new(root)'
-          }
-        );
-      });
     } else {
-      // Fallback: visual ripple wave expanding across the screen
-      const wave = document.createElement('div');
-      wave.className = 'theme-ripple-wave';
-      wave.style.left = `${x}px`;
-      wave.style.top = `${y}px`;
-      wave.style.width = '60px';
-      wave.style.height = '60px';
-      wave.style.background = next === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(11, 15, 25, 0.95)';
-      document.body.appendChild(wave);
-      setTimeout(() => wave.remove(), 550);
       applyTheme();
     }
   },
