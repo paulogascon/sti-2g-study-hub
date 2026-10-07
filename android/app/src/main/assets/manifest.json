@@ -1,7 +1,7 @@
 {
-  "name": "STI 2G Study Hub",
-  "short_name": "STI 2G Hub",
-  "description": "Offline Academic Portal, Schedule & Reviewer Hub for STI WNU BSIT 2G",
+  "name": "STI Omni",
+  "short_name": "STI Omni",
+  "description": "Offline Academic Operating Platform, Schedule & Reviewer Hub for STI WNU BSIT 2G",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b1120",

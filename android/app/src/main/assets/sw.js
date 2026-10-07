@@ -4,7 +4,7 @@
 // Enables instant automatic cloud synchronization on refresh & 100% offline access
 // ==========================================================================
 
-const CACHE_NAME = 'sti-2g-hub-v23';
+const CACHE_NAME = 'sti-omni-v25';
 const OFFLINE_SHELL = [
   './',
   './index.html',
@@ -19,6 +19,7 @@ const OFFLINE_SHELL = [
   './js/data/schedule.json',
   './js/data/quizzes.json',
   './js/data/handouts.json',
+  './assets/icons/sti_crest_modern_128.png',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png'
 ];

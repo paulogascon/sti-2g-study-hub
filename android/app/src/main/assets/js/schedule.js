@@ -147,9 +147,16 @@ const ScheduleModule = {
   },
 
   requestNotificationPermission() {
+    if (window.AndroidBridge && typeof window.AndroidBridge.requestNotificationPermission === 'function') {
+      window.AndroidBridge.requestNotificationPermission();
+      this.playChime();
+      this.sendSystemNotification('STI Omni Class Alerts Activated 🎓', 'You will receive warnings 30m, 10m, and 5m before each class begins.');
+      this.updateNotifButtonLabel();
+      return;
+    }
     if (!('Notification' in window)) {
       if (window.App && typeof App.showToast === 'function') {
-        App.showToast('Browser does not support system notifications.', 'warning');
+        App.showToast('Campus Bell Chimes active. System notifications handled in-app.', 'info');
       }
       return;
     }
@@ -157,17 +164,25 @@ const ScheduleModule = {
       this.updateNotifButtonLabel();
       if (perm === 'granted') {
         this.playChime();
-        this.sendSystemNotification('STI 2G Class Alerts Activated 🎓', 'You will receive warnings 30m and 10m before each class begins.');
+        this.sendSystemNotification('STI Omni Class Alerts Activated 🎓', 'You will receive warnings 30m, 10m, and 5m before each class begins.');
       }
     });
   },
 
   sendSystemNotification(title, body) {
+    if (window.AndroidBridge && typeof window.AndroidBridge.postNotification === 'function') {
+      try {
+        window.AndroidBridge.postNotification(title, body);
+        return;
+      } catch (err) {
+        console.warn('AndroidBridge notification error', err);
+      }
+    }
     if ('Notification' in window && Notification.permission === 'granted') {
       try {
         new Notification(title, {
           body: body,
-          icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎓</text></svg>'
+          icon: 'assets/icons/sti_crest_modern_128.png'
         });
       } catch (err) {
         console.warn('Native notification suppressed', err);
@@ -292,6 +307,13 @@ const ScheduleModule = {
           `🔔 Class In Session: ${ongoingClass.subjectCode}`,
           `${ongoingClass.subjectTitle} has started in room ${ongoingClass.room}!`
         );
+      }
+
+      // Suppress redundant duplicate banner on Dashboard view (homeClassRadarCard & top capsule already display it)
+      const currentView = window.App ? App.currentView : 'view-dashboard';
+      if (currentView === 'view-dashboard') {
+        banner.style.display = 'none';
+        return;
       }
 
       banner.className = 'class-alert-banner ongoing';
