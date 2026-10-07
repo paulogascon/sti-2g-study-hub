@@ -6,8 +6,15 @@
 const App = {
   subjects: [],
   handouts: [],
+  currentView: 'view-dashboard',
+  previousView: 'view-dashboard',
+  viewScrollPositions: {},
 
   async init() {
+    const initialActive = document.querySelector('.view-section.active');
+    if (initialActive && initialActive.id) {
+      this.currentView = initialActive.id;
+    }
     try { this.initClock(); } catch (e) { console.warn('Clock init:', e); }
     try { this.initMidtermCountdown(); } catch (e) { console.warn('Countdown init:', e); }
     try { this.initTheme(); } catch (e) { console.warn('Theme init:', e); }
@@ -249,7 +256,16 @@ const App = {
     void fabEl.offsetWidth;
     fabEl.classList.add('fab-tap-bounce');
 
-    this.goToMidtermSubjects();
+    // Toggle: if currently on Midterm Hub, close it and return to previous screen
+    if (this.currentView === 'view-subjects') {
+      const returnTarget = (this.previousView && this.previousView !== 'view-subjects')
+        ? this.previousView
+        : 'view-dashboard';
+      this.switchView(returnTarget, { isBack: true });
+    } else {
+      // Otherwise open Midterm Hub
+      this.goToMidtermSubjects();
+    }
   },
 
   toggleSidebar() {
@@ -322,6 +338,36 @@ const App = {
       openModal.classList.remove('open');
       return true;
     }
+    if (this.currentView && this.currentView !== 'view-dashboard') {
+      return this.navigateBack();
+    }
+    return false;
+  },
+
+  navigateBack() {
+    // 1. If sidebar drawer is open, close it
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar && sidebar.classList.contains('open')) {
+      this.closeSidebar(false);
+      return true;
+    }
+
+    // 2. If any modal is open, close it
+    const openModal = document.querySelector('.modal-overlay.open');
+    if (openModal) {
+      openModal.classList.remove('open');
+      return true;
+    }
+
+    // 3. Return to previous view or dashboard
+    if (this.currentView && this.currentView !== 'view-dashboard') {
+      const returnTarget = (this.previousView && this.previousView !== this.currentView)
+        ? this.previousView
+        : 'view-dashboard';
+      this.switchView(returnTarget, { isBack: true });
+      return true;
+    }
+
     return false;
   },
 
@@ -336,6 +382,7 @@ const App = {
     let currentY = 0;
     let tracking = false;
     let isEdgeSwipe = false;
+    let isSwipeBack = false;
 
     // 1. Touch start on window
     window.addEventListener('touchstart', (e) => {
@@ -348,15 +395,24 @@ const App = {
 
       const isOpen = sidebar.classList.contains('open');
       if (isOpen) {
-        // When drawer is open, any touch on sidebar or overlay can swipe left to close
+        // When drawer is open, any touch can swipe left to close
         tracking = true;
         isEdgeSwipe = false;
-      } else if (startX <= 32) {
-        // Screen-edge swipe to open
+        isSwipeBack = false;
+      } else if (startX <= 32 && App.currentView === 'view-dashboard') {
+        // Edge swipe on Home/Dashboard to open sidebar
         tracking = true;
         isEdgeSwipe = true;
+        isSwipeBack = false;
+      } else if (startX < Math.max(window.innerWidth * 0.45, 180) && (App.currentView !== 'view-dashboard' || document.querySelector('.modal-overlay.open'))) {
+        // Left-to-right swipe-back zone when away from Home or inside an open modal
+        tracking = true;
+        isEdgeSwipe = false;
+        isSwipeBack = true;
       } else {
         tracking = false;
+        isEdgeSwipe = false;
+        isSwipeBack = false;
       }
     }, { passive: true });
 
@@ -370,7 +426,7 @@ const App = {
       const diffX = currentX - startX;
       const diffY = currentY - startY;
 
-      // If user is clearly scrolling vertically, cancel horizontal swipe tracking
+      // If user is clearly scrolling vertically, cancel horizontal gesture tracking
       if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 20) {
         tracking = false;
       }
@@ -385,15 +441,25 @@ const App = {
       const diffY = currentY - startY;
 
       // Predominantly horizontal gesture
-      if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (Math.abs(diffX) > Math.abs(diffY) * 1.25) {
         const isOpen = sidebar.classList.contains('open');
-        // Swipe left (<--) to close sidebar: finger moved at least 32px to the left
+
+        // Case A: Sidebar is open -> swipe left (<--) closes sidebar
         if (isOpen && diffX < -32) {
           App.closeSidebar();
+          return;
         }
-        // Swipe right (-->) from edge to open sidebar: finger moved at least 40px to the right
-        else if (!isOpen && isEdgeSwipe && diffX > 40) {
+
+        // Case B: Edge swipe right (-->) on Dashboard opens sidebar
+        if (!isOpen && isEdgeSwipe && diffX > 40) {
           App.openSidebar();
+          return;
+        }
+
+        // Case C: Mobile Swipe-Back gesture (-->) returns to previous screen or closes modal
+        if (!isOpen && isSwipeBack && diffX > 45) {
+          App.navigateBack();
+          return;
         }
       }
     }, { passive: true });
@@ -423,42 +489,111 @@ const App = {
     });
 
     // 6. Browser / Android back navigation (popstate)
-    window.addEventListener('popstate', () => {
+    window.addEventListener('popstate', (e) => {
       if (sidebar.classList.contains('open')) {
         App.closeSidebar(false);
+        return;
       }
-      document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+      const openModal = document.querySelector('.modal-overlay.open');
+      if (openModal) {
+        openModal.classList.remove('open');
+        return;
+      }
+      if (e.state && e.state.viewId) {
+        App.switchView(e.state.viewId, { isBack: true, fromPopState: true });
+      } else if (App.currentView && App.currentView !== 'view-dashboard') {
+        const target = App.previousView || 'view-dashboard';
+        App.switchView(target, { isBack: true, fromPopState: true });
+      }
     });
   },
 
-  switchView(viewId) {
+  switchView(rawViewId, options = {}) {
+    if (!rawViewId) return;
+
+    // Normalize view IDs
+    let viewId = rawViewId;
+    if (!viewId.startsWith('view-')) {
+      viewId = 'view-' + viewId;
+    }
+
+    const currentId = this.currentView || 'view-dashboard';
+    const isBack = options.isBack === true || (currentId !== 'view-dashboard' && viewId === 'view-dashboard' && options.isBack !== false);
+
+    // If switching to the exact same view and not forced, scroll instantly to top if requested
+    if (currentId === viewId && !options.force) {
+      if (options.scrollTop !== undefined) {
+        window.scrollTo({ top: options.scrollTop, left: 0, behavior: 'instant' });
+      }
+      return;
+    }
+
+    // 1. Record current view's vertical scroll position before navigating away
+    this.viewScrollPositions[currentId] = window.scrollY || window.pageYOffset || 0;
+
+    // 2. Track previous view
+    if (!isBack && currentId !== viewId) {
+      this.previousView = currentId;
+    }
+
+    this.currentView = viewId;
+
+    // 3. Update bottom nav item active pills
     document.querySelectorAll('.bottom-nav-item').forEach(l => {
       l.classList.toggle('active', l.dataset.view === viewId);
     });
 
+    // 4. Update FAB Active State (Midterm Hub) & Sublabel
     const fab = document.getElementById('bottomNavFab');
+    const fabSublabel = document.querySelector('.fab-sublabel');
+    const isMidtermView = (viewId === 'view-subjects');
+
     if (fab) {
-      fab.classList.toggle('active', viewId === 'view-subjects');
+      fab.classList.toggle('active', isMidtermView);
+      const titleText = isMidtermView ? 'Close Midterm Hub (Return)' : 'Open Midterm Hub';
+      fab.setAttribute('title', titleText);
+      fab.setAttribute('aria-label', titleText);
+    }
+    if (fabSublabel) {
+      fabSublabel.textContent = isMidtermView ? 'Close' : 'Midterm';
     }
 
+    // 5. Deactivate other views & clean old slide animation classes
     document.querySelectorAll('.view-section').forEach(sec => {
-      sec.classList.remove('active');
+      if (sec.id !== viewId) {
+        sec.classList.remove('active', 'view-slide-forward', 'view-slide-back');
+      }
     });
 
+    // 6. Activate new view section
     const activeSec = document.getElementById(viewId);
     if (activeSec) {
-      activeSec.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Determine target scroll position:
+      // If returning back, restore saved scroll position; if moving forward, land at top (0)
+      const targetScroll = isBack 
+        ? (this.viewScrollPositions[viewId] || 0) 
+        : (options.scrollTop !== undefined ? options.scrollTop : 0);
+
+      // INSTANT scroll placement (Zero jitter, zero animated jump to top)
+      window.scrollTo({ top: targetScroll, left: 0, behavior: 'instant' });
+
+      // Hardware accelerated slide animation
+      activeSec.classList.remove('view-slide-forward', 'view-slide-back');
+      void activeSec.offsetWidth; // Force reflow so animation always replays
+      activeSec.classList.add('active', isBack ? 'view-slide-back' : 'view-slide-forward');
+    }
+
+    // 7. Sync browser history
+    if (!options.fromPopState && window.history && window.history.pushState) {
+      try {
+        window.history.pushState({ viewId }, '', `#${viewId}`);
+      } catch (e) {}
     }
   },
 
   goToMidtermSubjects() {
-    this.switchView('view-subjects');
+    this.switchView('view-subjects', { isBack: false, scrollTop: 0 });
     this.setGlobalSubjectFilter('MIDTERM');
-    const target = document.getElementById('view-subjects');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
   },
 
   activeHandoutSubject: null,

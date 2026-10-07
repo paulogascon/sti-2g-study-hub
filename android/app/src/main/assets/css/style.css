@@ -1300,16 +1300,57 @@ h1, h2, h3, h4, h5, h6 {
 
 .view-section {
   display: none;
-  animation: fadeIn 0.25s ease-out;
+  opacity: 0;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .view-section.active {
   display: block;
+  opacity: 1;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Default initial load fade */
+.view-section.active:not(.view-slide-forward):not(.view-slide-back) {
+  animation: viewFadeSimple 0.16s ease-out forwards;
+}
+
+/* Silky-Smooth 120 FPS Mobile Slide Forward (from right) */
+.view-section.active.view-slide-forward {
+  animation: viewSlideForward 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Silky-Smooth 120 FPS Mobile Slide Back (from left) */
+.view-section.active.view-slide-back {
+  animation: viewSlideBack 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes viewFadeSimple {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes viewSlideForward {
+  0% {
+    opacity: 0;
+    transform: translate3d(22px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes viewSlideBack {
+  0% {
+    opacity: 0;
+    transform: translate3d(-22px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 /* Common Section Header */
@@ -3685,16 +3726,6 @@ h1, h2, h3, h4, h5, h6 {
   display: none !important;
 }
 
-.view-section.active {
-  display: block;
-  animation: viewFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes viewFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 /* GPU Hardware Acceleration on Heavy Interactive Elements */
 .flashcard,
 .stat-card,
@@ -5568,6 +5599,24 @@ button:active,
 
 .bottom-nav-fab.active .fab-svg {
   transform: rotate(45deg);
+}
+
+.bottom-nav-fab.active ~ .fab-sublabel {
+  color: #f59e0b;
+  font-weight: 800;
+}
+
+[data-theme="light"] .bottom-nav-fab.active .fab-circle {
+  border-color: #ffffff;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 
+    0 12px 24px -4px rgba(245, 158, 11, 0.45),
+    0 0 20px rgba(245, 158, 11, 0.35),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="light"] .bottom-nav-fab.active ~ .fab-sublabel {
+  color: #d97706;
 }
 
 @keyframes fabBouncePop {
