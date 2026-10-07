@@ -808,23 +808,51 @@ h1, h2, h3, h4, h5, h6 {
 
 .liquid-status-capsule {
   position: relative;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.44) 0%, rgba(30, 41, 59, 0.28) 100%);
-  backdrop-filter: blur(28px) saturate(210%);
-  -webkit-backdrop-filter: blur(28px) saturate(210%);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.72) 0%, rgba(30, 41, 59, 0.5) 100%);
+  backdrop-filter: blur(28px) saturate(220%);
+  -webkit-backdrop-filter: blur(28px) saturate(220%);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top: 1.2px solid rgba(255, 255, 255, 0.35);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.38);
   border-radius: 16px;
-  padding: 0.7rem 1.15rem;
-  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.28);
+  padding: 0.75rem 1rem;
+  box-shadow: 
+    0 10px 30px -4px rgba(0, 0, 0, 0.42),
+    0 2px 10px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.28);
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-status-capsule:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 14px 36px -4px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(56, 189, 248, 0.2),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.liquid-status-capsule:active {
+  transform: scale(0.985);
 }
 
 [data-theme="light"] .liquid-status-capsule {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(240, 249, 255, 0.5) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-top: 1.2px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 10px 24px -2px rgba(2, 43, 73, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(240, 249, 255, 0.78) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-top: 1.5px solid #ffffff;
+  box-shadow: 
+    0 10px 28px -2px rgba(2, 43, 73, 0.08),
+    0 2px 8px rgba(2, 132, 199, 0.06),
+    inset 0 1px 1px 0 #ffffff;
+}
+
+[data-theme="light"] .liquid-status-capsule:hover {
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: 
+    0 14px 32px -2px rgba(2, 43, 73, 0.12),
+    0 0 18px rgba(2, 132, 199, 0.16),
+    inset 0 1px 1px 0 #ffffff;
 }
 
 .capsule-sheen {
@@ -832,10 +860,10 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   right: 0;
-  height: 48%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+  height: 42%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
-  border-radius: 14px 14px 0 0;
+  border-radius: 15px 15px 0 0;
 }
 
 .capsule-body {
@@ -843,60 +871,56 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.42rem;
 }
 
-.capsule-headline {
+/* Tier 1: Live Status & Countdown Topline */
+.capsule-topline {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.capsule-badge-group {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 .capsule-status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 3px 9px;
+  gap: 0.38rem;
+  padding: 3px 9.5px;
   border-radius: 9999px;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .capsule-status-pill.upcoming {
-  background: rgba(14, 165, 233, 0.2);
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.22) 0%, rgba(2, 132, 199, 0.12) 100%);
   color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.4);
+  border: 1px solid rgba(56, 189, 248, 0.45);
   box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
 }
 
 .capsule-status-pill.live {
-  background: rgba(16, 185, 129, 0.2);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.15) 100%);
   color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.45);
-  box-shadow: 0 0 12px rgba(52, 211, 153, 0.25);
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.25);
 }
 
 .capsule-status-pill.urgent {
-  background: rgba(239, 68, 68, 0.22);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(220, 38, 38, 0.15) 100%);
   color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.45);
+  border: 1px solid rgba(239, 68, 68, 0.5);
   box-shadow: 0 0 14px rgba(239, 68, 68, 0.3);
   animation: urgentPulse 1.8s infinite ease-in-out;
 }
 
 .capsule-status-pill.clear {
-  background: rgba(148, 163, 184, 0.15);
+  background: rgba(148, 163, 184, 0.12);
   color: #cbd5e1;
   border: 1px solid rgba(148, 163, 184, 0.25);
 }
@@ -907,23 +931,62 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .capsule-countdown-pill {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-muted);
   white-space: nowrap;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2.5px 8.5px;
   border-radius: 9999px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.capsule-countdown-pill.upcoming {
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.capsule-countdown-pill.live {
+  background: rgba(16, 185, 129, 0.14);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.35);
 }
 
 .capsule-countdown-pill.urgent {
   background: rgba(239, 68, 68, 0.15);
-  border-color: rgba(239, 68, 68, 0.35);
   color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.35);
 }
 
-.capsule-meta-group {
+.capsule-countdown-pill.clear {
+  background: rgba(148, 163, 184, 0.1);
+  color: #cbd5e1;
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+/* Tier 2: Subject Headline */
+.capsule-subject-row {
+  display: flex;
+  align-items: center;
+}
+
+.capsule-subject-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+  word-break: break-word;
+}
+
+/* Tier 3: Metadata Chips */
+.capsule-meta-row {
   display: flex;
   align-items: center;
   gap: 0.45rem;
@@ -934,31 +997,65 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 2px 8px;
-  border-radius: 8px;
-  font-size: 0.74rem;
+  padding: 2.5px 8.5px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
   font-weight: 600;
   white-space: nowrap;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-main);
+  line-height: 1.2;
+}
+
+.capsule-meta-pill.room {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.32);
+  color: #fbbf24;
 }
 
 .capsule-meta-pill.room strong {
-  color: var(--sti-yellow);
+  color: #fbbf24;
+  font-weight: 800;
 }
 
-.capsule-subject-row {
-  display: flex;
-  align-items: center;
+.capsule-meta-pill.time {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
 }
 
-.capsule-subject-title {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.35;
-  letter-spacing: -0.01em;
+/* Light Theme Overrides for Capsule */
+[data-theme="light"] .capsule-subject-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .capsule-countdown-pill {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #475569;
+}
+
+[data-theme="light"] .capsule-countdown-pill.upcoming {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.25);
+}
+
+[data-theme="light"] .capsule-meta-pill.room {
+  background: rgba(217, 119, 6, 0.12);
+  border-color: rgba(217, 119, 6, 0.28);
+  color: #b45309;
+}
+
+[data-theme="light"] .capsule-meta-pill.room strong {
+  color: #b45309;
+}
+
+[data-theme="light"] .capsule-meta-pill.time {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #475569;
 }
 
 /* Class Alert Banner */
@@ -3644,8 +3741,13 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1.25rem;
   }
 
-  .capsule-headline {
-    margin-bottom: 0;
+  .capsule-topline {
+    width: auto;
+    gap: 0.5rem;
+  }
+
+  .capsule-meta-row {
+    width: auto;
   }
 }
 
@@ -3767,37 +3869,43 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Liquid Glass Capsule on Mobile */
   .liquid-status-capsule {
-    padding: 0.6rem 0.85rem;
-    border-radius: 12px;
+    padding: 0.65rem 0.85rem;
+    border-radius: 14px;
   }
 
   .capsule-body {
     gap: 0.35rem;
   }
 
+  .capsule-topline {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .capsule-subject-title {
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     line-height: 1.35;
     white-space: normal;
   }
 
-  .capsule-headline {
-    gap: 0.45rem;
+  .capsule-status-pill {
+    font-size: 0.66rem;
+    padding: 2.5px 7.5px;
   }
 
-  .capsule-status-pill {
+  .capsule-countdown-pill {
     font-size: 0.68rem;
     padding: 2px 7px;
   }
 
-  .capsule-countdown-pill {
-    font-size: 0.7rem;
-    padding: 1px 6px;
+  .capsule-meta-row {
+    width: 100%;
+    gap: 0.35rem;
   }
 
   .capsule-meta-pill {
-    font-size: 0.7rem;
-    padding: 2px 6px;
+    font-size: 0.68rem;
+    padding: 2px 7px;
   }
 }
 
@@ -3876,19 +3984,14 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.35rem;
   }
 
-  .capsule-headline {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
-  }
-
-  .capsule-badge-group {
+  .capsule-topline {
     width: 100%;
     justify-content: space-between;
   }
 
-  .capsule-meta-group {
+  .capsule-meta-row {
     width: 100%;
+    gap: 0.35rem;
   }
 }
 

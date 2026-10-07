@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="preload" href="css/style.css?v=28" as="style">
-  <link rel="stylesheet" href="css/style.css?v=28">
+  <link rel="preload" href="css/style.css?v=29" as="style">
+  <link rel="stylesheet" href="css/style.css?v=29">
   <title>STI Omni &bull; BSIT 2G Study Hub</title>
   <link rel="icon" href="assets/icons/sti_crest_modern_128.png">
   <link rel="manifest" href="manifest.json">
@@ -88,22 +88,27 @@
         </div>
 
         <!-- Dynamic Island Liquid Glass Status Capsule -->
-        <div id="liveClassCapsule" class="liquid-status-capsule">
+        <div id="liveClassCapsule" class="liquid-status-capsule" onclick="App.switchView('view-schedule')" role="button" tabindex="0" title="Tap to open full class timetable">
           <div class="capsule-sheen"></div>
           <div class="capsule-body">
-            <div class="capsule-headline">
-              <div class="capsule-badge-group">
-                <span id="tickerBadge" class="capsule-status-pill upcoming">⚡ UP NEXT</span>
-                <span id="tickerCountdown" class="capsule-countdown-pill">--</span>
-              </div>
-              <div class="capsule-meta-group">
-                <span id="tickerRoom" class="capsule-meta-pill room">📍 Loading...</span>
-                <span id="tickerTime" class="capsule-meta-pill time">🕒 --:--</span>
-              </div>
+            
+            <!-- Tier 1: Live Status & Countdown Topline -->
+            <div class="capsule-topline">
+              <span id="tickerBadge" class="capsule-status-pill upcoming">⚡ UP NEXT</span>
+              <span id="tickerCountdown" class="capsule-countdown-pill upcoming">--</span>
             </div>
+
+            <!-- Tier 2: Subject Headline -->
             <div class="capsule-subject-row">
               <div id="tickerSubject" class="capsule-subject-title">Loading class schedule...</div>
             </div>
+
+            <!-- Tier 3: Location & Time Chips -->
+            <div class="capsule-meta-row">
+              <span id="tickerRoom" class="capsule-meta-pill room">📍 Loading...</span>
+              <span id="tickerTime" class="capsule-meta-pill time">🕒 --:--</span>
+            </div>
+
           </div>
           <!-- Hidden fallback for legacy text queries -->
           <span id="tickerStatusText" style="display:none;"></span>
