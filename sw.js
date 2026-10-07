@@ -4,7 +4,7 @@
 // Enables instant automatic cloud synchronization on refresh & 100% offline access
 // ==========================================================================
 
-const CACHE_NAME = 'sti-omni-v27';
+const CACHE_NAME = 'sti-omni-v28';
 const OFFLINE_SHELL = [
   './',
   './index.html',

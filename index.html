@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="preload" href="css/style.css?v=27" as="style">
-  <link rel="stylesheet" href="css/style.css?v=27">
+  <link rel="preload" href="css/style.css?v=28" as="style">
+  <link rel="stylesheet" href="css/style.css?v=28">
   <title>STI Omni &bull; BSIT 2G Study Hub</title>
   <link rel="icon" href="assets/icons/sti_crest_modern_128.png">
   <link rel="manifest" href="manifest.json">
@@ -170,8 +170,11 @@
           <div id="homeClassRadarCard" class="home-class-radar-card" onclick="App.switchView('view-schedule')" role="button" tabindex="0">
             <div class="radar-card-top">
               <div class="radar-live-indicator">
-                <span class="radar-pulse-ring"></span>
-                <span class="radar-pulse-core"></span>
+                <span class="radar-dot-wrapper">
+                  <span class="radar-pulse-aura"></span>
+                  <span class="radar-pulse-ring"></span>
+                  <span class="radar-pulse-core"></span>
+                </span>
                 <span id="radarStatusLabel" class="radar-status-text">UP NEXT CLASS</span>
               </div>
               <span id="radarCountdownBadge" class="radar-time-badge">in 15h 4m</span>
@@ -411,7 +414,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1003', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
@@ -510,7 +512,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1007', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
@@ -609,7 +610,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1008', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
@@ -704,7 +704,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('INTE1051', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
@@ -799,7 +798,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('COSC1001', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
@@ -894,7 +892,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('GEDC 1006', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
@@ -989,7 +986,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('GEDC 1014', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>
@@ -1084,7 +1080,6 @@
 
           <div class="subject-card-midterm-cta">
             <button class="btn-card-action btn-midterm-highlight" onclick="App.openSubjectHandouts('PHED 1007', 'MIDTERM')" title="Open Midterm Study Guides &amp; Raw Handouts">
-              <span class="btn-pulse-dot"></span>
               <span class="btn-cta-text">
                 <span class="btn-cta-title">🎯 Open Midterm Files &amp; Reviewers</span>
                 <span class="btn-cta-subtitle">Study Guides &bull; Raw Handouts &bull; Active &rarr;</span>

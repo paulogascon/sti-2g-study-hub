@@ -742,12 +742,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pulse-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #10b981;
-  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  animation: pulse-green 1.8s infinite;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8);
+  animation: pulse-green 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
 }
 
 .pulse-dot.offline {
@@ -757,9 +760,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-green {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8), 0 0 4px rgba(16, 185, 129, 0.6); }
+  25% { transform: scale(1.15); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.4), 0 0 8px rgba(16, 185, 129, 0.8); }
+  50% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0), 0 0 4px rgba(16, 185, 129, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 0 4px rgba(16, 185, 129, 0.4); }
 }
 
 .clock-display {
@@ -3797,7 +3801,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .content-body {
     padding: 0.85rem 0.75rem calc(140px + env(safe-area-inset-bottom, 24px)) 0.75rem !important;
   }
@@ -6032,31 +6036,124 @@ body.app-mode #openDownloadModalHeaderBtn,
 .radar-live-indicator {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   position: relative;
+  line-height: 1;
 }
 
-.radar-pulse-ring {
+.radar-dot-wrapper {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.radar-pulse-core {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.9), 0 0 2px #34d399;
   position: relative;
-  display: inline-block;
+  z-index: 3;
+  transform-origin: center center;
+  animation: radarHeartbeatCore 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.radar-pulse-ring::after {
-  content: '';
+.radar-pulse-ring {
   position: absolute;
-  inset: -3px;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  margin-left: -4px;
   border-radius: 50%;
-  border: 2px solid #10b981;
-  animation: radarPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  border: 1.5px solid #10b981;
+  pointer-events: none;
+  z-index: 2;
+  box-sizing: border-box;
+  transform-origin: center center;
+  animation: radarHeartbeatRing 2.2s cubic-bezier(0.15, 0.85, 0.35, 1) infinite;
 }
 
-@keyframes radarPing {
-  0% { transform: scale(0.9); opacity: 1; }
-  75%, 100% { transform: scale(2.2); opacity: 0; }
+.radar-pulse-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.45);
+  pointer-events: none;
+  z-index: 1;
+  transform-origin: center center;
+  animation: radarHeartbeatAura 2.2s cubic-bezier(0.15, 0.85, 0.35, 1) infinite;
+}
+
+@keyframes radarHeartbeatCore {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.85), 0 0 2px #34d399;
+  }
+  14% {
+    transform: scale(1.22);
+    box-shadow: 0 0 14px rgba(16, 185, 129, 1), 0 0 4px #6ee7b7;
+  }
+  28% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.85), 0 0 2px #34d399;
+  }
+  42% {
+    transform: scale(1.14);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.95), 0 0 3px #6ee7b7;
+  }
+  58% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.85), 0 0 2px #34d399;
+  }
+}
+
+@keyframes radarHeartbeatRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.95;
+    border-width: 1.5px;
+  }
+  14% {
+    transform: scale(1.6);
+    opacity: 0.85;
+  }
+  45% {
+    transform: scale(2.6);
+    opacity: 0.3;
+    border-width: 1px;
+  }
+  75%, 100% {
+    transform: scale(3.4);
+    opacity: 0;
+    border-width: 0.5px;
+  }
+}
+
+@keyframes radarHeartbeatAura {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  35% {
+    transform: scale(2.0);
+    opacity: 0.16;
+  }
+  65%, 100% {
+    transform: scale(2.7);
+    opacity: 0;
+  }
 }
 
 .radar-status-text {
