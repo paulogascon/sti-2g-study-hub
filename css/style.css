@@ -3060,12 +3060,12 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   max-width: 535px;
   width: 92%;
-  padding: 1.85rem 2rem;
-  border-radius: 28px;
-  max-height: 88vh;
+  padding: 1.4rem 1.5rem;
+  border-radius: 26px;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(2, 43, 73, 0.82) 100%);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(2, 43, 73, 0.88) 100%);
   backdrop-filter: blur(30px) saturate(220%);
   -webkit-backdrop-filter: blur(30px) saturate(220%);
   border: 1.5px solid rgba(56, 189, 248, 0.45);
@@ -3075,6 +3075,14 @@ h1, h2, h3, h4, h5, h6 {
     inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.55),
     inset 0 -1px 2px 0 rgba(0, 0, 0, 0.4);
   overflow: hidden;
+}
+
+.onboarding-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 6px;
+  overscroll-behavior: contain;
 }
 
 .onboarding-modal-content::before {
@@ -3536,10 +3544,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .onboarding-actions {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
 }
 
 .onboarding-btn-primary {
@@ -5059,8 +5069,10 @@ button:active,
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding: 0 12px 14px 12px;
+  padding: 0 12px max(14px, env(safe-area-inset-bottom, 14px)) 12px;
   pointer-events: none;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .bottom-nav-container {

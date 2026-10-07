@@ -1272,20 +1272,34 @@ const App = {
       ScheduleModule.playChime();
     }
 
-    if (enableNotifs && 'Notification' in window) {
-      try {
-        const perm = await Notification.requestPermission();
-        if (typeof ScheduleModule !== 'undefined') {
-          ScheduleModule.updateNotifButtonLabel();
-          if (perm === 'granted') {
+    if (enableNotifs) {
+      if (window.AndroidBridge && typeof window.AndroidBridge.requestNotificationPermission === 'function') {
+        try {
+          window.AndroidBridge.requestNotificationPermission();
+          if (typeof ScheduleModule !== 'undefined' && ScheduleModule.sendSystemNotification) {
             ScheduleModule.sendSystemNotification(
-              'STI 2G Class Warnings Activated 🎓',
+              'STI Omni Class Warnings Activated 🎓',
               'You will receive automatic alerts 30m, 10m, and 5m before each class begins!'
             );
           }
+        } catch (e) {
+          console.warn('AndroidBridge error', e);
         }
-      } catch (err) {
-        console.warn('Notification permission error', err);
+      } else if ('Notification' in window) {
+        try {
+          const perm = await Notification.requestPermission();
+          if (typeof ScheduleModule !== 'undefined') {
+            ScheduleModule.updateNotifButtonLabel();
+            if (perm === 'granted') {
+              ScheduleModule.sendSystemNotification(
+                'STI Omni Class Warnings Activated 🎓',
+                'You will receive automatic alerts 30m, 10m, and 5m before each class begins!'
+              );
+            }
+          }
+        } catch (err) {
+          console.warn('Notification permission error', err);
+        }
       }
     }
 
@@ -1299,9 +1313,18 @@ const App = {
     const storageBadge = document.getElementById('permStorageStatus');
 
     if (notifBadge) {
-      if (!('Notification' in window)) {
-        notifBadge.textContent = 'Unavailable';
-        notifBadge.className = 'permission-status-pill disabled';
+      if (window.AndroidBridge) {
+        const hasPerm = typeof window.AndroidBridge.hasNotificationPermission === 'function' ? window.AndroidBridge.hasNotificationPermission() : true;
+        if (hasPerm) {
+          notifBadge.textContent = 'Active 🔔';
+          notifBadge.className = 'permission-status-pill granted';
+        } else {
+          notifBadge.textContent = 'Required ⚠️';
+          notifBadge.className = 'permission-status-pill pending';
+        }
+      } else if (!('Notification' in window)) {
+        notifBadge.textContent = 'In-App Ready 🔔';
+        notifBadge.className = 'permission-status-pill granted';
       } else if (Notification.permission === 'granted') {
         notifBadge.textContent = 'Active 🔔';
         notifBadge.className = 'permission-status-pill granted';
