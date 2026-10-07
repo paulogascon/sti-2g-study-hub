@@ -2941,7 +2941,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 10000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -3693,16 +3693,55 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
   }
   .content-body {
-    padding: 1rem 0.85rem;
+    padding: 1rem 0.9rem calc(135px + env(safe-area-inset-bottom, 24px)) 0.9rem !important;
+  }
+
+  .view-section {
+    padding-bottom: 16px;
   }
 
   /* Liquid Glass Header on Mobile */
   .top-header {
-    padding: 0.65rem 0.9rem;
-    padding-top: max(0.65rem, env(safe-area-inset-top));
-    padding-left: max(0.9rem, env(safe-area-inset-left));
-    padding-right: max(0.9rem, env(safe-area-inset-right));
+    padding: 0.75rem 1rem;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+    padding-left: max(1rem, env(safe-area-inset-left, 16px));
+    padding-right: max(1rem, env(safe-area-inset-right, 16px));
     gap: 0.55rem;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .top-header-bar {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .top-header-bar .search-kbd {
+    display: none !important;
+  }
+
+  .header-left {
+    min-width: 0;
+    flex-shrink: 1;
+    gap: 0.45rem;
+  }
+
+  .header-brand-mark {
+    min-width: 0;
+    flex-shrink: 1;
+    gap: 0.35rem;
+  }
+
+  .header-actions {
+    flex-shrink: 0;
+    gap: 0.45rem;
   }
 
   .liquid-glass-btn .apk-label-desktop {
@@ -3759,17 +3798,78 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 480px) {
+  .content-body {
+    padding: 0.85rem 0.75rem calc(140px + env(safe-area-inset-bottom, 24px)) 0.75rem !important;
+  }
+
   .top-header {
-    padding-left: max(0.75rem, env(safe-area-inset-left));
-    padding-right: max(0.75rem, env(safe-area-inset-right));
+    padding: 0.65rem 0.85rem;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+    padding-left: max(0.85rem, env(safe-area-inset-left, 16px));
+    padding-right: max(0.85rem, env(safe-area-inset-right, 16px));
   }
 
   .top-header-bar {
-    gap: 0.5rem;
+    gap: 0.35rem;
+    overflow: hidden;
+  }
+
+  /* Compact header on mobile screens: prevent border overflow */
+  .top-header .term-pill {
+    display: none !important;
+  }
+
+  .header-actions .search-btn-label {
+    display: none !important;
+  }
+
+  #headerSearchBtn {
+    padding: 0.42rem !important;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50% !important;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-btn-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .theme-liquid-orb {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    flex-shrink: 0;
+  }
+
+  .brand-sti-crest-badge {
+    padding: 2px 6px 2px 4px !important;
+    gap: 0.28rem !important;
+  }
+
+  .brand-sti-crest-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .brand-sti-text {
+    font-size: 0.7rem !important;
+  }
+
+  .brand-app-name {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-section-pill {
+    font-size: 0.62rem !important;
+    padding: 1.5px 5px !important;
   }
 
   .header-actions {
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .capsule-headline {
