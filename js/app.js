@@ -1511,9 +1511,15 @@ const App = {
 try {
   if (window.self !== window.top || new URLSearchParams(window.location.search).get('sim') === 'iphone') {
     document.documentElement.classList.add('in-simulator');
+    document.documentElement.setAttribute('data-simulator', 'true');
+    if (document.body) {
+      document.body.classList.add('in-simulator');
+      document.body.setAttribute('data-simulator', 'true');
+    }
   }
 } catch (e) {
   document.documentElement.classList.add('in-simulator');
+  document.documentElement.setAttribute('data-simulator', 'true');
 }
 
 // Global attachment for inline onclick and iframe host access

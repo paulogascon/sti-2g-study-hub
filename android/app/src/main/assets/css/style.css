@@ -5475,9 +5475,22 @@ button:active,
 }
 
 /* Safe Area Insets & Simulator */
+.in-simulator .top-header,
+[data-simulator="true"] .top-header,
+body.in-simulator .top-header {
+  padding-top: 56px !important;
+}
+
+.in-simulator .content-body,
+[data-simulator="true"] .content-body,
+body.in-simulator .content-body {
+  padding-bottom: 160px !important;
+}
+
 .in-simulator .bottom-glass-nav,
-[data-simulator="true"] .bottom-glass-nav {
-  padding-bottom: 22px !important;
+[data-simulator="true"] .bottom-glass-nav,
+body.in-simulator .bottom-glass-nav {
+  padding-bottom: 24px !important;
 }
 
 @media (min-width: 768px) {
